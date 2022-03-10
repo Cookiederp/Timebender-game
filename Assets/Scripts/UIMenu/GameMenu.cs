@@ -15,23 +15,38 @@ public class GameMenu : MonoBehaviour
         crosshair.SetActive(true);
         mainObj.SetActive(false);
         settingMenuObj.SetActive(false);
-    }
-
-    private void OnEnable()
-    {
-        OpenMenu();
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
     }
 
     public void OpenMenu()
     {
-        crosshair.SetActive(true);
+        mainObj.SetActive(true);
+        Time.timeScale = 0;
+        if (settingMenuObj.activeSelf)
+        {
+            //settings menu was open, escape was pressed, save settings here??
+        }
+        settingMenuObj.SetActive(false);
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    public void CloseMenu()
+    {
         mainObj.SetActive(false);
         settingMenuObj.SetActive(false);
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        Time.timeScale = 1;
     }
 
     public void OnResume()
     {
-        mainObj.SetActive(false);
+        CloseMenu();
     }
 
     public void OnSettings()

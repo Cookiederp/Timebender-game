@@ -76,8 +76,15 @@ namespace UnityTemplateProjects
         [Tooltip("Whether or not to invert our Y axis for mouse input to rotation.")]
         public bool invertY = false;
 
+        private void Start()
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+
         void OnEnable()
         {
+
             m_TargetCameraState.SetFromTransform(transform);
             m_InterpolatingCameraState.SetFromTransform(transform);
         }
@@ -127,28 +134,28 @@ namespace UnityTemplateProjects
 				#endif
             }
             // Hide and lock cursor when right mouse button pressed
-            if (Input.GetMouseButtonDown(1))
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-            }
+            //if (Input.GetMouseButtonDown(1))
+            //{
+                //Cursor.lockState = CursorLockMode.Locked;
+            //}
 
             // Unlock and show cursor when right mouse button released
-            if (Input.GetMouseButtonUp(1))
-            {
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
-            }
+            //if (Input.GetMouseButtonUp(1))
+            //{
+               // Cursor.visible = true;
+               // Cursor.lockState = CursorLockMode.None;
+            //}
 
             // Rotation
-            if (Input.GetMouseButton(1))
-            {
+            //if (Input.GetMouseButton(1))
+            //{
                 var mouseMovement = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y") * (invertY ? 1 : -1));
                 
                 var mouseSensitivityFactor = mouseSensitivityCurve.Evaluate(mouseMovement.magnitude);
 
                 m_TargetCameraState.yaw += mouseMovement.x * mouseSensitivityFactor;
                 m_TargetCameraState.pitch += mouseMovement.y * mouseSensitivityFactor;
-            }
+            //}
             
             // Translation
             translation = GetInputTranslationDirection() * Time.deltaTime;
@@ -159,8 +166,11 @@ namespace UnityTemplateProjects
                 translation *= 10.0f;
             }
 
-            // Modify movement by a boost factor (defined in Inspector and modified in play mode through the mouse scroll wheel)
-            boost += Input.mouseScrollDelta.y * 0.2f;
+            if (Input.GetKey(KeyCode.Z))
+            {
+                // Modify movement by a boost factor (defined in Inspector and modified in play mode through the mouse scroll wheel)
+                boost += Input.mouseScrollDelta.y * 0.2f;
+            }
             translation *= Mathf.Pow(2.0f, boost);
 
 #elif USE_INPUT_SYSTEM 
