@@ -38,7 +38,7 @@ public class SpellMoveProps : MonoBehaviour
             }
             else
             {
-                if (!(holdLocation.localPosition.z < minRange))
+                if (!(holdLocation.localPosition.z <= minRange))
                 {
                     holdLocation.localPosition = new Vector3(holdLocation.localPosition.x, holdLocation.localPosition.y, holdLocation.localPosition.z + (Input.mouseScrollDelta.y * 0.1f));
                 }
