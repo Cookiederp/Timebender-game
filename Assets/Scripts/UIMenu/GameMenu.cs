@@ -57,6 +57,7 @@ public class GameMenu : MonoBehaviour
     //Change this later save cur level with playerpref
     public void OnQuit()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(0);
     }
 }

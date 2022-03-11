@@ -13,8 +13,6 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-        Application.targetFrameRate = 60;
-
         loadScene = gameObject.GetComponent<LoadScene>();
         MainObj.SetActive(true);
         SettingsMenuObj.SetActive(false);
