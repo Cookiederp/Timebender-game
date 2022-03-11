@@ -12980,6 +12980,51 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1391078639}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1393367241
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1393367242}
+  - component: {fileID: 1393367243}
+  m_Layer: 0
+  m_Name: SpTimeTravel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1393367242
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1393367241}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1560739485}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1393367243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1393367241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 544f03171bf7f7c4492d64b33ea23810, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  presentPostProcessObj: {fileID: 1795952904}
+  futurePostProcessObj: {fileID: 1353763858953206508}
 --- !u!1001 &1394282724
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14469,6 +14514,55 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1542156246}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1560739484
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1560739485}
+  - component: {fileID: 1560739486}
+  m_Layer: 0
+  m_Name: SpellController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1560739485
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560739484}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 24.378498, y: 2.1949394, z: -0.3983353}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1677631351}
+  - {fileID: 1393367242}
+  - {fileID: 1827990304}
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1560739486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560739484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fe9e200ed5aabc4eb7f49cf892b49ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spMovePropsObj: {fileID: 1677631350}
+  spTimeTravelsObj: {fileID: 1393367241}
+  spRegenObj: {fileID: 1827990303}
 --- !u!1001 &1568164380
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15255,6 +15349,50 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f6c4572e07a60b43b00e1c4f489a806, type: 3}
+--- !u!1 &1677631350
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1677631351}
+  - component: {fileID: 1677631352}
+  m_Layer: 0
+  m_Name: SpMoveProps
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1677631351
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1677631350}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1560739485}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1677631352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1677631350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1baae84308481ce4299b0d76f04bd867, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holdLocation: {fileID: 1634251728}
 --- !u!1001 &1686138673
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16212,6 +16350,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2088014647}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1795952904 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8942503127031186967, guid: 555d922e037b9774eb0f3d5cdaf80914,
+    type: 3}
+  m_PrefabInstance: {fileID: 8942503126522215098}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1807453072
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16556,6 +16700,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1833460406}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1827990303
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1827990304}
+  m_Layer: 0
+  m_Name: SpRegen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1827990304
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1827990303}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1560739485}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1833460406
 PrefabInstance:
   m_ObjectHideFlags: 0

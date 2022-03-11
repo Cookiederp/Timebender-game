@@ -15,8 +15,6 @@ public class GameMenu : MonoBehaviour
         crosshair.SetActive(true);
         mainObj.SetActive(false);
         settingMenuObj.SetActive(false);
-        //Cursor.lockState = CursorLockMode.Locked;
-        //Cursor.visible = false;
     }
 
     public void OpenMenu()
@@ -25,7 +23,7 @@ public class GameMenu : MonoBehaviour
         Time.timeScale = 0;
         if (settingMenuObj.activeSelf)
         {
-            //settings menu was open, escape was pressed, save settings here??
+            settingMenuObj.GetComponent<SettingsMenu>().OnBack();
         }
         settingMenuObj.SetActive(false);
 
