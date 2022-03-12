@@ -8,9 +8,11 @@ public class SpellMoveProps : MonoBehaviour
     private Camera camera;
 
     private float defaultRange;
-    private float minRange = 2.3f;
-    private float maxRange = 4.1f;
-    private float breakDist = 6f;
+    private float minRange;
+    private float maxRange;
+    private float breakDist;
+    private float rayRange;
+    private float throwForce;
 
     public Transform holdLocation;
     private GameObject selectedProp;
@@ -18,6 +20,11 @@ public class SpellMoveProps : MonoBehaviour
 
     private void Start()
     {
+        minRange = 2.3f;
+        maxRange = 4.1f;
+        breakDist = 6f;
+        rayRange = 4.5f;
+        throwForce = 25f;
         camera = Camera.main;
         defaultRange = holdLocation.localPosition.z;
     }
@@ -52,7 +59,7 @@ public class SpellMoveProps : MonoBehaviour
         //move prop
         if (Input.GetMouseButtonDown(1))
         {
-            if (Physics.Raycast(ray, out hit, 4.5f, layerMaskMoveableProp))
+            if (Physics.Raycast(ray, out hit, rayRange, layerMaskMoveableProp))
             {
                 //case where player press input, selected prop stops being selected
                 if (selectedProp == hit.transform.gameObject)
@@ -66,6 +73,7 @@ public class SpellMoveProps : MonoBehaviour
                         DropSelectedProp();
                     }
                     //case where player press input, select hit prop, cache
+                    //select prop, if in future only, make it present also now.
                     selectedProp = hit.transform.gameObject;
                     selectedPropRb = hit.rigidbody;
                     selectedPropRb.interpolation = RigidbodyInterpolation.Interpolate;
@@ -84,14 +92,25 @@ public class SpellMoveProps : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            //throw
             if (selectedProp != null)
             {
-                if (Physics.Raycast(ray, out hit, 4.5f, layerMaskMoveableProp))
+                if (Physics.Raycast(ray, out hit, rayRange, layerMaskMoveableProp))
                 {
-                    selectedPropRb.AddForce(ray.direction * 25, ForceMode.Impulse);
+                    selectedPropRb.AddForce(ray.direction * throwForce, ForceMode.Impulse);
                     DropSelectedProp();
                 }
             }
+            //bring to other time, might add later, change it long range instead of with 1 and 2, or maybe will be another spell
+            /*
+            else
+            {
+                if (Physics.Raycast(ray, out hit, rayRange+??, layerMaskMoveableProp))
+                {
+                    hit.transform.gameObject.GetComponent<TimeTravelReceiver>().TakeToOther();
+                }
+            }
+            */
         }
 
     }
@@ -115,11 +134,11 @@ public class SpellMoveProps : MonoBehaviour
                 selectedPropRb.AddForce(dir, ForceMode.VelocityChange);
                 if (Input.GetKey(KeyCode.W))
                 {
-                    selectedPropRb.velocity *= Mathf.Clamp(dist, 0.2f, 0.8f);
+                    selectedPropRb.velocity *= Mathf.Clamp(dist, 0.25f, 0.8f);
                 }
                 else
                 {
-                    selectedPropRb.velocity *= Mathf.Clamp(dist, 0.2f, 0.6f);
+                    selectedPropRb.velocity *= Mathf.Clamp(dist, 0.25f, 0.6f);
                 }
             }
         }

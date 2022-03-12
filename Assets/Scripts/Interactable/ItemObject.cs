@@ -43,7 +43,7 @@ public class ItemObject : Interactable
         }
     }
 
-    public override void OnPress()
+    public override void OnPress(int n)
     {
         OnRayExit();
         isTaken = true;

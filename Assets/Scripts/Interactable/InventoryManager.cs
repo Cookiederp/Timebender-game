@@ -17,7 +17,7 @@ public class InventoryManager : MonoBehaviour
             item.Initialize(itemObj);
             items.Add(item);
 
-            itemObj.OnPress();
+            itemObj.OnPress(1);
         }
     }
 

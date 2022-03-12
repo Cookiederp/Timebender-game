@@ -16,6 +16,9 @@ public class PlayerInteractManager : MonoBehaviour
 
     int layerMaskInteract = 1 << 9;
     int layerMaskMoveableProp = 1 << 10;
+    int layerMaskMP;
+
+    float interactRange = 2.5f;
 
     private Interactable selectedGameObject;
     bool stillSelected = false;
@@ -23,6 +26,8 @@ public class PlayerInteractManager : MonoBehaviour
 
     void Start()
     {
+        layerMaskMP = LayerMask.NameToLayer("MoveableProp");
+
         //temp for menu controls
         gameMenu = gameMenuObj.GetComponent<GameMenu>();
 
@@ -36,7 +41,7 @@ public class PlayerInteractManager : MonoBehaviour
         Ray ray = camera.ScreenPointToRay(Input.mousePosition);
 
         //true when layer mask 9 (Interactable) is hit, else otherwise.
-        if (Physics.Raycast(ray, out hit, 2.5f, layerMaskInteract))
+        if (Physics.Raycast(ray, out hit, interactRange, layerMaskInteract | layerMaskMoveableProp))
         {
             //detects if a new object is selected, without a gap (from object to object raycast, two object hugging eachother)
             if (hit.transform != lastSelectedHit && stillSelected)
@@ -59,18 +64,34 @@ public class PlayerInteractManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 //another raycast when key is hit to make sure target taken is not behind anything
-                if (Physics.Raycast(ray, out hit, 2.5f))
+                if (Physics.Raycast(ray, out hit, interactRange))
                 {
+                    
                     Transform objectHit = hit.transform;
                     if (objectHit.CompareTag("Item"))
                     {
                         stillSelected = false;
                         inventoryManager.TakeItem(objectHit);
                     }
-                    else if (objectHit.CompareTag("InteractableNonItem"))
+                    else
                     {
                         Interactable obj = objectHit.gameObject.GetComponent<Interactable>();
-                        obj.OnPress();
+                        obj.OnPress(1);
+                    }
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                //another raycast when key is hit to make sure target taken is not behind anything
+                if (Physics.Raycast(ray, out hit, interactRange))
+                {
+
+                    Transform objectHit = hit.transform;
+                    if(layerMaskMP == objectHit.gameObject.layer)
+                    {
+                        Interactable obj = objectHit.gameObject.GetComponent<Interactable>();
+                        obj.OnPress(-1);
                     }
                 }
             }

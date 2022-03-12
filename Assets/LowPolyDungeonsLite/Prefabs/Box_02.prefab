@@ -123,5 +123,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdc66807c465d9f4986366bd271d435c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isInPresent: 1
-  isInFuture: 1
+  isObjInPresent: 1
+  isObjInFuture: 1

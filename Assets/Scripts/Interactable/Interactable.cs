@@ -17,8 +17,7 @@ public class Interactable : MonoBehaviour
 
     }
 
-    public virtual void OnPress()
+    public virtual void OnPress(int num)
     {
-        Debug.Log("press1");
     }
 }

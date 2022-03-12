@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Button : InteractablePuzzle
 {
-    public override void OnPress()
+    public override void OnPress(int n)
     {
-        base.OnPress();
+        base.OnPress(n);
     }
 }

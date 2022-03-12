@@ -28,7 +28,7 @@ public class InteractablePuzzle : Interactable
         }
     }
 
-    public override void OnPress()
+    public override void OnPress(int num)
     {
         for (int i = 0; i < onPressPressTargetsBool.Length; i++)
         {
@@ -36,7 +36,7 @@ public class InteractablePuzzle : Interactable
             {
                 if (targets[i] != null)
                 {
-                    targetsInteractComp[i].OnPress();
+                    targetsInteractComp[i].OnPress(1);
                     Debug.Log("Pressed: " + targets[i].name);
                 }
             }
