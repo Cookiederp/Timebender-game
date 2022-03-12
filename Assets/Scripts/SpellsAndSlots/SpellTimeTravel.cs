@@ -7,6 +7,8 @@ public class SpellTimeTravel : MonoBehaviour
     public GameObject presentPostProcessObj;
     public GameObject futurePostProcessObj;
 
+    public TimeTravelManager timeTravelManager;
+
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -16,12 +18,14 @@ public class SpellTimeTravel : MonoBehaviour
                 //to future
                 presentPostProcessObj.SetActive(false);
                 futurePostProcessObj.SetActive(true);
+                timeTravelManager.OnFuture();
             }
             else
             {
                 //to present
                 presentPostProcessObj.SetActive(true);
                 futurePostProcessObj.SetActive(false);
+                timeTravelManager.OnPresent();
             }
         }
     }

@@ -10,6 +10,7 @@ public class SpellMoveProps : MonoBehaviour
     private float defaultRange;
     private float minRange = 2.3f;
     private float maxRange = 4.1f;
+    private float breakDist = 6f;
 
     public Transform holdLocation;
     private GameObject selectedProp;
@@ -67,7 +68,7 @@ public class SpellMoveProps : MonoBehaviour
                     //case where player press input, select hit prop, cache
                     selectedProp = hit.transform.gameObject;
                     selectedPropRb = hit.rigidbody;
-
+                    selectedPropRb.interpolation = RigidbodyInterpolation.Interpolate;
                     selectedPropRb.useGravity = false;
                 }
             }
@@ -95,6 +96,8 @@ public class SpellMoveProps : MonoBehaviour
 
     }
 
+
+    //selected object follow holdLocation
     void FixedUpdate()
     {
         if (selectedProp != null)
@@ -102,7 +105,7 @@ public class SpellMoveProps : MonoBehaviour
 
             Vector3 dir = holdLocation.position - selectedProp.transform.position;
             float dist = Vector3.Distance(holdLocation.position, selectedProp.transform.position);
-            if (dist > 5)
+            if (dist > breakDist)
             {
                 DropSelectedProp();
             }
@@ -121,13 +124,23 @@ public class SpellMoveProps : MonoBehaviour
             }
         }
     }
-
+    //
 
     private void DropSelectedProp()
     {
+        selectedPropRb.interpolation = RigidbodyInterpolation.None;
         selectedPropRb.useGravity = true;
         selectedProp = null;
         selectedPropRb = null;
         holdLocation.localPosition = new Vector3(0, 0, defaultRange);
+    }
+
+
+    private void OnDisable()
+    {
+        if(selectedProp != null)
+        {
+            DropSelectedProp();
+        }
     }
 }
