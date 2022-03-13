@@ -25,17 +25,13 @@ public class TimeTravelManager : MonoBehaviour
             if (receivers[i] == null)
             {
                 receivers.RemoveAt(i);
-                Debug.Log("ERR");
+                i--;
             }
             else
             {
                 receivers[i].OnPresent();
             }
         }
-        //foreach(TimeTravelReceiver r in receivers){
-
-
-        //}
     }
 
     public void OnFuture()
@@ -45,7 +41,7 @@ public class TimeTravelManager : MonoBehaviour
             if (receivers[i] == null)
             {
                 receivers.RemoveAt(i);
-                Debug.Log("ERR");
+                i--;
             }
             else
             {

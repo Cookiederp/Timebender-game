@@ -15,10 +15,10 @@ public class TimeTravelReceiver : Interactable
     private bool timeIsPresent;
 
     private TransformNew presentTransform;
-    private TransformNew futureTransform;
+
     private Rigidbody rb;
-    Vector3 presentVelocity;
-    Vector3 presentAngularVelocity;
+    private Vector3 presentVelocity;
+    private Vector3 presentAngularVelocity;
 
     public void Awake()
     {
@@ -40,7 +40,7 @@ public class TimeTravelReceiver : Interactable
         UpdateTimeShownForObj(false, true);
     }
 
-
+    //called by TimeTravelManager, called when moving from future to present
     public void OnPresent()
     {
         timeIsPresent = true;
@@ -67,12 +67,14 @@ public class TimeTravelReceiver : Interactable
         }
     }
 
+    //called by TimeTravelManager, called when moving from present to future
     public void OnFuture()
     {
         timeIsPresent = false;
         if (isObjInFuture)
         {
             gameObject.SetActive(true);
+
             if (isObjInPresent)
             {
                 //p+f, leaving present entering future
@@ -100,7 +102,6 @@ public class TimeTravelReceiver : Interactable
         isObjInFuture = true;
         presentTransform = new TransformNew(gameObject.transform);
     }
-
 
     //canvas
     public void UpdateTimeShownForObj(bool uptext, bool upPF)
@@ -130,9 +131,9 @@ public class TimeTravelReceiver : Interactable
             }
         }
 
-
         if (upPF)
         {
+
             if (timeIsPresent)
             {
                 presentTransform = new TransformNew(gameObject.transform);
@@ -143,9 +144,7 @@ public class TimeTravelReceiver : Interactable
                 OnFuture();
             }
         }
-
     }
-
 
     public override void OnRay()
     {

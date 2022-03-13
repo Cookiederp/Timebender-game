@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &907737577407192764
+--- !u!1 &6698533136370866307
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,25 +8,26 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6062957040624609817}
-  - component: {fileID: 9062665835179654005}
-  - component: {fileID: 6053280207594641469}
-  - component: {fileID: 5172091281431041132}
-  - component: {fileID: 216180936422965645}
-  m_Layer: 0
-  m_Name: Chair_05
+  - component: {fileID: 7321029070664364311}
+  - component: {fileID: 5225302337017404633}
+  - component: {fileID: 4677503284638141495}
+  - component: {fileID: 1729180367931811925}
+  - component: {fileID: 2982016515995113092}
+  - component: {fileID: -2881071926432425338}
+  m_Layer: 10
+  m_Name: Jug_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6062957040624609817
+--- !u!4 &7321029070664364311
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 907737577407192764}
+  m_GameObject: {fileID: 6698533136370866307}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -34,21 +35,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &9062665835179654005
+--- !u!33 &5225302337017404633
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 907737577407192764}
-  m_Mesh: {fileID: 4300000, guid: d51ff80ee7d069542b138da061286520, type: 3}
---- !u!23 &6053280207594641469
+  m_GameObject: {fileID: 6698533136370866307}
+  m_Mesh: {fileID: 4300000, guid: ddaa7d6b7ae32864ebb3dc8ba1c6dd83, type: 3}
+--- !u!23 &4677503284638141495
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 907737577407192764}
+  m_GameObject: {fileID: 6698533136370866307}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -81,29 +82,47 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &5172091281431041132
-BoxCollider:
+--- !u!136 &1729180367931811925
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 907737577407192764}
+  m_GameObject: {fileID: 6698533136370866307}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.48336235, y: 0.44, z: 0.4414626}
-  m_Center: {x: -0.004958108, y: 0.22, z: -0.0047534555}
---- !u!65 &216180936422965645
-BoxCollider:
+  m_Radius: 0.20048623
+  m_Height: 0.4980215
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.24901076, z: 0}
+--- !u!54 &2982016515995113092
+Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 907737577407192764}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
+  m_GameObject: {fileID: 6698533136370866307}
   serializedVersion: 2
-  m_Size: {x: 0.48336235, y: 0.45, z: -0.04}
-  m_Center: {x: -0.004958108, y: 0.65, z: -0.19}
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
+--- !u!114 &-2881071926432425338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6698533136370866307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdc66807c465d9f4986366bd271d435c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isObjInPresent: 1
+  isObjInFuture: 1

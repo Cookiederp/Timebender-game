@@ -8,7 +8,7 @@ public class UILookAt : MonoBehaviour
 
     private void Awake()
     {
-        camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        camera = Camera.main;
     }
     void LateUpdate()
     {

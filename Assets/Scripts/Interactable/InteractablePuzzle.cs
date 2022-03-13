@@ -10,7 +10,7 @@ public class InteractablePuzzle : Interactable
     public GameObject[] targets;
 
     //cache
-    private Interactable[] targetsInteractComp;
+    private InteractablePuzReceiver[] targetsInteractComp;
 
     [SerializeField]
     private bool[] onPressDestroyTargetsBool;
@@ -21,10 +21,10 @@ public class InteractablePuzzle : Interactable
     private void Start()
     {
         //cache comps
-        targetsInteractComp = new Interactable[targets.Length];
+        targetsInteractComp = new InteractablePuzReceiver[targets.Length];
         for(int i = 0; i<targets.Length; i++)
         {
-            targetsInteractComp[i] = targets[i].GetComponent<Interactable>();
+            targetsInteractComp[i] = targets[i].GetComponent<InteractablePuzReceiver>();
         }
     }
 
@@ -36,7 +36,7 @@ public class InteractablePuzzle : Interactable
             {
                 if (targets[i] != null)
                 {
-                    targetsInteractComp[i].OnPress(1);
+                    targetsInteractComp[i].OnPressFromSwitch(1);
                     Debug.Log("Pressed: " + targets[i].name);
                 }
             }

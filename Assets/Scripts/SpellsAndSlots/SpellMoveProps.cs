@@ -5,14 +5,16 @@ using UnityEngine;
 public class SpellMoveProps : MonoBehaviour
 {
     int layerMaskMoveableProp = 1 << 10;
+    int layerMaskDefault = 1 << 0;
+    int layerMaskMP;
     private Camera camera;
 
     private float defaultRange;
-    private float minRange;
-    private float maxRange;
-    private float breakDist;
-    private float rayRange;
-    private float throwForce;
+    private float minRange = 2.3f;
+    private float maxRange = 4.1f;
+    private float breakDist = 6f;
+    private float rayRange = 4.5f;
+    private float throwForce = 20f;
 
     public Transform holdLocation;
     private GameObject selectedProp;
@@ -20,13 +22,9 @@ public class SpellMoveProps : MonoBehaviour
 
     private void Start()
     {
-        minRange = 2.3f;
-        maxRange = 4.1f;
-        breakDist = 6f;
-        rayRange = 4.5f;
-        throwForce = 25f;
         camera = Camera.main;
         defaultRange = holdLocation.localPosition.z;
+        layerMaskMP = LayerMask.NameToLayer("MoveableProp");
     }
 
     private void Update()
@@ -59,12 +57,31 @@ public class SpellMoveProps : MonoBehaviour
         //move prop
         if (Input.GetMouseButtonDown(1))
         {
-            if (Physics.Raycast(ray, out hit, rayRange, layerMaskMoveableProp))
+            if (Physics.Raycast(ray, out hit, rayRange, layerMaskMoveableProp | layerMaskDefault))
             {
-                //case where player press input, selected prop stops being selected
-                if (selectedProp == hit.transform.gameObject)
+                if(hit.transform.gameObject.layer == layerMaskMP)
                 {
-                    DropSelectedProp();
+                    //case where player press input, selected prop stops being selected
+                    if (selectedProp == hit.transform.gameObject)
+                    {
+                        DropSelectedProp();
+                    }
+                    else
+                    {
+                        if (selectedProp != null)
+                        {
+                            DropSelectedProp();
+                        }
+                        else
+                        {
+                            //case where player press input, select hit prop, cache
+                            //select prop, if in future only, make it present also now.
+                            selectedProp = hit.transform.gameObject;
+                            selectedPropRb = hit.rigidbody;
+                            selectedPropRb.interpolation = RigidbodyInterpolation.Interpolate;
+                            selectedPropRb.useGravity = false;
+                        }
+                    }
                 }
                 else
                 {
@@ -72,13 +89,8 @@ public class SpellMoveProps : MonoBehaviour
                     {
                         DropSelectedProp();
                     }
-                    //case where player press input, select hit prop, cache
-                    //select prop, if in future only, make it present also now.
-                    selectedProp = hit.transform.gameObject;
-                    selectedPropRb = hit.rigidbody;
-                    selectedPropRb.interpolation = RigidbodyInterpolation.Interpolate;
-                    selectedPropRb.useGravity = false;
                 }
+
             }
             else
             {

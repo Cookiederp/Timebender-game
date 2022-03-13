@@ -135,8 +135,8 @@ public class ItemObject : Interactable
 
         while (true)
         {
-            gameObject.transform.localScale = Vector3.SmoothDamp(gameObject.transform.localScale, target, ref velocity, animSpeed);
-            if (gameObject.transform.localScale.x < 0.05f)
+            gameObject.transform.localScale = Vector3.SmoothDamp(gameObject.transform.lossyScale, target, ref velocity, animSpeed);
+            if (gameObject.transform.lossyScale.x < 0.05f)
             {
                 break;
             }

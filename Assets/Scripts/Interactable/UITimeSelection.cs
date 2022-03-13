@@ -8,9 +8,9 @@ public class UITimeSelection : MonoBehaviour
     private static UITimeSelection _instance;
     public TextMeshProUGUI selectText;
 
-    private string st0;
-    private string st1;
-    private string st2;
+    private string st0 = "Present -> P+F [E]";
+    private string st1 = "[Q] P <- Present+Future -> F [E]";
+    private string st2 = "[Q] P+F <- Future";
 
     public static UITimeSelection instance
     {
@@ -27,9 +27,6 @@ public class UITimeSelection : MonoBehaviour
 
     void Awake()
     {
-        st0 = "Present -> P+F [E]";
-        st1 = "[Q] P <- Present+Future -> F [E]";
-        st2 = "[Q] P+F <- Future";
         selectText = gameObject.GetComponent<TextMeshProUGUI>();
         _instance = this;
         gameObject.SetActive(false);
