@@ -22,6 +22,7 @@ public class Door : InteractablePuzzleReceiver
     public override void OnPress(int num)
     {
         OnPressFromSwitch(1);
+        UpdateMessage();
     }
 
     public override void OnPressFromSwitch(int n)
@@ -52,12 +53,24 @@ public class Door : InteractablePuzzleReceiver
 
     public override void OnRay()
     {
-        ShowMessage(1, "Open Door");
+        UpdateMessage();
     }
 
     public override void OnRayExit()
     {
         ShowMessageExit();
+    }
+
+    private void UpdateMessage()
+    {
+        if (isOpen)
+        {
+            ShowMessage(1, "Close Door");
+        }
+        else
+        {
+            ShowMessage(1, "Open Door");
+        }
     }
 }
 
