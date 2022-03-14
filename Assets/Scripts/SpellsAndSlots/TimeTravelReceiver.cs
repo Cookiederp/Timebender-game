@@ -14,6 +14,7 @@ public class TimeTravelReceiver : Interactable
 
     private bool timeIsPresent;
     private bool isInventoryItem = false;
+    private bool isStatic = false;
 
     private TransformNew presentTransform;
 
@@ -24,12 +25,19 @@ public class TimeTravelReceiver : Interactable
     public void Awake()
     {
         presentTransform = new TransformNew(gameObject.transform);
-        rb = gameObject.GetComponent<Rigidbody>();
-
-        if (gameObject.CompareTag("Item")){
+        if(gameObject.layer == 10)
+        {
+            isStatic = true;
+        }
+        if (gameObject.CompareTag("Item"))
+        {
             isInventoryItem = true;
         }
 
+        if (!isStatic)
+        {
+            rb = gameObject.GetComponent<Rigidbody>();
+        }
         gameManager = GameManager.instance;
 
         if (isObjInPresent && isObjInFuture) {selectTimeForObj = 1;}
@@ -79,10 +87,13 @@ public class TimeTravelReceiver : Interactable
             gameObject.SetActive(true);
             if (isObjInPresent)
             {
-                //p+f, leaving present entering future, save transform in present, because present time is frozen while in future..       
-                presentVelocity = rb.velocity;
-                presentAngularVelocity = rb.angularVelocity;
-                presentTransform = new TransformNew(gameObject.transform);
+                //p+f, leaving present entering future, save transform in present, because present time is frozen while in future..   
+                if (!isStatic)
+                {
+                    presentVelocity = rb.velocity;
+                    presentAngularVelocity = rb.angularVelocity;
+                    presentTransform = new TransformNew(gameObject.transform);
+                }
                 /*
                 if (recentTouch)
                 {

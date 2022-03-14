@@ -2445,6 +2445,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 646027380}
     m_Modifications:
+    - target: {fileID: 4144483453066597857, guid: b6df53a6c0d1b7b468e267a97c8a7a28,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4144483453066597868, guid: b6df53a6c0d1b7b468e267a97c8a7a28,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4144483453066597870, guid: b6df53a6c0d1b7b468e267a97c8a7a28,
+        type: 3}
+      propertyPath: useVolumetric
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4144483453066597870, guid: b6df53a6c0d1b7b468e267a97c8a7a28,
+        type: 3}
+      propertyPath: m_ShadowResolution.m_Level
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4144483453066597870, guid: b6df53a6c0d1b7b468e267a97c8a7a28,
+        type: 3}
+      propertyPath: m_ShadowResolution.m_Override
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 4144483453066597870, guid: b6df53a6c0d1b7b468e267a97c8a7a28,
+        type: 3}
+      propertyPath: m_ShadowResolution.m_UseOverride
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7283805578827395345, guid: b6df53a6c0d1b7b468e267a97c8a7a28,
         type: 3}
       propertyPath: m_RootOrder
@@ -13010,6 +13040,20 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1182201286}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1357159689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1357159683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdc66807c465d9f4986366bd271d435c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isObjInPresent: 0
+  isObjInFuture: 1
 --- !u!1001 &1362010716
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14002,6 +14046,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 646027380}
     m_Modifications:
+    - target: {fileID: 4144483453066597857, guid: b6df53a6c0d1b7b468e267a97c8a7a28,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4144483453066597870, guid: b6df53a6c0d1b7b468e267a97c8a7a28,
+        type: 3}
+      propertyPath: m_ShadowResolution.m_Level
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4144483453066597870, guid: b6df53a6c0d1b7b468e267a97c8a7a28,
+        type: 3}
+      propertyPath: m_ShadowResolution.m_Override
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 4144483453066597870, guid: b6df53a6c0d1b7b468e267a97c8a7a28,
+        type: 3}
+      propertyPath: m_ShadowResolution.m_UseOverride
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7283805578827395345, guid: b6df53a6c0d1b7b468e267a97c8a7a28,
         type: 3}
       propertyPath: m_RootOrder
@@ -19748,6 +19812,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2509087429503060201, guid: 765430cd66f2de242bf86e116763880b,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2509087429503060206, guid: 765430cd66f2de242bf86e116763880b,
+        type: 3}
+      propertyPath: m_ShadowResolution.m_Level
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2509087429503060206, guid: 765430cd66f2de242bf86e116763880b,
+        type: 3}
+      propertyPath: m_ShadowResolution.m_Override
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 2509087429503060206, guid: 765430cd66f2de242bf86e116763880b,
+        type: 3}
+      propertyPath: m_ShadowResolution.m_UseOverride
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6182781833342074381, guid: 765430cd66f2de242bf86e116763880b,
         type: 3}
       propertyPath: m_Name
@@ -19762,6 +19846,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 646027380}
     m_Modifications:
+    - target: {fileID: 4144483453066597857, guid: b6df53a6c0d1b7b468e267a97c8a7a28,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4144483453066597870, guid: b6df53a6c0d1b7b468e267a97c8a7a28,
+        type: 3}
+      propertyPath: m_ShadowResolution.m_Level
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4144483453066597870, guid: b6df53a6c0d1b7b468e267a97c8a7a28,
+        type: 3}
+      propertyPath: m_ShadowResolution.m_Override
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 4144483453066597870, guid: b6df53a6c0d1b7b468e267a97c8a7a28,
+        type: 3}
+      propertyPath: m_ShadowResolution.m_UseOverride
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7283805578827395345, guid: b6df53a6c0d1b7b468e267a97c8a7a28,
         type: 3}
       propertyPath: m_RootOrder
@@ -20134,6 +20238,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8259119030642407657, guid: 97bf657c8eb8d8a4da20b4b7ff0b8ab8,
+        type: 3}
+      propertyPath: m_ShadowResolution.m_Level
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8259119030642407657, guid: 97bf657c8eb8d8a4da20b4b7ff0b8ab8,
+        type: 3}
+      propertyPath: m_ShadowResolution.m_Override
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 8259119030642407657, guid: 97bf657c8eb8d8a4da20b4b7ff0b8ab8,
+        type: 3}
+      propertyPath: m_ShadowResolution.m_UseOverride
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8259119030642407658, guid: 97bf657c8eb8d8a4da20b4b7ff0b8ab8,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97bf657c8eb8d8a4da20b4b7ff0b8ab8, type: 3}
