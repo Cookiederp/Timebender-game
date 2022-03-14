@@ -3,23 +3,61 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //works both ways (direct player interact or button, lever...), can be one or the other or both, depending on layers and tag chosen.
-public class Door : InteractablePuzReceiver
+public class Door : InteractablePuzzleReceiver
 {
-    private TimeTravelReceiver timeTravelReceiver;
+    public bool isOpen = false;
 
     private void Start()
     {
-        timeTravelReceiver = gameObject.GetComponent<TimeTravelReceiver>();
+        if (isOpen)
+        {
+            OpenDoor();
+        }
+        else
+        {
+            CloseDoor();
+        }
+    }
+
+    public override void OnPress(int num)
+    {
+        OnPressFromSwitch(1);
     }
 
     public override void OnPressFromSwitch(int n)
     {
-        //TEMP, ADD ANIMATION??? 
-        gameObject.transform.localScale = new Vector3(2, 2, 2);
-        if (timeTravelReceiver != null)
+        //TEMP, ADD ANIMATION???
+        if (isOpen)
         {
-            timeTravelReceiver.UpdateTimeShownForObj(false, true);
+            CloseDoor();
         }
+        else
+        {
+            OpenDoor();
+        }
+
+    }
+
+    private void OpenDoor()
+    {
+        gameObject.transform.localScale = new Vector3(2, 2, 2);
+        isOpen = true;
+    }
+
+    private void CloseDoor()
+    {
+        gameObject.transform.localScale = new Vector3(1, 1, 1);
+        isOpen = false;
+    }
+
+    public override void OnRay()
+    {
+        ShowMessage(1, "Open Door");
+    }
+
+    public override void OnRayExit()
+    {
+        ShowMessageExit();
     }
 }
 

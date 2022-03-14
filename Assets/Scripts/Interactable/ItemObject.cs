@@ -13,14 +13,26 @@ public class ItemObject : Interactable
 
     bool isTaken = false;
 
-    private float StartingScaleCanvas;
+    //private float StartingScaleCanvas;
 
     private GameManager gameManager;
+
+    private TimeTravelReceiver timeTravelReceiver;
+    private bool containsTimeReceiver;
 
 
     public void Start()
     {
         gameManager = GameManager.instance;
+        timeTravelReceiver = gameObject.GetComponent<TimeTravelReceiver>();
+        if (timeTravelReceiver == null)
+        {
+            containsTimeReceiver = false;
+        }
+        else
+        {
+            containsTimeReceiver = true;
+        }
         //get item canvas
         /*
         UIHighlight = gameObject.transform.GetChild(0).gameObject;
@@ -36,6 +48,10 @@ public class ItemObject : Interactable
         if (!isTaken)
         {
             gameManager.uiInteractManager.UpdateHighlightInfoText(0, itemData.itemName);
+            if (containsTimeReceiver)
+            {
+                timeTravelReceiver.OnRay();
+            }
             //UIHighlight.SetActive(true);
             //lastCoroutineUI = StartCoroutine(AnimUI());
         }
@@ -45,7 +61,12 @@ public class ItemObject : Interactable
     {
         if (!isTaken)
         {
-            gameManager.uiInteractManager.UpdateHighlightInfoText(-1, itemData.itemName);
+            gameManager.uiInteractManager.UpdateHighlightInfoText(-1);
+            if (containsTimeReceiver)
+            {
+                timeTravelReceiver.OnRayExit();
+            }
+
             // StopCoroutine(lastCoroutineUI);
             // UIHighlight.SetActive(false);
         }

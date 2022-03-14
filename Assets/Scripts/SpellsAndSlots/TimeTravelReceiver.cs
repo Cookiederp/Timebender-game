@@ -13,9 +13,7 @@ public class TimeTravelReceiver : Interactable
     bool recentTouch = false;
 
     private bool timeIsPresent;
-    private bool isInventoryItem = false;
     private bool isStatic = false;
-
     private TransformNew presentTransform;
 
     private Rigidbody rb;
@@ -25,13 +23,9 @@ public class TimeTravelReceiver : Interactable
     public void Awake()
     {
         presentTransform = new TransformNew(gameObject.transform);
-        if(gameObject.layer == 10)
+        if(gameObject.layer == 9)
         {
             isStatic = true;
-        }
-        if (gameObject.CompareTag("Item"))
-        {
-            isInventoryItem = true;
         }
 
         if (!isStatic)
@@ -87,13 +81,14 @@ public class TimeTravelReceiver : Interactable
             gameObject.SetActive(true);
             if (isObjInPresent)
             {
-                //p+f, leaving present entering future, save transform in present, because present time is frozen while in future..   
+                //p+f, leaving present entering future, save transform in present, because present time is frozen while in future.. '
                 if (!isStatic)
                 {
                     presentVelocity = rb.velocity;
                     presentAngularVelocity = rb.angularVelocity;
                     presentTransform = new TransformNew(gameObject.transform);
                 }
+
                 /*
                 if (recentTouch)
                 {
@@ -176,20 +171,14 @@ public class TimeTravelReceiver : Interactable
 
     public override void OnRay()
     {
-        if (!isInventoryItem)
-        {
-            recentTouch = true;
-            gameManager.uiInteractManager.UpdateTimeSelectionText(-1);
-            UpdateTimeShownForObj(true, false);
-        }
+        recentTouch = true;
+        gameManager.uiInteractManager.UpdateTimeSelectionText(-1);
+        UpdateTimeShownForObj(true, false);
     }
 
     public override void OnRayExit()
     {
-        if (!isInventoryItem)
-        {
-            gameManager.uiInteractManager.UpdateTimeSelectionText(-1);
-        }
+        gameManager.uiInteractManager.UpdateTimeSelectionText(-1);
     }
 
     public override void OnPress(int num)

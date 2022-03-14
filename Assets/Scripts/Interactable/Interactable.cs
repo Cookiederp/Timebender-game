@@ -20,4 +20,6 @@ public class Interactable : MonoBehaviour
     public virtual void OnPress(int num)
     {
     }
+
+
 }

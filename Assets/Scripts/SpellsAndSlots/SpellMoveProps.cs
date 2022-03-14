@@ -147,11 +147,11 @@ public class SpellMoveProps : MonoBehaviour
                 selectedPropRb.AddForce(dir, ForceMode.VelocityChange);
                 if (Input.GetKey(KeyCode.W))
                 {
-                    selectedPropRb.velocity *= Mathf.Clamp(dist, 0.25f, 0.8f);
+                    selectedPropRb.velocity *= Mathf.Clamp(dist, 0.5f, 0.8f);
                 }
                 else
                 {
-                    selectedPropRb.velocity *= Mathf.Clamp(dist, 0.25f, 0.6f);
+                    selectedPropRb.velocity *= Mathf.Clamp(dist, 0.3f, 0.6f);
                 }
             }
         }

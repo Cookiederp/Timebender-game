@@ -5,53 +5,22 @@ using UnityEngine;
 //Skeleton class, scripts such as Door, button, lever... should ref this
 public class InteractablePuzzle : Interactable
 {
-    //targets needs to contain a script that references to InteractableReceiver, so it can ref Interactable and get called with GetComp<Interactable>
-    [SerializeField]
-    public GameObject[] targets;
+    private GameManager gameManager;
 
-    //cache
-    private InteractablePuzReceiver[] targetsInteractComp;
-
-    [SerializeField]
-    private bool[] onPressDestroyTargetsBool;
-
-    [SerializeField]
-    private bool[] onPressPressTargetsBool;
-
-    private void Start()
+    private void Awake()
     {
-        //cache comps
-        targetsInteractComp = new InteractablePuzReceiver[targets.Length];
-        for(int i = 0; i<targets.Length; i++)
-        {
-            targetsInteractComp[i] = targets[i].GetComponent<InteractablePuzReceiver>();
-        }
+        gameManager = GameManager.instance;
+    }
+    
+    public virtual void ShowMessage(int index, string message)
+    {
+        gameManager.uiInteractManager.UpdateHighlightInfoText(index, message);
     }
 
-    public override void OnPress(int num)
+    public virtual void ShowMessageExit()
     {
-        for (int i = 0; i < onPressPressTargetsBool.Length; i++)
-        {
-            if (onPressPressTargetsBool[i])
-            {
-                if (targets[i] != null)
-                {
-                    targetsInteractComp[i].OnPressFromSwitch(1);
-                    Debug.Log("Pressed: " + targets[i].name);
-                }
-            }
-        }
-
-        for (int i = 0; i < onPressDestroyTargetsBool.Length; i++)
-        {
-            if (onPressDestroyTargetsBool[i])
-            {
-                if(targets[i] != null)
-                {
-                    Destroy(targets[i]);
-                }
-            }
-        }
+        gameManager.uiInteractManager.UpdateHighlightInfoText(-1);
     }
+    
 }
 

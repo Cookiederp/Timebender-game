@@ -32,6 +32,7 @@ public class PlayerInteractManager : MonoBehaviour
         inventoryManager = gameObject.GetComponent<InventoryManager>();
     }
 
+    //when a player looks at an interactable, call OnRay() and OnRayExit() on the interactable.
     private void FixedUpdate()
     {
         RaycastHit hit;
@@ -65,7 +66,15 @@ public class PlayerInteractManager : MonoBehaviour
                     }
                     else
                     {
-                        selectedGameObject = objectHit.gameObject.GetComponent<Interactable>();
+                        if(layerMaskStatic == objectHit.gameObject.layer)
+                        {
+                            //puzzle objects
+                            selectedGameObject = objectHit.gameObject.GetComponent<InteractablePuzzle>();
+                        }
+                        else
+                        {
+                            selectedGameObject = objectHit.gameObject.GetComponent<TimeTravelReceiver>();
+                        }
                     }
                     selectedGameObject.OnRay();
                     //makes sure item is told only once that it is being looked at
@@ -102,6 +111,7 @@ public class PlayerInteractManager : MonoBehaviour
                 {
                     if (objectHit.CompareTag("Pickup"))
                     {
+                        //pickups
                         stillSelected = false;
                         inventoryManager.TakeItem(objectHit);
                     }
@@ -109,7 +119,8 @@ public class PlayerInteractManager : MonoBehaviour
                     {
                         if(layerMaskStatic == hitLayer)
                         {
-                            Interactable obj = objectHit.gameObject.GetComponent<Interactable>();
+                            //puzzle objects
+                            Interactable obj = objectHit.gameObject.GetComponent<InteractablePuzzle>();
                             obj.OnPress(1);
                         }
                     }
@@ -125,11 +136,9 @@ public class PlayerInteractManager : MonoBehaviour
                 Transform objectHit = hit.transform;
                 if (layerMaskMoveable == objectHit.gameObject.layer)
                 {
-                    if (!objectHit.CompareTag("Pickup"))
-                    {
-                        Interactable obj = objectHit.gameObject.GetComponent<Interactable>();
-                        obj.OnPress(1);
-                    }
+                    //only objects that player can put in present or future
+                    Interactable obj = objectHit.gameObject.GetComponent<TimeTravelReceiver>();
+                    obj.OnPress(1);
                 }
             }
         }
@@ -142,11 +151,9 @@ public class PlayerInteractManager : MonoBehaviour
                 Transform objectHit = hit.transform;
                 if (layerMaskMoveable == objectHit.gameObject.layer)
                 {
-                    if (!objectHit.CompareTag("Pickup"))
-                    {
-                        Interactable obj = objectHit.gameObject.GetComponent<Interactable>();
-                        obj.OnPress(-1);
-                    }
+                    //only objects that player can put in present or future
+                    Interactable obj = objectHit.gameObject.GetComponent<TimeTravelReceiver>();
+                    obj.OnPress(-1);
                 }
             }
         }

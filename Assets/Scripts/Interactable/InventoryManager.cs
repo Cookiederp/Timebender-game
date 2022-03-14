@@ -45,7 +45,7 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    //TEMP??
+    //TEMP?? will change, probably remove, or if not removed, will use rigidbody instead of ray.
     public void DropItem()
     {
         RaycastHit hit;

@@ -4,9 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Item
-  - InteractableNonItem
   - Pickup
+  - Puzzle
   layers:
   - Default
   - TransparentFX
