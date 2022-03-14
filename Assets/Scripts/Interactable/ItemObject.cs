@@ -7,30 +7,37 @@ public class ItemObject : Interactable
     public Item itemData;
 
     //cache of item canvas
-    private GameObject UIHighlight;
-
+    //private GameObject UIHighlight;
+    //
     private Coroutine lastCoroutineUI;
 
     bool isTaken = false;
 
     private float StartingScaleCanvas;
 
+    private GameManager gameManager;
+
+
     public void Start()
     {
+        gameManager = GameManager.instance;
         //get item canvas
+        /*
         UIHighlight = gameObject.transform.GetChild(0).gameObject;
    
         StartingScaleCanvas = UIHighlight.gameObject.transform.localScale.x;
 
         UIHighlight.SetActive(false);
+        */
     }
 
     public override void OnRay()
     {
         if (!isTaken)
         {
-            UIHighlight.SetActive(true);
-            lastCoroutineUI = StartCoroutine(AnimUI());
+            gameManager.uiInteractManager.UpdateHighlightInfoText(0, itemData.itemName);
+            //UIHighlight.SetActive(true);
+            //lastCoroutineUI = StartCoroutine(AnimUI());
         }
     }
 
@@ -38,8 +45,9 @@ public class ItemObject : Interactable
     {
         if (!isTaken)
         {
-            StopCoroutine(lastCoroutineUI);
-            UIHighlight.SetActive(false);
+            gameManager.uiInteractManager.UpdateHighlightInfoText(-1, itemData.itemName);
+            // StopCoroutine(lastCoroutineUI);
+            // UIHighlight.SetActive(false);
         }
     }
 
@@ -54,7 +62,7 @@ public class ItemObject : Interactable
     {
         return isTaken;
     }
-
+    /*
     IEnumerator AnimUI()
     {
         Vector3 velocity = Vector3.zero;
@@ -95,6 +103,8 @@ public class ItemObject : Interactable
         }
         yield return null;
     }
+    */
+
     /*
     IEnumerator AnimUIExit()
     {

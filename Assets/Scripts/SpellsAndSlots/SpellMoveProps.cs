@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class SpellMoveProps : MonoBehaviour
 {
-    int layerMaskMoveableProp = 1 << 10;
+    int layerMaskInteractableMoveable = 1 << 10;
     int layerMaskDefault = 1 << 0;
-    int layerMaskMP;
+    int layerMaskMoveable;
+
     private Camera camera;
 
     private float defaultRange;
@@ -24,7 +25,7 @@ public class SpellMoveProps : MonoBehaviour
     {
         camera = Camera.main;
         defaultRange = holdLocation.localPosition.z;
-        layerMaskMP = LayerMask.NameToLayer("MoveableProp");
+        layerMaskMoveable = LayerMask.NameToLayer("InteractableMoveable");
     }
 
     private void Update()
@@ -57,9 +58,9 @@ public class SpellMoveProps : MonoBehaviour
         //move prop
         if (Input.GetMouseButtonDown(1))
         {
-            if (Physics.Raycast(ray, out hit, rayRange, layerMaskMoveableProp | layerMaskDefault))
+            if (Physics.Raycast(ray, out hit, rayRange, layerMaskInteractableMoveable | layerMaskDefault))
             {
-                if(hit.transform.gameObject.layer == layerMaskMP)
+                if(hit.transform.gameObject.layer == layerMaskMoveable)
                 {
                     //case where player press input, selected prop stops being selected
                     if (selectedProp == hit.transform.gameObject)
@@ -107,7 +108,7 @@ public class SpellMoveProps : MonoBehaviour
             //throw
             if (selectedProp != null)
             {
-                if (Physics.Raycast(ray, out hit, rayRange, layerMaskMoveableProp))
+                if (Physics.Raycast(ray, out hit, rayRange, layerMaskInteractableMoveable))
                 {
                     selectedPropRb.AddForce(ray.direction * throwForce, ForceMode.Impulse);
                     DropSelectedProp();

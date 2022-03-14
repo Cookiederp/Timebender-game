@@ -5,30 +5,17 @@ using TMPro;
 
 public class UITimeSelection : MonoBehaviour
 {
-    private static UITimeSelection _instance;
+    /*
     public TextMeshProUGUI selectText;
 
     private string st0 = "Present -> P+F [E]";
     private string st1 = "[Q] P <- Present+Future -> F [E]";
     private string st2 = "[Q] P+F <- Future";
 
-    public static UITimeSelection instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                _instance = FindObjectOfType<UITimeSelection>();
-            }
-
-            return _instance;
-        }
-    }
 
     void Awake()
     {
         selectText = gameObject.GetComponent<TextMeshProUGUI>();
-        _instance = this;
         gameObject.SetActive(false);
     }
 
@@ -57,5 +44,6 @@ public class UITimeSelection : MonoBehaviour
     {
         gameObject.SetActive(b);
     }
+    */
 }
 

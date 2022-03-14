@@ -5,7 +5,7 @@ using TMPro;
 
 public class TimeTravelReceiver : Interactable
 {
-    private UITimeSelection UITimeSelection_;
+    private GameManager gameManager;
     public bool isObjInPresent = true;
     public bool isObjInFuture = true;
     private int selectTimeForObj;
@@ -13,6 +13,7 @@ public class TimeTravelReceiver : Interactable
     bool recentTouch = false;
 
     private bool timeIsPresent;
+    private bool isInventoryItem = false;
 
     private TransformNew presentTransform;
 
@@ -25,10 +26,11 @@ public class TimeTravelReceiver : Interactable
         presentTransform = new TransformNew(gameObject.transform);
         rb = gameObject.GetComponent<Rigidbody>();
 
+        if (gameObject.CompareTag("Item")){
+            isInventoryItem = true;
+        }
 
-        //canvas
-        UITimeSelection_ = UITimeSelection.instance;
-        //
+        gameManager = GameManager.instance;
 
         if (isObjInPresent && isObjInFuture) {selectTimeForObj = 1;}
         else if (isObjInPresent) {selectTimeForObj = 0;}
@@ -52,6 +54,7 @@ public class TimeTravelReceiver : Interactable
                 //p+f, leaving future entering present
                 if(rb != null)
                 {
+                    //uses present transforms again, because the present time was frozen in future, now unfrozen in present.
                     rb.velocity = presentVelocity;
                     rb.angularVelocity = presentAngularVelocity;
                     gameObject.transform.position = presentTransform.position;
@@ -74,10 +77,9 @@ public class TimeTravelReceiver : Interactable
         if (isObjInFuture)
         {
             gameObject.SetActive(true);
-
             if (isObjInPresent)
             {
-                //p+f, leaving present entering future
+                //p+f, leaving present entering future, save transform in present, because present time is frozen while in future..       
                 presentVelocity = rb.velocity;
                 presentAngularVelocity = rb.angularVelocity;
                 presentTransform = new TransformNew(gameObject.transform);
@@ -104,36 +106,51 @@ public class TimeTravelReceiver : Interactable
     }
 
     //canvas
-    public void UpdateTimeShownForObj(bool uptext, bool upPF)
+    public void UpdateTimeShownForObj(bool uptext, bool upProp)
     {
         if (uptext)
         {
             if (selectTimeForObj == 0)
             {
                 //p
-                UITimeSelection_.SetText(0);
+                //if statement prevents flicker in text when object is going to another time
+                if (!timeIsPresent)
+                {
+                    gameManager.uiInteractManager.UpdateTimeSelectionText(-1);
+                }
+                else
+                {
+                    gameManager.uiInteractManager.UpdateTimeSelectionText(0);
+                }
                 isObjInPresent = true;
                 isObjInFuture = false;
             }
             else if (selectTimeForObj == 1)
             {
                 //p+f
-                UITimeSelection_.SetText(1);
+                gameManager.uiInteractManager.UpdateTimeSelectionText(1);
                 isObjInPresent = true;
                 isObjInFuture = true;
             }
             else
             {
                 //f
-                UITimeSelection_.SetText(2);
+                //if statement prevents flicker in text when object is going to another time
+                if (timeIsPresent)
+                {
+                    gameManager.uiInteractManager.UpdateTimeSelectionText(-1);
+                }
+                else
+                {
+                    gameManager.uiInteractManager.UpdateTimeSelectionText(2);
+                }
                 isObjInPresent = false;
                 isObjInFuture = true;
             }
         }
 
-        if (upPF)
+        if (upProp)
         {
-
             if (timeIsPresent)
             {
                 presentTransform = new TransformNew(gameObject.transform);
@@ -148,15 +165,20 @@ public class TimeTravelReceiver : Interactable
 
     public override void OnRay()
     {
-        recentTouch = true;
-        UITimeSelection_.SetActive(true);
-        UpdateTimeShownForObj(true, false);
+        if (!isInventoryItem)
+        {
+            recentTouch = true;
+            gameManager.uiInteractManager.UpdateTimeSelectionText(-1);
+            UpdateTimeShownForObj(true, false);
+        }
     }
 
     public override void OnRayExit()
     {
-        UITimeSelection_.SetActive(false);
-        UpdateTimeShownForObj(true, false);
+        if (!isInventoryItem)
+        {
+            gameManager.uiInteractManager.UpdateTimeSelectionText(-1);
+        }
     }
 
     public override void OnPress(int num)

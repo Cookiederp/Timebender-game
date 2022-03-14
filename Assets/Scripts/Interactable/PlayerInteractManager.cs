@@ -5,20 +5,15 @@ using UnityEngine.Rendering.HighDefinition;
 
 public class PlayerInteractManager : MonoBehaviour
 {
-    //temp for menu controls
-    public GameObject gameMenuObj;
-    private GameMenu gameMenu;
-    //
-
     private Camera camera;
 
     private InventoryManager inventoryManager;
 
-    int layerMaskInteract = 1 << 9;
-    int layerMaskMoveableProp = 1 << 10;
+    int layerMaskInteractableMoveable = 1 << 9;
+    int layerMaskInteractableStatic = 1 << 10;
     int layerMaskDefault = 1 << 0;
-    int layerMaskMP;
-    int layerMaskIn;
+    int layerMaskStatic;
+    int layerMaskMoveable;
     int layerMaskDef;
 
     float interactRange = 3f;
@@ -29,14 +24,11 @@ public class PlayerInteractManager : MonoBehaviour
 
     void Start()
     {
-        layerMaskMP = LayerMask.NameToLayer("MoveableProp");
-        layerMaskIn = LayerMask.NameToLayer("Interactable");
+        layerMaskMoveable = LayerMask.NameToLayer("InteractableMoveable");
+        layerMaskStatic = LayerMask.NameToLayer("InteractableStatic");
         layerMaskDef = LayerMask.NameToLayer("Default");
 
-        //temp for menu controls
-        gameMenu = gameMenuObj.GetComponent<GameMenu>();
-
-        camera = gameObject.GetComponent<Camera>();
+        camera = Camera.main;
         inventoryManager = gameObject.GetComponent<InventoryManager>();
     }
 
@@ -45,10 +37,11 @@ public class PlayerInteractManager : MonoBehaviour
         RaycastHit hit;
         Ray ray = camera.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out hit, interactRange, layerMaskInteract | layerMaskMoveableProp | layerMaskDefault))
+        if (Physics.Raycast(ray, out hit, interactRange, layerMaskInteractableStatic | layerMaskInteractableMoveable | layerMaskDefault))
         {
+            Transform objectHit = hit.transform;
             //detects if a new object is selected, without a gap (from object to object raycast, two object hugging eachother)
-            if(hit.transform.gameObject.layer == layerMaskDef)
+            if (objectHit.gameObject.layer == layerMaskDef)
             {
                 //player is no longer looking at the last interactable
                 if (stillSelected == true)
@@ -59,7 +52,7 @@ public class PlayerInteractManager : MonoBehaviour
             }
             else
             {
-                if (hit.transform != lastSelectedHit && stillSelected)
+                if (objectHit != lastSelectedHit && stillSelected)
                 {
                     stillSelected = false;
                     selectedGameObject.OnRayExit();
@@ -67,7 +60,13 @@ public class PlayerInteractManager : MonoBehaviour
                 //Player just now looked at an item
                 if (!stillSelected)
                 {
-                    selectedGameObject = hit.transform.gameObject.GetComponent<Interactable>();
+                    if (objectHit.CompareTag("Pickup")){
+                        selectedGameObject = objectHit.gameObject.GetComponent<ItemObject>();
+                    }
+                    else
+                    {
+                        selectedGameObject = objectHit.gameObject.GetComponent<Interactable>();
+                    }
                     selectedGameObject.OnRay();
                     //makes sure item is told only once that it is being looked at
                     stillSelected = true;
@@ -75,7 +74,6 @@ public class PlayerInteractManager : MonoBehaviour
                     lastSelectedHit = hit.transform;
                 }
             }
-
         }
         else
         {
@@ -93,23 +91,23 @@ public class PlayerInteractManager : MonoBehaviour
         RaycastHit hit;
         Ray ray = camera.ScreenPointToRay(Input.mousePosition);
 
-
-
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            //another raycast when key is hit to make sure target taken is not behind anything
+            if (Physics.Raycast(ray, out hit, interactRange))
             {
-                //another raycast when key is hit to make sure target taken is not behind anything
-                if (Physics.Raycast(ray, out hit, interactRange))
+                Transform objectHit = hit.transform;
+                int hitLayer = objectHit.gameObject.layer;
+                if (layerMaskStatic == hitLayer || layerMaskMoveable == hitLayer)
                 {
-                    
-                    Transform objectHit = hit.transform;
-                    if (objectHit.CompareTag("Item"))
+                    if (objectHit.CompareTag("Pickup"))
                     {
                         stillSelected = false;
                         inventoryManager.TakeItem(objectHit);
                     }
                     else
                     {
-                        if(objectHit.gameObject.layer == layerMaskMP || objectHit.gameObject.layer == layerMaskIn)
+                        if(layerMaskStatic == hitLayer)
                         {
                             Interactable obj = objectHit.gameObject.GetComponent<Interactable>();
                             obj.OnPress(1);
@@ -117,38 +115,41 @@ public class PlayerInteractManager : MonoBehaviour
                     }
                 }
             }
-
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                //another raycast when key is hit to make sure target taken is not behind anything
-                if (Physics.Raycast(ray, out hit, interactRange))
+        }
+        
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            //another raycast when key is hit to make sure target taken is not behind anything
+            if (Physics.Raycast(ray, out hit, interactRange))
+            {                    
+                Transform objectHit = hit.transform;
+                if (layerMaskMoveable == objectHit.gameObject.layer)
                 {
+                    if (!objectHit.CompareTag("Pickup"))
+                    {
+                        Interactable obj = objectHit.gameObject.GetComponent<Interactable>();
+                        obj.OnPress(1);
+                    }
+                }
+            }
+        }
 
-                    Transform objectHit = hit.transform;
-                    if(layerMaskMP == objectHit.gameObject.layer)
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            //another raycast when key is hit to make sure target taken is not behind anything
+            if (Physics.Raycast(ray, out hit, interactRange))
+            {
+                Transform objectHit = hit.transform;
+                if (layerMaskMoveable == objectHit.gameObject.layer)
+                {
+                    if (!objectHit.CompareTag("Pickup"))
                     {
                         Interactable obj = objectHit.gameObject.GetComponent<Interactable>();
                         obj.OnPress(-1);
                     }
                 }
             }
-
-
-
-
-        //TEMP NEED TO MOVE THIS SOMEWHERE ELSE, TEMP KEY L BECAUSE ESCAPE LEAVES EDITOR
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            if(gameMenu.mainObj.activeSelf)
-            {
-                gameMenu.CloseMenu();
-            }
-            else
-            {
-                gameMenu.OpenMenu();
-            }
         }
-
 
         //TEMP
         if (Input.GetKeyDown(KeyCode.G))
