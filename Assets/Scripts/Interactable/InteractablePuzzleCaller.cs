@@ -5,50 +5,34 @@ using UnityEngine;
 public class InteractablePuzzleCaller : InteractablePuzzle
 {
     //targets needs to contain a script that references to InteractableReceiver, so it can ref Interactable and get called with GetComp<Interactable>
-    [SerializeField]
-    public GameObject[] targets;
+    public GameObject[] receiversObj;
 
     //cache
-    private InteractablePuzzleReceiver[] targetsInteractComp;
-
-    [SerializeField]
-    private bool[] onPressDestroyTargetsBool;
-
-    [SerializeField]
-    private bool[] onPressPressTargetsBool;
+    private InteractablePuzzleReceiver[] receivers;
 
     private void Start()
     {
         //cache comps
-        targetsInteractComp = new InteractablePuzzleReceiver[targets.Length];
-        for (int i = 0; i < targets.Length; i++)
+        receivers = new InteractablePuzzleReceiver[receiversObj.Length];
+        for (int i = 0; i < receiversObj.Length; i++)
         {
-            targetsInteractComp[i] = targets[i].GetComponent<InteractablePuzzleReceiver>();
+            receivers[i] = receiversObj[i].GetComponent<InteractablePuzzleReceiver>();
         }
     }
 
+    //player press caller, tell receivers
     public override void OnPress(int num)
     {
-        for (int i = 0; i < onPressPressTargetsBool.Length; i++)
+        for (int i = 0; i < receiversObj.Length; i++)
         {
-            if (onPressPressTargetsBool[i])
+            if (receivers[i].PressOnPressFromCaller)
             {
-                if (targets[i] != null)
-                {
-                    targetsInteractComp[i].OnPressFromSwitch(1);
-                    Debug.Log("Pressed: " + targets[i].name);
-                }
+                receivers[i].OnPressFromSwitch(1);
             }
-        }
 
-        for (int i = 0; i < onPressDestroyTargetsBool.Length; i++)
-        {
-            if (onPressDestroyTargetsBool[i])
+            if (receivers[i].destroyOnPressFromCaller)
             {
-                if (targets[i] != null)
-                {
-                    Destroy(targets[i]);
-                }
+                Destroy(receiversObj[i]);
             }
         }
     }

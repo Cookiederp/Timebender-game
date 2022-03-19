@@ -23,7 +23,7 @@ public class GameMenu : MonoBehaviour
         Time.timeScale = 0;
         if (settingMenuObj.activeSelf)
         {
-            settingMenuObj.GetComponent<SettingsMenu>().OnBack();
+            gameObject.GetComponent<SettingsMenu>().OnBack();
         }
         settingMenuObj.SetActive(false);
 

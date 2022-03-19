@@ -47,7 +47,7 @@ public class ItemObject : Interactable
     {
         if (!isTaken)
         {
-            gameManager.uiInteractManager.UpdateHighlightInfoText(0, itemData.itemName);
+            gameManager.uiInteractManager.UpdateHighlightInfoText(0, "Take "+itemData.itemName);
             if (containsTimeReceiver)
             {
                 timeTravelReceiver.OnRay();

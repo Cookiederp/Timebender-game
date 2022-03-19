@@ -9,7 +9,7 @@ public class UIInteractManager : MonoBehaviour
     private string[] tstring;
 
     private TextMeshProUGUI highlightInfoText;
-    private int hsize = 2;
+    private int hsize = 3;
     private string[] hstring;
 
     private Coroutine[] LastCoroutine;
@@ -24,8 +24,8 @@ public class UIInteractManager : MonoBehaviour
         tstring[2] = "[Q] P+F <- Future";
 
         hstring = new string[hsize];
-        hstring[0] = "[F] - Take ";
-        hstring[1] = "[F] - ";
+        hstring[0] = "[F] - ";
+        hstring[1] = "";
     }
 
     void Start()

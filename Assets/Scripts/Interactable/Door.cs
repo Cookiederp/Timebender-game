@@ -6,6 +6,7 @@ using UnityEngine;
 public class Door : InteractablePuzzleReceiver
 {
     public bool isOpen = false;
+    public bool isLocked = false;
 
     private void Start()
     {
@@ -19,24 +20,46 @@ public class Door : InteractablePuzzleReceiver
         }
     }
 
+    //press from player
     public override void OnPress(int num)
     {
         OnPressFromSwitch(1);
         UpdateMessage();
     }
 
+    public override void OnRay()
+    {
+        UpdateMessage();
+    }
+
+    public override void OnRayExit()
+    {
+        base.ShowMessageExit();
+    }
+
+    //press from buttons.. levers.. not player.
     public override void OnPressFromSwitch(int n)
     {
         //TEMP, ADD ANIMATION???
         if (isOpen)
         {
-            CloseDoor();
+            if (!isLocked)
+            {
+                CloseDoor();
+            }
         }
         else
         {
-            OpenDoor();
+            if (!isLocked)
+            {
+                OpenDoor();
+            }
         }
+    }
 
+    public override void OnKeyUnlock()
+    {
+        isLocked = false;
     }
 
     private void OpenDoor()
@@ -51,26 +74,24 @@ public class Door : InteractablePuzzleReceiver
         isOpen = false;
     }
 
-    public override void OnRay()
-    {
-        UpdateMessage();
-    }
-
-    public override void OnRayExit()
-    {
-        ShowMessageExit();
-    }
-
     private void UpdateMessage()
     {
-        if (isOpen)
+        if (!isLocked)
         {
-            ShowMessage(1, "Close Door");
+            if (isOpen)
+            {
+                ShowMessage(0, "Close Door");
+            }
+            else
+            {
+                ShowMessage(0, "Open Door");
+            }
         }
         else
         {
-            ShowMessage(1, "Open Door");
+            ShowMessage(1, "Door is Locked");
         }
+
     }
 }
 

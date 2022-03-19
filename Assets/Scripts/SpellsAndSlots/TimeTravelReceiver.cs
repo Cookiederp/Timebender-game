@@ -8,9 +8,10 @@ public class TimeTravelReceiver : Interactable
     private GameManager gameManager;
     public bool isObjInPresent = true;
     public bool isObjInFuture = true;
+
     private int selectTimeForObj;
 
-    bool recentTouch = false;
+    //bool recentTouch = false;
 
     private bool timeIsPresent;
     private bool isStatic = false;
@@ -171,7 +172,7 @@ public class TimeTravelReceiver : Interactable
 
     public override void OnRay()
     {
-        recentTouch = true;
+        //recentTouch = true;
         gameManager.uiInteractManager.UpdateTimeSelectionText(-1);
         UpdateTimeShownForObj(true, false);
     }
