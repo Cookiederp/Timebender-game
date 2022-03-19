@@ -382,7 +382,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PressOnPressFromCaller: 1
   destroyOnPressFromCaller: 0
-  unlockOnPressFromCaller: 0
+  unlockOnPressFromCaller: 1
   unlockOnKeyFromCaller: 1
   isOpen: 0
   isLocked: 1

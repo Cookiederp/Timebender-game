@@ -25,6 +25,11 @@ public class InteractablePuzzleCaller : InteractablePuzzle
     {
         for (int i = 0; i < receiversObj.Length; i++)
         {
+            if (receivers[i].unlockOnPressFromCaller)
+            {
+                receivers[i].OnKeyUnlock();
+            }
+
             if (receivers[i].PressOnPressFromCaller)
             {
                 receivers[i].OnPressFromSwitch(1);
