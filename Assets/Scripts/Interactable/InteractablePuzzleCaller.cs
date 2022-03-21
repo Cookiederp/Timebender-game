@@ -37,7 +37,7 @@ public class InteractablePuzzleCaller : InteractablePuzzle
 
             if (receivers[i].destroyOnPressFromCaller)
             {
-                Destroy(receiversObj[i]);
+                receiversObj[i].SetActive(false);
             }
         }
     }

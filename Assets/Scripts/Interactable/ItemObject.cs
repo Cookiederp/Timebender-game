@@ -173,7 +173,7 @@ public class ItemObject : Interactable
             }
             yield return new WaitForSecondsRealtime(0.017f);
         }
-        Destroy(gameObject, 0.01f);
+        gameObject.SetActive(false);
         yield return null;
     }
 }

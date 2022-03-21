@@ -76,7 +76,12 @@ public class PlayerInteractManager : MonoBehaviour
                             selectedGameObject = objectHit.gameObject.GetComponent<TimeTravelReceiver>();
                         }
                     }
-                    selectedGameObject.OnRay();
+                    //if statement need 1/100 of the time or else error, might cause something else when added
+                    if(selectedGameObject != null)
+                    {
+                        selectedGameObject.OnRay();
+                    }
+
                     //makes sure item is told only once that it is being looked at
                     stillSelected = true;
                     //needed to tell if player went to look at another item to another item without any other layer mask detected.

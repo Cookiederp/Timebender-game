@@ -53,13 +53,14 @@ public class Keylock : InteractablePuzzleCaller
                 {
                     if (receivers_[j].unlockOnKeyFromCaller)
                     {
+                        //for example, door.cs OnKeyUnlock gets called
                         receivers_[j].OnKeyUnlock();
                     }
                 }
                 success = true;
                 //destroy key, might want to change it later to place the key at a position in keylock.
                 ShowMessageExit();
-                Destroy(other.gameObject);
+                other.gameObject.SetActive(false);
             }
         }
 

@@ -20,12 +20,20 @@ public class SpellMoveProps : MonoBehaviour
     public Transform holdLocation;
     private GameObject selectedProp;
     private Rigidbody selectedPropRb;
+    private Vector3 offset;
+    private LineRenderer lineRenderer;
+    public GameObject wandLoc;
+    public GameObject hitPointobj;
+    public GameObject throwParticleEffect;
+    private GameObject hitPointobjInstance;
 
     private void Start()
     {
         camera = Camera.main;
         defaultRange = holdLocation.localPosition.z;
         layerMaskMoveable = LayerMask.NameToLayer("InteractableMoveable");
+        lineRenderer = gameObject.GetComponent<LineRenderer>();
+        lineRenderer.enabled = false;
     }
 
     private void Update()
@@ -81,6 +89,9 @@ public class SpellMoveProps : MonoBehaviour
                             selectedPropRb = hit.rigidbody;
                             selectedPropRb.interpolation = RigidbodyInterpolation.Interpolate;
                             selectedPropRb.useGravity = false;
+                            offset = hit.transform.position - hit.point;
+                            lineRenderer.enabled = true;
+                            hitPointobjInstance = Instantiate(hitPointobj, hit.point, Quaternion.identity, selectedProp.transform);
                         }
                     }
                 }
@@ -110,8 +121,15 @@ public class SpellMoveProps : MonoBehaviour
             {
                 if (Physics.Raycast(ray, out hit, rayRange, layerMaskInteractableMoveable))
                 {
-                    selectedPropRb.AddForce(ray.direction * throwForce, ForceMode.Impulse);
-                    DropSelectedProp();
+                    if(hit.transform == selectedProp.transform)
+                    {
+                        selectedPropRb.AddForce(ray.direction * throwForce, ForceMode.Impulse);
+
+                        GameObject temp = Instantiate(throwParticleEffect, hit.point, Quaternion.LookRotation(hit.point));
+                        Destroy(temp, 2f);
+
+                        DropSelectedProp();
+                    }
                 }
             }
             //bring to other time, might add later, change it long range instead of with 1 and 2, or maybe will be another spell
@@ -126,34 +144,67 @@ public class SpellMoveProps : MonoBehaviour
             */
         }
 
+        //line
+        if(selectedProp != null)
+        {
+            Vector3 selectedPropVector = selectedProp.transform.position;
+            Vector3 holdLocationVector = holdLocation.position;
+            Vector3 wandLocationVector = wandLoc.transform.position;
+            Vector3 rayHitPoint = hitPointobjInstance.transform.position;
+
+            //vector * weight of the vector on the point to be created.
+            Vector3 point1 = ((holdLocationVector * 0.6f) + (wandLocationVector * 0.4f));
+            Vector3 point2 = ((holdLocationVector * 0.7f) + (rayHitPoint * 0.15f) + (wandLocationVector * 0.15f));
+            Vector3 point3 = ((point2 * 0.5f) + (rayHitPoint * 0.5f));
+
+            lineRenderer.SetPosition(0, wandLocationVector);
+            lineRenderer.SetPosition(1, point1);
+            lineRenderer.SetPosition(2, point2);
+            lineRenderer.SetPosition(3, point3);
+            lineRenderer.SetPosition(4, rayHitPoint);
+        }
+
     }
 
 
     //selected object follow holdLocation
     void FixedUpdate()
     {
+
         if (selectedProp != null)
         {
-
-            Vector3 dir = holdLocation.position - selectedProp.transform.position;
-            float dist = Vector3.Distance(holdLocation.position, selectedProp.transform.position);
-            if (dist > breakDist)
-            {
+            //object was disabled
+            if (!selectedProp.activeSelf) {
                 DropSelectedProp();
             }
             else
             {
-                dir *= dist;
-                selectedPropRb.AddForce(dir, ForceMode.VelocityChange);
-                if (Input.GetKey(KeyCode.W))
+                Vector3 selectedPropVector = selectedProp.transform.position;
+                Vector3 holdLocationVector = holdLocation.position;
+                Vector3 wandLocationVector = wandLoc.transform.position;
+                Vector3 rayHitPoint = hitPointobjInstance.transform.position;
+
+                Vector3 dir = holdLocationVector - rayHitPoint;
+                float dist = Vector3.Distance(holdLocationVector, rayHitPoint);
+                if (dist > breakDist)
                 {
-                    selectedPropRb.velocity *= Mathf.Clamp(dist, 0.5f, 0.8f);
+                    DropSelectedProp();
                 }
                 else
                 {
-                    selectedPropRb.velocity *= Mathf.Clamp(dist, 0.3f, 0.6f);
+                    dir *= dist;
+                    selectedPropRb.AddForce(dir, ForceMode.VelocityChange);
+                    if (Input.GetKey(KeyCode.W))
+                    {
+                        selectedPropRb.velocity *= Mathf.Clamp(dist, 0.5f, 0.8f);
+                    }
+                    else
+                    {
+                        selectedPropRb.velocity *= Mathf.Clamp(dist, 0.3f, 0.6f);
+                    }
                 }
             }
+
         }
     }
     //
@@ -165,6 +216,8 @@ public class SpellMoveProps : MonoBehaviour
         selectedProp = null;
         selectedPropRb = null;
         holdLocation.localPosition = new Vector3(0, 0, defaultRange);
+        lineRenderer.enabled = false;
+        Destroy(hitPointobjInstance);
     }
 
 
