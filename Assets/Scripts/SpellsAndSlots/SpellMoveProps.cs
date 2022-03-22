@@ -20,10 +20,11 @@ public class SpellMoveProps : MonoBehaviour
     public Transform holdLocation;
     private GameObject selectedProp;
     private Rigidbody selectedPropRb;
-    private Vector3 offset;
-    private LineRenderer lineRenderer;
+    private float defAngDrag;
     public GameObject wandLoc;
     public GameObject hitPointobj;
+
+    private LineRenderer lineRenderer;
     public GameObject throwParticleEffect;
     private GameObject hitPointobjInstance;
 
@@ -84,12 +85,12 @@ public class SpellMoveProps : MonoBehaviour
                         else
                         {
                             //case where player press input, select hit prop, cache
-                            //select prop, if in future only, make it present also now.
                             selectedProp = hit.transform.gameObject;
                             selectedPropRb = hit.rigidbody;
+                            defAngDrag = selectedPropRb.angularDrag;
+                            selectedPropRb.angularDrag = 1;
                             selectedPropRb.interpolation = RigidbodyInterpolation.Interpolate;
                             selectedPropRb.useGravity = false;
-                            offset = hit.transform.position - hit.point;
                             lineRenderer.enabled = true;
                             hitPointobjInstance = Instantiate(hitPointobj, hit.point, Quaternion.identity, selectedProp.transform);
                         }
@@ -213,10 +214,14 @@ public class SpellMoveProps : MonoBehaviour
     {
         selectedPropRb.interpolation = RigidbodyInterpolation.None;
         selectedPropRb.useGravity = true;
+        selectedPropRb.angularDrag = defAngDrag;
+
         selectedProp = null;
         selectedPropRb = null;
+
         holdLocation.localPosition = new Vector3(0, 0, defaultRange);
         lineRenderer.enabled = false;
+
         Destroy(hitPointobjInstance);
     }
 
