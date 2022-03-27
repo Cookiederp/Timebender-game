@@ -26,14 +26,16 @@ public class UIInteractManager : MonoBehaviour
         hstring = new string[hsize];
         hstring[0] = "[F] - ";
         hstring[1] = "";
-    }
 
-    void Start()
-    {
         timeSelectionText = gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         highlightInfoText = gameObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
         UpdateTimeSelectionText(-1);
         UpdateHighlightInfoText(-1);
+    }
+
+    void Start()
+    {
+
     }
 
     //

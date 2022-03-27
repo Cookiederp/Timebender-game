@@ -12,6 +12,7 @@ public class Keylock : InteractablePuzzleCaller
 
     public void Start()
     {
+        gameObject.GetComponent<Collider>().enabled = true;
         //cache comps
         receivers_ = new InteractablePuzzleReceiver[receiversObj.Length];
         for (int i = 0; i < receiversObj.Length; i++)
@@ -41,7 +42,7 @@ public class Keylock : InteractablePuzzleCaller
         ShowMessageExit();
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
         bool success = false;
         for(int i = 0; i < keys.Length; i++)
@@ -54,18 +55,19 @@ public class Keylock : InteractablePuzzleCaller
                     if (receivers_[j].unlockOnKeyFromCaller)
                     {
                         //for example, door.cs OnKeyUnlock gets called
+                        success = true;
                         receivers_[j].OnKeyUnlock();
                     }
                 }
-                success = true;
-                //destroy key, might want to change it later to place the key at a position in keylock.
-                ShowMessageExit();
-                other.gameObject.SetActive(false);
             }
         }
 
         if (success)
         {
+            //destroy key, might want to change it later to place the key at a position in keylock.
+            ShowMessage(1, "Door Unlocked");
+            other.gameObject.SetActive(false);
+            gameObject.GetComponent<Collider>().enabled = false;
             isLocked = false;
         }
     }

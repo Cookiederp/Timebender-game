@@ -162,11 +162,5 @@ public class PlayerInteractManager : MonoBehaviour
                 }
             }
         }
-
-        //TEMP
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            inventoryManager.DropItem();
-        }   
     }
 }

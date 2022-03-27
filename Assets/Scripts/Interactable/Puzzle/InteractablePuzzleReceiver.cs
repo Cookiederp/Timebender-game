@@ -25,6 +25,11 @@ public class InteractablePuzzleReceiver : InteractablePuzzle
 
     }
 
+    public virtual void OnKeyLock()
+    {
+
+    }
+
     public override void ShowMessage(int index, string message)
     {
         base.ShowMessage(index, message);

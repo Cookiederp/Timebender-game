@@ -20,8 +20,8 @@ public class SpellTimeTravel : MonoBehaviour
                 presentPostProcessObj.SetActive(false);
                 futurePostProcessObj.SetActive(true);
                 timeTravelManager.OnFuture();
-                //GameObject g = Instantiate(travelParticle, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y-2.5f, gameObject.transform.position.z), Quaternion.identity);
-                //Destroy(g, 3f);
+                GameObject g = Instantiate(travelParticle, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y-2.5f, gameObject.transform.position.z), Quaternion.identity);
+                Destroy(g, 3f);
                     
             }
             else
@@ -30,8 +30,8 @@ public class SpellTimeTravel : MonoBehaviour
                 presentPostProcessObj.SetActive(true);
                 futurePostProcessObj.SetActive(false);
                 timeTravelManager.OnPresent();
-                //GameObject g = Instantiate(travelParticle, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 2.5f, gameObject.transform.position.z), Quaternion.identity);
-                //Destroy(g, 3f);
+                GameObject g = Instantiate(travelParticle, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 2.5f, gameObject.transform.position.z), Quaternion.identity);
+                Destroy(g, 3f);
             }
         }
     }

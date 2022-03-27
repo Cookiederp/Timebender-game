@@ -10,34 +10,49 @@ public class InteractablePuzzleCaller : InteractablePuzzle
     //cache
     private InteractablePuzzleReceiver[] receivers;
 
-    private void Start()
+    private bool ini = false;
+
+    private void OnEnable()
     {
         //cache comps
-        receivers = new InteractablePuzzleReceiver[receiversObj.Length];
-        for (int i = 0; i < receiversObj.Length; i++)
+        if (!ini)
         {
-            receivers[i] = receiversObj[i].GetComponent<InteractablePuzzleReceiver>();
+            receivers = new InteractablePuzzleReceiver[receiversObj.Length];
+            for (int i = 0; i < receiversObj.Length; i++)
+            {
+                receivers[i] = receiversObj[i].GetComponent<InteractablePuzzleReceiver>();
+            }
+            ini = true;
         }
     }
 
     //player press caller, tell receivers
     public override void OnPress(int num)
     {
+        //num = 0 = off signal from switch
+        //num = 1 = on signal from switch
         for (int i = 0; i < receiversObj.Length; i++)
         {
-            if (receivers[i].unlockOnPressFromCaller)
-            {
-                receivers[i].OnKeyUnlock();
-            }
 
             if (receivers[i].PressOnPressFromCaller)
             {
-                receivers[i].OnPressFromSwitch(1);
+                receivers[i].OnPressFromSwitch(num);
             }
 
-            if (receivers[i].destroyOnPressFromCaller)
+            if (num > 0)
             {
-                receiversObj[i].SetActive(false);
+                if (receivers[i].unlockOnPressFromCaller)
+                {
+                    receivers[i].OnKeyUnlock();
+                }
+            }
+
+            if (num > 0)
+            {
+                if (receivers[i].destroyOnPressFromCaller)
+                {
+                    receiversObj[i].SetActive(false);
+                }
             }
         }
     }

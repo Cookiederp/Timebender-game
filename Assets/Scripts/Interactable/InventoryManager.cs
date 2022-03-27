@@ -1,10 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class InventoryManager : MonoBehaviour
 {
     public List<Item> items = new List<Item>();
+    public TextMeshProUGUI potionAmountText;
+    private int potionAmount = 0;
+
+    public void Start()
+    {
+        //probably want to save the potion amount later.. with playerpref
+        potionAmountText.text = potionAmount.ToString();
+    }
+
 
     //add item to list, remove from game world
     public void TakeItem(Transform thisItemObj)
@@ -18,10 +27,17 @@ public class InventoryManager : MonoBehaviour
             items.Add(item);
 
             itemObj.OnPress(1);
+            //potion
+            if(item.id == 2)
+            {
+                potionAmount++;
+                potionAmountText.text = potionAmount.ToString();
+            }
         }
     }
 
     //TEMP??
+    /*
     public void DropItem(GameObject droppedItem)
     {
         RaycastHit hit;
@@ -44,8 +60,10 @@ public class InventoryManager : MonoBehaviour
             Instantiate(items[0].prefab, dropLocation, rotationOfObjHit);
         }
     }
+    */
 
     //TEMP?? will change, probably remove, or if not removed, will use rigidbody instead of ray.
+    /*
     public void DropItem()
     {
         RaycastHit hit;
@@ -68,4 +86,5 @@ public class InventoryManager : MonoBehaviour
             Instantiate(items[0].prefab, dropLocation, rotationOfObjHit);
         }
     }
+    */
 }

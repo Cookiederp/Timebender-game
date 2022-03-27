@@ -32,14 +32,6 @@ public class GameManager : MonoBehaviour
         uiInteractManager = FindObjectOfType<UIInteractManager>();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        //temp for menu controls
-        gameMenu = gameMenuObj.GetComponent<GameMenu>();
-    }
-
-
     void Update()
     {
         //TEMP NEED TO MOVE THIS SOMEWHERE ELSE, TEMP KEY L BECAUSE ESCAPE LEAVES EDITOR
