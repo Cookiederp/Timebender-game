@@ -21,10 +21,10 @@ public class TimeTravelReceiver : Interactable
     private Vector3 presentVelocity;
     private Vector3 presentAngularVelocity;
 
-    public void Awake()
+    public void Start()
     {
         presentTransform = new TransformNew(gameObject.transform);
-        if(gameObject.layer == 9)
+        if(gameObject.layer == 9 || gameObject.layer == 0)
         {
             isStatic = true;
         }
@@ -129,6 +129,7 @@ public class TimeTravelReceiver : Interactable
                 {
                     gameManager.uiInteractManager.UpdateTimeSelectionText(0);
                 }
+
                 isObjInPresent = true;
                 isObjInFuture = false;
             }
@@ -151,6 +152,7 @@ public class TimeTravelReceiver : Interactable
                 {
                     gameManager.uiInteractManager.UpdateTimeSelectionText(2);
                 }
+
                 isObjInPresent = false;
                 isObjInFuture = true;
             }

@@ -184,8 +184,14 @@ public class Door : InteractablePuzzleReceiver
         {
             StopCoroutine(lastCoroutine);
         }
-        lastCoroutine = StartCoroutine(OpenAnim());
-
+        if (gameObject.activeSelf)
+        {
+            lastCoroutine = StartCoroutine(OpenAnim());
+        }
+        else
+        {
+            gameObject.transform.eulerAngles = openEuler;
+        }
         isOpen = true;
         UpdateMessage();
     }
@@ -196,7 +202,15 @@ public class Door : InteractablePuzzleReceiver
         {
             StopCoroutine(lastCoroutine);
         }
-        lastCoroutine = StartCoroutine(CloseAnim());
+        if (gameObject.activeSelf)
+        {
+            lastCoroutine = StartCoroutine(CloseAnim());
+        }
+        else
+        {
+            gameObject.transform.eulerAngles = closeEuler;
+        }
+
 
         isOpen = false;
         UpdateMessage();
@@ -220,6 +234,19 @@ public class Door : InteractablePuzzleReceiver
             ShowMessage(1, "Door is Locked");
         }
 
+    }
+
+    //prevents door from stopping mid animation when enabled again
+    private void OnDisable()
+    {
+        if (isOpen)
+        {
+            gameObject.transform.eulerAngles = openEuler;
+        }
+        else
+        {
+            gameObject.transform.eulerAngles = closeEuler;
+        }
     }
 
     IEnumerator OpenAnim()
