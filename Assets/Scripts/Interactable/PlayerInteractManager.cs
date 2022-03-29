@@ -47,8 +47,11 @@ public class PlayerInteractManager : MonoBehaviour
                 //player is no longer looking at the last interactable
                 if (stillSelected == true)
                 {
-                    selectedGameObject.OnRayExit();
-                    stillSelected = false;
+                    if (selectedGameObject != null)
+                    {
+                        selectedGameObject.OnRayExit();
+                        stillSelected = false;
+                    }
                 }
             }
             else
@@ -56,7 +59,8 @@ public class PlayerInteractManager : MonoBehaviour
                 if (objectHit != lastSelectedHit && stillSelected)
                 {
                     stillSelected = false;
-                    selectedGameObject.OnRayExit();
+                    if (selectedGameObject!=null)
+                        selectedGameObject.OnRayExit();
                 }
                 //Player just now looked at an item
                 if (!stillSelected)
@@ -94,8 +98,12 @@ public class PlayerInteractManager : MonoBehaviour
             //player is no longer looking at the last interactable
             if (stillSelected == true)
             {
-                selectedGameObject.OnRayExit();
-                stillSelected = false;
+                if (selectedGameObject != null)
+                {
+                    selectedGameObject.OnRayExit();
+                    stillSelected = false;
+                }
+
             }
         }
     }

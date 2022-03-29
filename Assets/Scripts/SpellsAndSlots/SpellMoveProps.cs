@@ -12,9 +12,9 @@ public class SpellMoveProps : MonoBehaviour
 
     private float defaultRange;
     private float minRange = 2.3f;
-    private float maxRange = 4.1f;
-    private float breakDist = 6f;
-    private float rayRange = 4.5f;
+    private float maxRange = 4.5f;
+    private float breakDist = 6.5f;
+    private float rayRange = 5.5f;
     private float throwForce = 20f;
 
     public Transform holdLocation;
@@ -118,17 +118,24 @@ public class SpellMoveProps : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             //throw
-            if (selectedProp != null)
+            if (Physics.Raycast(ray, out hit, rayRange, layerMaskInteractableMoveable))
             {
-                if (Physics.Raycast(ray, out hit, rayRange, layerMaskInteractableMoveable))
+
+                hit.rigidbody.AddForce(ray.direction * throwForce, ForceMode.Impulse);
+                GameObject temp = Instantiate(throwParticleEffect, hit.point, Quaternion.LookRotation(hit.point));
+                Destroy(temp, 2f);
+
+                if (selectedProp != null)
                 {
-                    if(hit.transform == selectedProp.transform)
+                    if(selectedProp.CompareTag("Ragdoll") && hit.transform.CompareTag("Ragdoll"))
                     {
-                        selectedPropRb.AddForce(ray.direction * throwForce, ForceMode.Impulse);
-
-                        GameObject temp = Instantiate(throwParticleEffect, hit.point, Quaternion.LookRotation(hit.point));
-                        Destroy(temp, 2f);
-
+                        //ragdoll has multiple parts, this drops the whole ragdoll when the 2 above conditions are true
+                        //(ex; head is held, leg is thrown, release the head)
+                        DropSelectedProp();
+                    }
+                    else if (hit.transform == selectedProp.transform)
+                    {
+                        //drop the selected prop before throw.
                         DropSelectedProp();
                     }
                 }
