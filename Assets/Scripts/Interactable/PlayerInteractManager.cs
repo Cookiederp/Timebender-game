@@ -29,6 +29,7 @@ public class PlayerInteractManager : MonoBehaviour
         layerMaskDef = LayerMask.NameToLayer("Default");
 
         camera = Camera.main;
+
         inventoryManager = gameObject.GetComponent<InventoryManager>();
     }
 

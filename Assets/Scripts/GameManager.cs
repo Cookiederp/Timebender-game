@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 
     private GameObject gameMenuObj;
     private GameMenu gameMenu;
+    private CamController camController;
     [HideInInspector]
     public UIInteractManager uiInteractManager;
     //singleton
@@ -30,11 +31,12 @@ public class GameManager : MonoBehaviour
         gameMenu = FindObjectOfType<GameMenu>();
         gameMenuObj = gameMenu.gameObject;
         uiInteractManager = FindObjectOfType<UIInteractManager>();
+        camController = FindObjectOfType<CamController>();
     }
 
     void Update()
     {
-        //TEMP NEED TO MOVE THIS SOMEWHERE ELSE, TEMP KEY L BECAUSE ESCAPE LEAVES EDITOR
+        //TEMP KEY L BECAUSE ESCAPE LEAVES EDITOR
         if (Input.GetKeyDown(KeyCode.L))
         {
             if (gameMenu.mainObj.activeSelf)
@@ -46,5 +48,19 @@ public class GameManager : MonoBehaviour
                 gameMenu.OpenMenu();
             }
         }
+    }
+
+
+    //this gets called from in class and close settings.
+    public void ApplySettings()
+    {
+        StartCoroutine(waitAFrame());
+    }
+
+    IEnumerator waitAFrame()
+    {
+        yield return new WaitForEndOfFrame();
+        camController.UpdateMouseSens();
+        yield return null;
     }
 }
