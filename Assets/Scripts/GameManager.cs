@@ -45,6 +45,11 @@ public class GameManager : MonoBehaviour
             }
             else
             {
+                if (gameMenu.settingMenuObj.activeSelf)
+                {
+                    ApplySettings();
+                }
+
                 gameMenu.OpenMenu();
             }
         }
@@ -54,10 +59,10 @@ public class GameManager : MonoBehaviour
     //this gets called from in class and close settings.
     public void ApplySettings()
     {
-        StartCoroutine(waitAFrame());
+        StartCoroutine(WaitAFrame());
     }
 
-    IEnumerator waitAFrame()
+    IEnumerator WaitAFrame()
     {
         yield return new WaitForEndOfFrame();
         camController.UpdateMouseSens();
