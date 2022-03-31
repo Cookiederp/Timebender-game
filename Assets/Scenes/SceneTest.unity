@@ -14724,7 +14724,7 @@ CharacterJoint:
     bounciness: 0
     contactDistance: 0
   m_Swing2Limit:
-    limit: 0
+    limit: 15.913382
     bounciness: 0
     contactDistance: 0
   m_EnableProjection: 0
@@ -19632,6 +19632,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 962211715594811901, guid: 4cc08fe4129de0d498af32fdeff7e9e9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1380496922855582234, guid: 4cc08fe4129de0d498af32fdeff7e9e9,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -19647,20 +19652,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4763853432680097842, guid: 4cc08fe4129de0d498af32fdeff7e9e9,
+    - target: {fileID: 1380496924306788546, guid: 4cc08fe4129de0d498af32fdeff7e9e9,
         type: 3}
-      propertyPath: m_Height
-      value: 3.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4763853432680097842, guid: 4cc08fe4129de0d498af32fdeff7e9e9,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.55
-      objectReference: {fileID: 0}
-    - target: {fileID: 4763853432680097844, guid: 4cc08fe4129de0d498af32fdeff7e9e9,
-        type: 3}
-      propertyPath: dist
-      value: 0.2
+      propertyPath: m_AnchoredPosition.y
+      value: -8.9001465
       objectReference: {fileID: 0}
     - target: {fileID: 4763853433230907990, guid: 4cc08fe4129de0d498af32fdeff7e9e9,
         type: 3}

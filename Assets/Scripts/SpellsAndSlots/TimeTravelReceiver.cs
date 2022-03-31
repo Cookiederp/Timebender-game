@@ -175,8 +175,11 @@ public class TimeTravelReceiver : Interactable
     public override void OnRay()
     {
         //recentTouch = true;
-        gameManager.uiInteractManager.UpdateTimeSelectionText(-1);
-        UpdateTimeShownForObj(true, false);
+        if (gameManager.isSpellTimeTravelActive)
+        {
+            gameManager.uiInteractManager.UpdateTimeSelectionText(-1);
+            UpdateTimeShownForObj(true, false);
+        }
     }
 
     public override void OnRayExit()

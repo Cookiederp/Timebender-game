@@ -9,6 +9,14 @@ public class GameManager : MonoBehaviour
     private GameMenu gameMenu;
     private CamController camController;
     [HideInInspector]
+    public bool isGamePaused
+    {
+        get { return isGamePaused_; }
+    }
+    private bool isGamePaused_;
+    [HideInInspector]
+    public bool isSpellTimeTravelActive = false;
+    [HideInInspector]
     public UIInteractManager uiInteractManager;
     //singleton
     private static GameManager _instance;
@@ -55,6 +63,22 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void pauseGame()
+    {
+        isGamePaused_ = true;
+        Time.timeScale = 0;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+
+    public void unPauseGame()
+    {
+        isGamePaused_ = false;
+        Time.timeScale = 1;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
 
     //this gets called from in class and close settings.
     public void ApplySettings()

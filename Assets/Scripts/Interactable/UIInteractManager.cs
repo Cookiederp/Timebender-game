@@ -19,9 +19,9 @@ public class UIInteractManager : MonoBehaviour
         LastCoroutine = new Coroutine[4];
 
         tstring = new string[tsize];
-        tstring[0] = "Present -> P+F [E]";
-        tstring[1] = "[Q] P <- Present+Future -> F [E]";
-        tstring[2] = "[Q] P+F <- Future";
+        tstring[0] = "Present";
+        tstring[1] = "Present+Future";
+        tstring[2] = "Future";
 
         hstring = new string[hsize];
         hstring[0] = "[F] - ";

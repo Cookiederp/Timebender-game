@@ -12,6 +12,11 @@ public class Interactable : MonoBehaviour
 
     }
 
+    public virtual void OnRay(bool n)
+    {
+
+    }
+
     public virtual void OnRayExit()
     {
 

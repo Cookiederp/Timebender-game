@@ -43,6 +43,21 @@ public class ItemObject : Interactable
         */
     }
 
+
+    //refresh TimeReceiver text only
+    public override void OnRay(bool n)
+    {
+        if (!isTaken)
+        {            
+            if (containsTimeReceiver)
+            {
+                timeTravelReceiver.OnRay();
+            }
+            //UIHighlight.SetActive(true);
+            //lastCoroutineUI = StartCoroutine(AnimUI());
+        }
+    }
+
     public override void OnRay()
     {
         if (!isTaken)

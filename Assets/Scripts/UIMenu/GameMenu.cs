@@ -8,10 +8,12 @@ public class GameMenu : MonoBehaviour
     public GameObject mainObj;
     public GameObject settingMenuObj;
     public GameObject crosshair;
+    private GameManager gameManager;
 
 
     private void Start()
     {
+        gameManager = GameManager.instance;
         crosshair.SetActive(true);
         mainObj.SetActive(false);
         settingMenuObj.SetActive(false);
@@ -19,27 +21,20 @@ public class GameMenu : MonoBehaviour
 
     public void OpenMenu()
     {
+        gameManager.pauseGame();
         mainObj.SetActive(true);
-        Time.timeScale = 0;
         if (settingMenuObj.activeSelf)
         {
             gameObject.GetComponent<SettingsMenu>().OnBack();
         }
         settingMenuObj.SetActive(false);
-
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
     }
 
     public void CloseMenu()
     {
+        gameManager.unPauseGame();
         mainObj.SetActive(false);
         settingMenuObj.SetActive(false);
-
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-
-        Time.timeScale = 1;
     }
 
     public void OnResume()

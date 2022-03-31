@@ -8,6 +8,7 @@ public class PlayerInteractManager : MonoBehaviour
     private Camera camera;
 
     private InventoryManager inventoryManager;
+    public GameObject spellTimeTravelPropsObj;
 
     int layerMaskInteractableMoveable = 1 << 9;
     int layerMaskInteractableStatic = 1 << 10;
@@ -16,10 +17,11 @@ public class PlayerInteractManager : MonoBehaviour
     int layerMaskMoveable;
     int layerMaskDef;
 
-    float interactRange = 3f;
+    float interactRange = 3.5f;
 
     private Interactable selectedGameObject;
     bool stillSelected = false;
+    bool itemRefreshTimeReceiverOnly = false;
     Transform lastSelectedHit = null;
 
     void Start()
@@ -31,6 +33,24 @@ public class PlayerInteractManager : MonoBehaviour
         camera = Camera.main;
 
         inventoryManager = gameObject.GetComponent<InventoryManager>();
+    }
+
+    public void UpdateTimeText()
+    {
+        if(selectedGameObject != null)
+        {
+            if(selectedGameObject.gameObject.layer == layerMaskMoveable)
+            {
+                if (selectedGameObject.CompareTag("Pickup")){
+                    itemRefreshTimeReceiverOnly = true;
+                    stillSelected = false;
+                }
+                else
+                {
+                    stillSelected = false;
+                }
+            }
+        }
     }
 
     //when a player looks at an interactable, call OnRay() and OnRayExit() on the interactable.
@@ -68,6 +88,16 @@ public class PlayerInteractManager : MonoBehaviour
                 {
                     if (objectHit.CompareTag("Pickup")){
                         selectedGameObject = objectHit.gameObject.GetComponent<ItemObject>();
+
+                        if (itemRefreshTimeReceiverOnly)
+                        {
+                            itemRefreshTimeReceiverOnly = false;
+                            selectedGameObject.OnRay(true);
+                        }
+                        else
+                        {
+                            selectedGameObject.OnRay();
+                        }
                     }
                     else
                     {
@@ -77,15 +107,16 @@ public class PlayerInteractManager : MonoBehaviour
                             selectedGameObject = objectHit.gameObject.GetComponent<InteractablePuzzle>();
                         }
                         else
-                        {
+                        {                           
                             selectedGameObject = objectHit.gameObject.GetComponent<TimeTravelReceiver>();
                         }
+
+                        if (selectedGameObject != null)
+                        {
+                            selectedGameObject.OnRay();
+                        }
                     }
-                    //if statement need 1/100 of the time or else error, might cause something else when added
-                    if(selectedGameObject != null)
-                    {
-                        selectedGameObject.OnRay();
-                    }
+
 
                     //makes sure item is told only once that it is being looked at
                     stillSelected = true;
@@ -140,36 +171,6 @@ public class PlayerInteractManager : MonoBehaviour
                     }
                 }
             }
-        }
-        
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            //another raycast when key is hit to make sure target taken is not behind anything
-            if (Physics.Raycast(ray, out hit, interactRange))
-            {                    
-                Transform objectHit = hit.transform;
-                if (layerMaskMoveable == objectHit.gameObject.layer)
-                {
-                    //only objects that player can put in present or future
-                    Interactable obj = objectHit.gameObject.GetComponent<TimeTravelReceiver>();
-                    obj.OnPress(1);
-                }
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            //another raycast when key is hit to make sure target taken is not behind anything
-            if (Physics.Raycast(ray, out hit, interactRange))
-            {
-                Transform objectHit = hit.transform;
-                if (layerMaskMoveable == objectHit.gameObject.layer)
-                {
-                    //only objects that player can put in present or future
-                    Interactable obj = objectHit.gameObject.GetComponent<TimeTravelReceiver>();
-                    obj.OnPress(-1);
-                }
-            }
-        }
+        }      
     }
 }

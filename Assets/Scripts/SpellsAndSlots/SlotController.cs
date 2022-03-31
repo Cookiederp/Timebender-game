@@ -5,7 +5,7 @@ using UnityEngine;
 public class SlotController : MonoBehaviour
 {
     public GameObject hotbar;
-    private int slotAmount = 3;
+    private int slotAmount = 4;
     private SlotTile[] slots;
     private int pastIndexSelected = -1;
 
@@ -31,6 +31,10 @@ public class SlotController : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             SelectSpell(2);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            SelectSpell(3);
         }
     }
 
