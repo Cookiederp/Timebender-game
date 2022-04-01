@@ -17,6 +17,9 @@ public class PlayerInteractManager : MonoBehaviour
     int layerMaskMoveable;
     int layerMaskDef;
 
+    int layerMaskRag;
+    int layerMaskRagTime = 1 << 12;
+
     float interactRange = 3.5f;
 
     private Interactable selectedGameObject;
@@ -29,6 +32,7 @@ public class PlayerInteractManager : MonoBehaviour
         layerMaskMoveable = LayerMask.NameToLayer("InteractableMoveable");
         layerMaskStatic = LayerMask.NameToLayer("InteractableStatic");
         layerMaskDef = LayerMask.NameToLayer("Default");
+        layerMaskRag = LayerMask.NameToLayer("InteractableRagdollTime");
 
         camera = Camera.main;
 
@@ -39,7 +43,7 @@ public class PlayerInteractManager : MonoBehaviour
     {
         if(selectedGameObject != null)
         {
-            if(selectedGameObject.gameObject.layer == layerMaskMoveable)
+            if(selectedGameObject.gameObject.layer == layerMaskMoveable || selectedGameObject.gameObject.layer == layerMaskRag)
             {
                 if (selectedGameObject.CompareTag("Pickup")){
                     itemRefreshTimeReceiverOnly = true;
@@ -59,7 +63,7 @@ public class PlayerInteractManager : MonoBehaviour
         RaycastHit hit;
         Ray ray = camera.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out hit, interactRange, layerMaskInteractableStatic | layerMaskInteractableMoveable | layerMaskDefault))
+        if (Physics.Raycast(ray, out hit, interactRange, layerMaskInteractableStatic | layerMaskInteractableMoveable | layerMaskDefault | layerMaskRagTime))
         {
             Transform objectHit = hit.transform;
             //detects if a new object is selected, without a gap (from object to object raycast, two object hugging eachother)

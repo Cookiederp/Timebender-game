@@ -45,6 +45,24 @@ public class TimeTravelReceiver : Interactable
         UpdateTimeShownForObj(false, true);
     }
 
+    //if Start()/OnPresent/OnFuture was called but object was not in the TimeReceiverManager list
+    public void ReIni(bool isPresent)
+    {
+        if (isObjInPresent && isObjInFuture) { selectTimeForObj = 1; }
+        else if (isObjInPresent) { selectTimeForObj = 0; }
+        else if (isObjInFuture) { selectTimeForObj = 2; }
+        else {/*obj is not active by time change*/}
+        UpdateTimeShownForObj(false, true);
+        if (isPresent)
+        {
+            OnPresent();
+        }
+        else
+        {
+            OnFuture();
+        }
+    }
+
     //called by TimeTravelManager, called when moving from future to present
     public void OnPresent()
     {
@@ -189,9 +207,9 @@ public class TimeTravelReceiver : Interactable
 
     public override void OnPress(int num)
     {
-        if(num == 1)
+        if (num == 1)
         {
-            //e
+            //->f
             if (selectTimeForObj < 2)
             {
                 selectTimeForObj++;
@@ -200,7 +218,7 @@ public class TimeTravelReceiver : Interactable
         }
         else
         {
-            //q
+            //p<-
             if (selectTimeForObj > 0)
             {
                 selectTimeForObj--;

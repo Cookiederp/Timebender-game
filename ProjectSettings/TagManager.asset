@@ -19,7 +19,7 @@ TagManager:
   - InteractableStatic
   - InteractableMoveable
   - Ground
-  - 
+  - InteractableRagdollTime
   - 
   - 
   - 

@@ -7,7 +7,9 @@ public class SpellTimeTravelProps : MonoBehaviour
     private Camera camera;
     private float interactRange = 3.5f;
     int layerMaskMoveable;
+    int layerMaskRag;
     int layerMaskInteractableMoveable = 1 << 9;
+    int layerMaskRagTime = 1 << 12;
 
     private GameManager gameManager;
     private PlayerInteractManager playerInteractManager;
@@ -16,6 +18,7 @@ public class SpellTimeTravelProps : MonoBehaviour
     void Awake()
     {
         layerMaskMoveable = LayerMask.NameToLayer("InteractableMoveable");
+        layerMaskRag = LayerMask.NameToLayer("InteractableRagdollTime");
         camera = Camera.main;
         gameManager = GameManager.instance;
         playerInteractManager = FindObjectOfType<PlayerInteractManager>();
@@ -49,11 +52,22 @@ public class SpellTimeTravelProps : MonoBehaviour
                 if (Physics.Raycast(ray, out hit, interactRange))
                 {
                     Transform objectHit = hit.transform;
-                    if (layerMaskMoveable == objectHit.gameObject.layer)
+                    if (layerMaskMoveable == objectHit.gameObject.layer || layerMaskRag == objectHit.gameObject.layer)
                     {
-                        //only objects that player can put in present or future
-                        Interactable obj = objectHit.gameObject.GetComponent<TimeTravelReceiver>();
-                        obj.OnPress(1);
+                        if (layerMaskRag == objectHit.gameObject.layer)
+                        {
+                            Interactable obj = objectHit.gameObject.GetComponent<MoveRagdollTime>();
+                            obj.OnPress(1);
+                        }
+                        else
+                        {
+                            //only objects that player can put in present or future
+                            if (!objectHit.CompareTag("Ragdoll"))
+                            {
+                                Interactable obj = objectHit.gameObject.GetComponent<TimeTravelReceiver>();
+                                obj.OnPress(1);
+                            }
+                        }
                     }
                 }
             }
@@ -65,11 +79,22 @@ public class SpellTimeTravelProps : MonoBehaviour
                 if (Physics.Raycast(ray, out hit, interactRange))
                 {
                     Transform objectHit = hit.transform;
-                    if (layerMaskMoveable == objectHit.gameObject.layer)
+                    if (layerMaskMoveable == objectHit.gameObject.layer || layerMaskRag == objectHit.gameObject.layer)
                     {
-                        //only objects that player can put in present or future
-                        Interactable obj = objectHit.gameObject.GetComponent<TimeTravelReceiver>();
-                        obj.OnPress(-1);
+                        if (layerMaskRag == objectHit.gameObject.layer)
+                        {
+                            Interactable obj = objectHit.gameObject.GetComponent<MoveRagdollTime>();
+                            obj.OnPress(-1);
+                        }
+                        else
+                        {
+                            //only objects that player can put in present or future
+                            if (!objectHit.CompareTag("Ragdoll"))
+                            {
+                                Interactable obj = objectHit.gameObject.GetComponent<TimeTravelReceiver>();
+                                obj.OnPress(-1);
+                            }
+                        }                     
                     }
                 }
             }

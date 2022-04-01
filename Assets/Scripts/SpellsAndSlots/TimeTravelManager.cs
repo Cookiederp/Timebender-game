@@ -5,7 +5,22 @@ using UnityEngine;
 public class TimeTravelManager : MonoBehaviour
 {
     private List<TimeTravelReceiver> receivers;
-    
+
+    private static TimeTravelManager _instance;
+    [HideInInspector]
+    public bool isPresent;
+    public static TimeTravelManager instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<TimeTravelManager>();
+            }
+
+            return _instance;
+        }
+    }
 
     void Awake()
     {
@@ -20,6 +35,7 @@ public class TimeTravelManager : MonoBehaviour
 
     public void OnPresent()
     {
+        isPresent = true;
         for(int i = 0; i<receivers.Count; i++)
         {
             if (receivers[i] == null)
@@ -36,6 +52,7 @@ public class TimeTravelManager : MonoBehaviour
 
     public void OnFuture()
     {
+        isPresent = false;
         for (int i = 0; i < receivers.Count; i++)
         {
             if (receivers[i] == null)
@@ -48,5 +65,10 @@ public class TimeTravelManager : MonoBehaviour
                 receivers[i].OnFuture();
             }
         }
+    }
+
+    public void addToList(TimeTravelReceiver thisReceiver)
+    {
+        receivers.Add(thisReceiver);
     }
 }
