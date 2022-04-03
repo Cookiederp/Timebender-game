@@ -14,6 +14,13 @@ public class GameManager : MonoBehaviour
         get { return isGamePaused_; }
     }
     private bool isGamePaused_;
+
+    public bool isNextSceneLoading
+    {
+        get { return isNextSceneLoading_; }
+    }
+    private bool isNextSceneLoading_;
+
     [HideInInspector]
     public bool isSpellTimeTravelActive = false;
     [HideInInspector]
@@ -36,6 +43,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        Time.timeScale = 1;
         gameMenu = FindObjectOfType<GameMenu>();
         gameMenuObj = gameMenu.gameObject;
         uiInteractManager = FindObjectOfType<UIInteractManager>();
@@ -47,18 +55,21 @@ public class GameManager : MonoBehaviour
         //TEMP KEY L BECAUSE ESCAPE LEAVES EDITOR
         if (Input.GetKeyDown(KeyCode.L))
         {
-            if (gameMenu.mainObj.activeSelf)
+            if (!isNextSceneLoading)
             {
-                gameMenu.CloseMenu();
-            }
-            else
-            {
-                if (gameMenu.settingMenuObj.activeSelf)
+                if (gameMenu.mainObj.activeSelf)
                 {
-                    ApplySettings();
+                    gameMenu.CloseMenu();
                 }
+                else
+                {
+                    if (gameMenu.settingMenuObj.activeSelf)
+                    {
+                        ApplySettings();
+                    }
 
-                gameMenu.OpenMenu();
+                    gameMenu.OpenMenu();
+                }
             }
         }
     }
@@ -91,5 +102,10 @@ public class GameManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
         camController.UpdateMouseSens();
         yield return null;
+    }
+
+    public void OnLoad()
+    {
+        isNextSceneLoading_ = true;
     }
 }

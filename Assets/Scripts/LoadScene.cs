@@ -10,10 +10,13 @@ public class LoadScene : MonoBehaviour
     public GameObject loadingScreen;
     public RawImage background;
 
+    private GameManager gameManager;
+
     private float fadingTime = 2f;
 
     private void Start()
     {
+        gameManager = GameManager.instance;
         //needed to make crossFadeAlpha work
         Color temp = background.color;
         temp.a = 1;
@@ -24,6 +27,11 @@ public class LoadScene : MonoBehaviour
 
     public void Load()
     {
+        if(gameManager != null)
+        {
+            gameManager.OnLoad();
+        }
+        Time.timeScale = 0;
         loadingScreen.SetActive(true);
         //needed to make crossFadeAlpha work
         background.CrossFadeAlpha(0f, 0f, true);
@@ -41,8 +49,8 @@ public class LoadScene : MonoBehaviour
 
     IEnumerator LoadYourAsyncScene()
     {
-        background.CrossFadeAlpha(1f, fadingTime, false);
-        yield return new WaitForSeconds(fadingTime+0.5f);
+        background.CrossFadeAlpha(1f, fadingTime, true);
+        yield return new WaitForSecondsRealtime(fadingTime+0.5f);
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneIndexToLoad);
         while (!asyncLoad.isDone)
         {

@@ -13,6 +13,9 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         loadScene = gameObject.GetComponent<LoadScene>();
         MainObj.SetActive(true);
         SettingsMenuObj.SetActive(false);

@@ -15,7 +15,7 @@ public class SpellMoveProps : MonoBehaviour
     private float maxRange = 4.5f;
     private float breakDist = 6.5f;
     private float rayRange = 5.5f;
-    private float throwForce = 20f;
+    private float throwForce = 25f;
 
     public Transform holdLocation;
     private GameObject selectedProp;
@@ -127,6 +127,7 @@ public class SpellMoveProps : MonoBehaviour
                 {
 
                     bool thr = false;
+                    bool thrRag = false;
 
                     if (selectedProp != null)
                     {
@@ -136,6 +137,7 @@ public class SpellMoveProps : MonoBehaviour
                             //(ex; head is held, leg is thrown, release the head)
                             DropSelectedProp();
                             thr = true;
+                            thrRag = true;
                         }
                         else if (hit.transform == selectedProp.transform)
                         {
@@ -151,7 +153,15 @@ public class SpellMoveProps : MonoBehaviour
 
                     if (thr)
                     {
-                        hit.rigidbody.AddForce(ray.direction * throwForce, ForceMode.Impulse);
+                        float hitMass = hit.rigidbody.mass;
+                        if (thrRag)
+                        {
+                            hitMass *= 3.5f;
+                        }
+                        float tf;
+
+                        tf = throwForce * hitMass;
+                        hit.rigidbody.AddForce(ray.direction * tf, ForceMode.Impulse);
                         GameObject temp = Instantiate(throwParticleEffect, hit.point, Quaternion.LookRotation(hit.point));
                         Destroy(temp, 2f);
                     }
