@@ -89,15 +89,17 @@ public class SkeletonAI : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {   
         Rigidbody otherRb = other.attachedRigidbody;
+
         if(otherRb == null)
         {
             return;
         }
+        float otherMass = otherRb.mass;
         //ADD IF COLLISION IS NOT STRONG ENOUGHT, DONT DO THE STUFF BELOW
         if (!other.CompareTag("Player"))
         {
-            float velSum = Mathf.Abs(otherRb.velocity.x) + Mathf.Abs(otherRb.velocity.y) + Mathf.Abs(otherRb.velocity.z);
-            if (velSum > 8f)
+            float velSum = otherRb.velocity.magnitude;
+            if (velSum > 7f)
             {
                 EnableRagdoll();
 
@@ -109,8 +111,9 @@ public class SkeletonAI : MonoBehaviour
                     rb.velocity = (rb.transform.position - otherRb.transform.position) * knockbackPower;
                 }
             }
-            else if(velSum > 4f && other.CompareTag("Sword"))
+            else if(velSum > 4f)
             {
+                if(other.CompareTag("Sword"))
                 EnableRagdoll();
 
                 float knockInPowerProp = Mathf.Clamp(velSum / 2, 3f, 6f);

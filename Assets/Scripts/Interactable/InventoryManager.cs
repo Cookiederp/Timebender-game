@@ -4,13 +4,15 @@ using UnityEngine;
 using TMPro;
 public class InventoryManager : MonoBehaviour
 {
+    [HideInInspector]
     public List<Item> items = new List<Item>();
     public TextMeshProUGUI potionAmountText;
     private int potionAmount = 0;
+    public PotionHand potionHand;
 
     public void Start()
     {
-        //probably want to save the potion amount later.. with playerpref
+        //probably want to save the potion amount later.. with playerpref   
         potionAmountText.text = potionAmount.ToString();
     }
 
@@ -27,13 +29,33 @@ public class InventoryManager : MonoBehaviour
             items.Add(item);
 
             itemObj.OnPress(1);
+
+
             //potion
             if(item.id == 2)
             {
                 potionAmount++;
-                potionAmountText.text = potionAmount.ToString();
+                UpdateUI();
+                potionHand.HavePotionInHand();
             }
         }
+    }
+
+
+    public void PotionConsumed()
+    {
+        potionAmount--;
+        UpdateUI();
+    }
+
+    public void UpdateUI()
+    {
+        potionAmountText.text = potionAmount.ToString();
+    }
+
+    public int GetPotionAmount()
+    {
+        return potionAmount;
     }
 
     //TEMP??

@@ -12,6 +12,8 @@ public class PlayerInteractManager : MonoBehaviour
 
     int layerMaskInteractableMoveable = 1 << 9;
     int layerMaskInteractableStatic = 1 << 10;
+    int layerMaskRagdollTime = 1 << 12;
+    int layerIgnoreRaycast = 1 << 2;
     int layerMaskDefault = 1 << 0;
     int layerMaskStatic;
     int layerMaskMoveable;
@@ -63,7 +65,7 @@ public class PlayerInteractManager : MonoBehaviour
         RaycastHit hit;
         Ray ray = camera.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out hit, interactRange, layerMaskInteractableStatic | layerMaskInteractableMoveable | layerMaskDefault | layerMaskRagTime))
+        if (Physics.Raycast(ray, out hit, interactRange, layerMaskInteractableStatic | layerMaskInteractableMoveable | layerMaskDefault | layerMaskRagTime | (~layerMaskRagdollTime & ~layerIgnoreRaycast)))
         {
             Transform objectHit = hit.transform;
             //detects if a new object is selected, without a gap (from object to object raycast, two object hugging eachother)
@@ -152,7 +154,7 @@ public class PlayerInteractManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
         {
             //another raycast when key is hit to make sure target taken is not behind anything
-            if (Physics.Raycast(ray, out hit, interactRange))
+            if (Physics.Raycast(ray, out hit, interactRange, ~layerMaskRagdollTime & ~layerIgnoreRaycast))
             {
                 Transform objectHit = hit.transform;
                 int hitLayer = objectHit.gameObject.layer;

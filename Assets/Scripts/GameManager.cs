@@ -25,6 +25,10 @@ public class GameManager : MonoBehaviour
     public bool isSpellTimeTravelActive = false;
     [HideInInspector]
     public UIInteractManager uiInteractManager;
+    [HideInInspector]
+    public InventoryManager inventoryManager;
+    [HideInInspector]
+    public PlayerHealthManager playerHealthManager;
     //singleton
     private static GameManager _instance;
     public static GameManager instance
@@ -47,6 +51,8 @@ public class GameManager : MonoBehaviour
         gameMenu = FindObjectOfType<GameMenu>();
         gameMenuObj = gameMenu.gameObject;
         uiInteractManager = FindObjectOfType<UIInteractManager>();
+        playerHealthManager = FindObjectOfType<PlayerHealthManager>();
+        inventoryManager = FindObjectOfType<InventoryManager>();
         camController = FindObjectOfType<CamController>();
     }
 

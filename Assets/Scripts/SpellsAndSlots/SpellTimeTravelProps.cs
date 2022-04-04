@@ -10,9 +10,12 @@ public class SpellTimeTravelProps : MonoBehaviour
     int layerMaskRag;
     int layerMaskInteractableMoveable = 1 << 9;
     int layerMaskRagTime = 1 << 12;
+    int layerIgnoreRaycast = 1 << 2;
 
     private GameManager gameManager;
     private PlayerInteractManager playerInteractManager;
+
+    public GameObject hitPointParticlePrefab;
 
     // Start is called before the first frame update
     void Awake()
@@ -49,26 +52,9 @@ public class SpellTimeTravelProps : MonoBehaviour
             if (Input.GetMouseButtonDown(1))
             {
                 //another raycast when key is hit to make sure target taken is not behind anything
-                if (Physics.Raycast(ray, out hit, interactRange))
+                if (Physics.Raycast(ray, out hit, interactRange, ~layerIgnoreRaycast))
                 {
-                    Transform objectHit = hit.transform;
-                    if (layerMaskMoveable == objectHit.gameObject.layer || layerMaskRag == objectHit.gameObject.layer)
-                    {
-                        if (layerMaskRag == objectHit.gameObject.layer)
-                        {
-                            Interactable obj = objectHit.gameObject.GetComponent<MoveRagdollTime>();
-                            obj.OnPress(1);
-                        }
-                        else
-                        {
-                            //only objects that player can put in present or future
-                            if (!objectHit.CompareTag("Ragdoll"))
-                            {
-                                Interactable obj = objectHit.gameObject.GetComponent<TimeTravelReceiver>();
-                                obj.OnPress(1);
-                            }
-                        }
-                    }
+                    PutHitTo(true, hit);
                 }
             }
 
@@ -76,29 +62,56 @@ public class SpellTimeTravelProps : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 //another raycast when key is hit to make sure target taken is not behind anything
-                if (Physics.Raycast(ray, out hit, interactRange))
+                if (Physics.Raycast(ray, out hit, interactRange, ~layerIgnoreRaycast))
                 {
-                    Transform objectHit = hit.transform;
-                    if (layerMaskMoveable == objectHit.gameObject.layer || layerMaskRag == objectHit.gameObject.layer)
-                    {
-                        if (layerMaskRag == objectHit.gameObject.layer)
-                        {
-                            Interactable obj = objectHit.gameObject.GetComponent<MoveRagdollTime>();
-                            obj.OnPress(-1);
-                        }
-                        else
-                        {
-                            //only objects that player can put in present or future
-                            if (!objectHit.CompareTag("Ragdoll"))
-                            {
-                                Interactable obj = objectHit.gameObject.GetComponent<TimeTravelReceiver>();
-                                obj.OnPress(-1);
-                            }
-                        }                     
-                    }
+                    PutHitTo(false, hit);
                 }
             }
         }
 
+    }
+
+    //-> p -> pf -> f
+    private void PutHitTo(bool isRight, RaycastHit hit)
+    {
+        Transform objectHit = hit.transform;
+
+        if (layerMaskMoveable == objectHit.gameObject.layer || layerMaskRag == objectHit.gameObject.layer)
+        {
+            //hit
+            GameObject hitPointParticle = Instantiate(hitPointParticlePrefab, hit.point, Quaternion.identity);
+            Destroy(hitPointParticle, 2f);
+
+            //hit ragdoll invis box, get the script for it.
+            if (layerMaskRag == objectHit.gameObject.layer)
+            {
+                Interactable obj = objectHit.gameObject.GetComponent<MoveRagdollTime>();
+                if (isRight)
+                {
+                    obj.OnPress(1);
+                }
+                else
+                {
+                    obj.OnPress(-1);
+                }
+            }
+            //hit a prop
+            else
+            {
+                //only objects that player can put in present or future
+                if (!objectHit.CompareTag("Ragdoll"))
+                {
+                    Interactable obj = objectHit.gameObject.GetComponent<TimeTravelReceiver>();
+                    if (isRight)
+                    {
+                        obj.OnPress(1);
+                    }
+                    else
+                    {
+                        obj.OnPress(-1);
+                    }
+                }
+            }
+        }
     }
 }

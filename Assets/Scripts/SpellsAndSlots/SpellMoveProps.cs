@@ -5,13 +5,15 @@ using UnityEngine;
 public class SpellMoveProps : MonoBehaviour
 {
     int layerMaskInteractableMoveable = 1 << 10;
+    int layerMaskInteractableRagdollTime = 1 << 12;
     int layerMaskDefault = 1 << 0;
+    int layerIgnoreRaycast = 1 << 2;
     int layerMaskMoveable;
 
     private Camera camera;
 
     private float defaultRange;
-    private float minRange = 2.3f;
+    private float minRange = 2f;
     private float maxRange = 4.5f;
     private float breakDist = 6.5f;
     private float rayRange = 5.5f;
@@ -72,7 +74,7 @@ public class SpellMoveProps : MonoBehaviour
             //move prop
             if (Input.GetMouseButtonDown(1))
             {
-                if (Physics.Raycast(ray, out hit, rayRange, layerMaskInteractableMoveable | layerMaskDefault))
+                if (Physics.Raycast(ray, out hit, rayRange, ~layerMaskInteractableRagdollTime & ~layerIgnoreRaycast))
                 {
                     if (hit.transform.gameObject.layer == layerMaskMoveable)
                     {
@@ -123,47 +125,53 @@ public class SpellMoveProps : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 //throw
-                if (Physics.Raycast(ray, out hit, rayRange, layerMaskInteractableMoveable))
+                if (Physics.Raycast(ray, out hit, rayRange, ~layerMaskInteractableRagdollTime & ~layerIgnoreRaycast))
                 {
 
                     bool thr = false;
                     bool thrRag = false;
-
-                    if (selectedProp != null)
+                    if(hit.transform.gameObject.layer == layerMaskMoveable)
                     {
-                        if (selectedProp.CompareTag("Ragdoll") && hit.transform.CompareTag("Ragdoll"))
+                        if (selectedProp != null)
                         {
-                            //ragdoll has multiple parts, this drops the whole ragdoll when the 2 above conditions are true
-                            //(ex; head is held, leg is thrown, release the head)
-                            DropSelectedProp();
+                            if (selectedProp.CompareTag("Ragdoll") && hit.transform.CompareTag("Ragdoll"))
+                            {
+                                //ragdoll has multiple parts, this drops the whole ragdoll when the 2 above conditions are true
+                                //(ex; head is held, leg is thrown, release the head)
+                                DropSelectedProp();
+                                thr = true;
+                                thrRag = true;
+                            }
+                            else if (hit.transform == selectedProp.transform)
+                            {
+                                //drop the selected prop before throw.
+                                DropSelectedProp();
+                                thr = true;
+                            }
+                        }
+                        else
+                        {
                             thr = true;
-                            thrRag = true;
+                            if (hit.transform.CompareTag("Ragdoll"))
+                            {
+                                thrRag = true;
+                            }
                         }
-                        else if (hit.transform == selectedProp.transform)
-                        {
-                            //drop the selected prop before throw.
-                            DropSelectedProp();
-                            thr = true;
-                        }
-                    }
-                    else
-                    {
-                        thr = true;
-                    }
 
-                    if (thr)
-                    {
-                        float hitMass = hit.rigidbody.mass;
-                        if (thrRag)
+                        if (thr)
                         {
-                            hitMass *= 3.5f;
-                        }
-                        float tf;
+                            float hitMass = hit.rigidbody.mass;
+                            if (thrRag)
+                            {
+                                hitMass *= 4f;
+                            }
+                            float tf;
 
-                        tf = throwForce * hitMass;
-                        hit.rigidbody.AddForce(ray.direction * tf, ForceMode.Impulse);
-                        GameObject temp = Instantiate(throwParticleEffect, hit.point, Quaternion.LookRotation(hit.point));
-                        Destroy(temp, 2f);
+                            tf = throwForce * hitMass;
+                            hit.rigidbody.AddForce(ray.direction * tf, ForceMode.Impulse);
+                            GameObject temp = Instantiate(throwParticleEffect, hit.point, Quaternion.LookRotation(hit.point));
+                            Destroy(temp, 2f);
+                        }
                     }
                 }
             }
