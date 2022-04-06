@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class SpellTimeTravelProps : MonoBehaviour
 {
     private Camera camera;
@@ -17,6 +17,10 @@ public class SpellTimeTravelProps : MonoBehaviour
 
     public GameObject hitPointParticlePrefab;
 
+    public RawImage[] crosshairImages;
+
+    Color defColor;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -25,6 +29,7 @@ public class SpellTimeTravelProps : MonoBehaviour
         camera = Camera.main;
         gameManager = GameManager.instance;
         playerInteractManager = FindObjectOfType<PlayerInteractManager>();
+        defColor = crosshairImages[0].color;
     }
 
 
@@ -32,12 +37,19 @@ public class SpellTimeTravelProps : MonoBehaviour
     {
         gameManager.isSpellTimeTravelActive = true;
         playerInteractManager.UpdateTimeText();
+        StartCoroutine(CheckIfRayReach());
     }
 
     private void OnDisable()
     {
         gameManager.isSpellTimeTravelActive = false;
         gameManager.uiInteractManager.UpdateTimeSelectionText(-1);
+        StopAllCoroutines();
+
+        foreach (RawImage image in crosshairImages)
+        {
+            image.color = defColor;
+        }
     }
 
     // Update is called once per frame
@@ -112,6 +124,56 @@ public class SpellTimeTravelProps : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+
+
+    IEnumerator CheckIfRayReach()
+    {
+        bool isSame = false;
+        //15 updates per second
+        while (true)
+        {
+            RaycastHit hit;
+            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit, interactRange, ~layerIgnoreRaycast))
+            {
+                if (hit.transform.gameObject.layer == layerMaskMoveable || hit.transform.gameObject.layer == layerMaskRag)
+                {
+                    if (!isSame)
+                    {
+                        foreach (RawImage image in crosshairImages)
+                        {
+                            isSame = true;
+                            image.color = new Color(1f, 0.6f, 0.5f, defColor.a - 0.2f);
+                        }
+                    }
+                }
+                else
+                {
+                    if (isSame)
+                    {
+                        foreach (RawImage image in crosshairImages)
+                        {
+                            isSame = false;
+                            image.color = defColor;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (isSame)
+                {
+                    foreach (RawImage image in crosshairImages)
+                    {
+                        isSame = false;
+                        image.color = defColor;
+                    }
+                }
+
+            }
+            yield return new WaitForSecondsRealtime(0.06666f);
         }
     }
 }

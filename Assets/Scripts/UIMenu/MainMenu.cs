@@ -10,6 +10,7 @@ public class MainMenu : MonoBehaviour
     public GameObject MainObj;
 
     public GameObject SettingsMenuObj;
+    public GameObject CreditsMenuObj;
 
     private void Start()
     {
@@ -19,6 +20,7 @@ public class MainMenu : MonoBehaviour
         loadScene = gameObject.GetComponent<LoadScene>();
         MainObj.SetActive(true);
         SettingsMenuObj.SetActive(false);
+        CreditsMenuObj.SetActive(false);
     }
 
     //MMenu

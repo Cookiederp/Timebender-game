@@ -99,29 +99,34 @@ public class SkeletonAI : MonoBehaviour
         if (!other.CompareTag("Player"))
         {
             float velSum = otherRb.velocity.magnitude;
-            if (velSum > 7f)
+            if (velSum > 5.6f)
             {
-                EnableRagdoll();
-
-                float knockInPowerProp = Mathf.Clamp(velSum / 2, 3f, 6f);
-                float knockbackPower = Mathf.Clamp(velSum / 2, 3f, 8f);
-                Debug.Log(velSum);
-                foreach (Rigidbody rb in ragdollRigids)
+                if(otherMass > 0.2f)
                 {
-                    rb.velocity = (rb.transform.position - otherRb.transform.position) * knockbackPower;
+                    EnableRagdoll();
+
+                    float knockInPowerProp = Mathf.Clamp(velSum / 2, 3f, 6f);
+                    float knockbackPower = Mathf.Clamp(velSum / 2, 3f, 8f);
+                    Debug.Log(velSum);
+                    foreach (Rigidbody rb in ragdollRigids)
+                    {
+                        rb.velocity = (rb.transform.position - otherRb.transform.position) * knockbackPower;
+                    }
                 }
             }
             else if(velSum > 4f)
             {
-                if(other.CompareTag("Sword"))
-                EnableRagdoll();
-
-                float knockInPowerProp = Mathf.Clamp(velSum / 2, 3f, 6f);
-                float knockbackPower = Mathf.Clamp(velSum / 1.5f, 5f, 10f);
-                Debug.Log(velSum);
-                foreach (Rigidbody rb in ragdollRigids)
+                if (other.CompareTag("Sword"))
                 {
-                    rb.velocity = (rb.transform.position - otherRb.transform.position) * knockbackPower;
+                    EnableRagdoll();
+
+                    float knockInPowerProp = Mathf.Clamp(velSum / 2, 3f, 6f);
+                    float knockbackPower = Mathf.Clamp(velSum / 1.5f, 5f, 10f);
+                    Debug.Log(velSum);
+                    foreach (Rigidbody rb in ragdollRigids)
+                    {
+                        rb.velocity = (rb.transform.position - otherRb.transform.position) * knockbackPower;
+                    }
                 }
             }
         }

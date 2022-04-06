@@ -22,12 +22,12 @@ public class LoadScene : MonoBehaviour
         temp.a = 1;
         background.color = temp;
         //
-        loadingScreen.SetActive(false);
     }
 
     public void Load()
     {
-        if(gameManager != null)
+        loadingScreen.SetActive(false);
+        if (gameManager != null)
         {
             gameManager.OnLoad();
         }

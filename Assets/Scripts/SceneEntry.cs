@@ -21,7 +21,8 @@ public class SceneEntry : MonoBehaviour
         Color temp = background.color;
         temp.a = 1;
         background.color = temp;
-        background.CrossFadeAlpha(1f, 0f, true);
+        background.CrossFadeAlpha(1f, 0f, false);
+        Debug.Log("yesys");
         //
         background.CrossFadeAlpha(0f, fadingTime, false);
         StartCoroutine(Fade());

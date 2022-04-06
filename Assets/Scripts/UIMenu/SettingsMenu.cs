@@ -27,9 +27,9 @@ public class SettingsMenu : MonoBehaviour
     {
         MainObj.SetActive(false);
 
-        if (PlayerPrefs.GetFloat("mouseSensitivity") != null)
+        float msens = PlayerPrefs.GetFloat("mouseSensitivity");
+        if(msens > 0)
         {
-            float msens = PlayerPrefs.GetFloat("mouseSensitivity");
             mouseSensSlider.value = msens;
             mouseSensPlaceholder.text = msens.ToString();
         }
@@ -37,8 +37,8 @@ public class SettingsMenu : MonoBehaviour
         {
             mouseSensSlider.value = defSens;
             mouseSensPlaceholder.text = defSens.ToString();
-            PlayerPrefs.Save();
         }
+
 
         SettingsMenuObj.SetActive(true);
     }

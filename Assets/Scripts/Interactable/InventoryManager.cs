@@ -36,7 +36,8 @@ public class InventoryManager : MonoBehaviour
             {
                 potionAmount++;
                 UpdateUI();
-                potionHand.HavePotionInHand();
+                if(potionHand.isActiveAndEnabled)
+                    potionHand.HavePotionInHand();
             }
         }
     }

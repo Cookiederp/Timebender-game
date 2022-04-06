@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class SpellMoveProps : MonoBehaviour
 {
     int layerMaskInteractableMoveable = 1 << 10;
@@ -32,7 +32,11 @@ public class SpellMoveProps : MonoBehaviour
 
     private GameManager gameManager;
 
-    private void Start()
+    public RawImage[] crosshairImages;
+
+    Color defColor;
+
+    private void Awake()
     {
         gameManager = GameManager.instance;
         camera = Camera.main;
@@ -40,6 +44,13 @@ public class SpellMoveProps : MonoBehaviour
         layerMaskMoveable = LayerMask.NameToLayer("InteractableMoveable");
         lineRenderer = gameObject.GetComponent<LineRenderer>();
         lineRenderer.enabled = false;
+
+        defColor = crosshairImages[0].color;
+    }
+
+    private void OnEnable()
+    {
+        StartCoroutine(CheckIfRayReach());
     }
 
     private void Update()
@@ -260,9 +271,64 @@ public class SpellMoveProps : MonoBehaviour
 
     private void OnDisable()
     {
-        if(selectedProp != null)
+        StopAllCoroutines();
+        foreach (RawImage image in crosshairImages)
+        {
+            image.color = defColor;
+        }
+
+        if (selectedProp != null)
         {
             DropSelectedProp();
+        }
+    }
+
+    IEnumerator CheckIfRayReach()
+    {
+        bool isSame = false;
+        Color defColor = crosshairImages[0].color;
+        //15 updates per second
+        while (true)
+        {
+            RaycastHit hit;
+            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit, rayRange, ~layerMaskInteractableRagdollTime & ~layerIgnoreRaycast))
+            {
+                if(hit.transform.gameObject.layer == layerMaskMoveable)
+                {
+                    if (!isSame)
+                    {
+                        foreach(RawImage image in crosshairImages){
+                            isSame = true;
+                            image.color = new Color(1f, 0.6f, 0.5f, defColor.a-0.2f);
+                        }
+                    }
+                }
+                else
+                {
+                    if (isSame)
+                    {
+                        foreach (RawImage image in crosshairImages)
+                        {
+                            isSame = false;
+                            image.color = defColor;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (isSame)
+                {
+                    foreach (RawImage image in crosshairImages)
+                    {
+                        isSame = false;
+                        image.color = defColor;
+                    }
+                }
+
+            }
+            yield return new WaitForSecondsRealtime(0.06666f);
         }
     }
 }
