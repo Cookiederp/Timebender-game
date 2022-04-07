@@ -12,10 +12,15 @@ public class SettingsMenu : MonoBehaviour
 
     public GameObject SettingsMenuObj;
     public Slider mouseSensSlider;
+    public Slider soundSlider;
+    public TextMeshProUGUI soundPlaceholder;
     public TextMeshProUGUI mouseSensPlaceholder;
 
     private float mouseSens = 0f;
     private float defSens = 1f;
+
+    private float soundsValue = 0f;
+    private float defSound = 0.5f;
 
     void Start()
     {
@@ -27,18 +32,13 @@ public class SettingsMenu : MonoBehaviour
     {
         MainObj.SetActive(false);
 
-        float msens = PlayerPrefs.GetFloat("mouseSensitivity");
-        if(msens > 0)
-        {
-            mouseSensSlider.value = msens;
-            mouseSensPlaceholder.text = msens.ToString();
-        }
-        else
-        {
-            mouseSensSlider.value = defSens;
-            mouseSensPlaceholder.text = defSens.ToString();
-        }
+        float msens = PlayerPrefs.GetFloat("mouseSensitivity", 0.5f);
+        mouseSensSlider.value = msens;
+        mouseSensPlaceholder.text = msens.ToString();
 
+        float sounds = PlayerPrefs.GetFloat("sound", 0.5f);
+        soundSlider.value = sounds;
+        soundPlaceholder.text = sounds.ToString();
 
         SettingsMenuObj.SetActive(true);
     }
@@ -52,6 +52,9 @@ public class SettingsMenu : MonoBehaviour
             PlayerPrefs.SetFloat("mouseSensitivity", mouseSens);
             PlayerPrefs.Save();
         }
+
+        PlayerPrefs.SetFloat("sound", soundsValue);
+        PlayerPrefs.Save();
     }
 
 
@@ -65,6 +68,20 @@ public class SettingsMenu : MonoBehaviour
         else
         {
             mouseSensPlaceholder.text = mouseSens.ToString();
+        }
+    }
+
+
+    public void OnSoundChange()
+    {
+        soundsValue = Mathf.Round(soundSlider.value * 100f) / 100f;
+        if (soundsValue % 1 == 0)
+        {
+            soundPlaceholder.text = soundsValue.ToString() + ".00";
+        }
+        else
+        {
+            soundPlaceholder.text = soundsValue.ToString();
         }
     }
 }
