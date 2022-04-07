@@ -32,12 +32,16 @@ public class SpellMoveProps : MonoBehaviour
 
     private GameManager gameManager;
 
+    private Sway wandSway;
+
     public RawImage[] crosshairImages;
 
     Color defColor;
 
     private void Awake()
     {
+        wandSway = gameObject.transform.GetChild(0).GetComponent<Sway>();
+
         gameManager = GameManager.instance;
         camera = Camera.main;
         defaultRange = holdLocation.localPosition.z;
@@ -111,6 +115,7 @@ public class SpellMoveProps : MonoBehaviour
                                 selectedPropRb.useGravity = false;
                                 lineRenderer.enabled = true;
                                 hitPointobjInstance = Instantiate(hitPointobj, hit.point, Quaternion.identity, selectedProp.transform);
+                                wandSway.intensityRotation *= -1;
                             }
                         }
                     }
@@ -264,6 +269,8 @@ public class SpellMoveProps : MonoBehaviour
 
         holdLocation.localPosition = new Vector3(0, 0, defaultRange);
         lineRenderer.enabled = false;
+
+        wandSway.intensityRotation *= -1;
 
         Destroy(hitPointobjInstance);
     }
