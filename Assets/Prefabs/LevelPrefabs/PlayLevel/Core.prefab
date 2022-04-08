@@ -3341,6 +3341,7 @@ GameObject:
   - component: {fileID: 7404853745909841307}
   - component: {fileID: 9039970668542167919}
   - component: {fileID: 2472178462282240257}
+  - component: {fileID: 691084893}
   m_Layer: 2
   m_Name: Potion
   m_TagString: Untagged
@@ -3410,6 +3411,22 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &691084893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2149980775390156394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dcc2c995413a8141a90b276b2cfc75e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intensityRotation: -7
+  smoothRotation: 2.5
+  intensityPosition: 0.02
+  smoothPosition: 5
 --- !u!1 &3071899135764380574
 GameObject:
   m_ObjectHideFlags: 0
@@ -4394,6 +4411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1baae84308481ce4299b0d76f04bd867, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  drawLine: 0
   holdLocation: {fileID: 5511338267776709587}
   wandLoc: {fileID: 5511338267641186093}
   hitPointobj: {fileID: 5988546001446088122, guid: cb55c987290520d4f9133fb8826eefed,
@@ -4506,9 +4524,9 @@ LineRenderer:
       m_Mode: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
-    numCornerVertices: 3
-    numCapVertices: 3
-    alignment: 1
+    numCornerVertices: 6
+    numCapVertices: 6
+    alignment: 0
     textureMode: 0
     shadowBias: 0.5
     generateLightingData: 0
@@ -5798,6 +5816,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 03cca150d78468d4a9d37d0076e1a1ec, type: 2}
     - target: {fileID: -4807224616943603548, guid: b7f6a7f3624eb284bbae3024846f757d,
         type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4807224616943603548, guid: b7f6a7f3624eb284bbae3024846f757d,
+        type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 18f63ff904099034daf971dac5b32582, type: 2}
@@ -5820,6 +5843,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MPWand
+      objectReference: {fileID: 0}
+    - target: {fileID: 3448835958128414959, guid: b7f6a7f3624eb284bbae3024846f757d,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3448835958128414959, guid: b7f6a7f3624eb284bbae3024846f757d,
         type: 3}
@@ -5949,6 +5977,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 03cca150d78468d4a9d37d0076e1a1ec, type: 2}
     - target: {fileID: -4807224616943603548, guid: b7f6a7f3624eb284bbae3024846f757d,
         type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4807224616943603548, guid: b7f6a7f3624eb284bbae3024846f757d,
+        type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 18f63ff904099034daf971dac5b32582, type: 2}
@@ -5971,6 +6004,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PTTWand
+      objectReference: {fileID: 0}
+    - target: {fileID: 3448835958128414959, guid: b7f6a7f3624eb284bbae3024846f757d,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3448835958128414959, guid: b7f6a7f3624eb284bbae3024846f757d,
         type: 3}
@@ -6248,6 +6286,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 03cca150d78468d4a9d37d0076e1a1ec, type: 2}
     - target: {fileID: -4807224616943603548, guid: b7f6a7f3624eb284bbae3024846f757d,
         type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4807224616943603548, guid: b7f6a7f3624eb284bbae3024846f757d,
+        type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 18f63ff904099034daf971dac5b32582, type: 2}
@@ -6270,6 +6313,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TTWand
+      objectReference: {fileID: 0}
+    - target: {fileID: 3448835958128414959, guid: b7f6a7f3624eb284bbae3024846f757d,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3448835958128414959, guid: b7f6a7f3624eb284bbae3024846f757d,
         type: 3}

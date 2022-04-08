@@ -12,6 +12,8 @@ public class SpellMoveProps : MonoBehaviour
 
     private Camera camera;
 
+    public bool drawLine = false;
+
     private float defaultRange;
     private float minRange = 2f;
     private float maxRange = 4.5f;
@@ -192,24 +194,27 @@ public class SpellMoveProps : MonoBehaviour
                 }
             }
 
-            //line
+            //line, might remove idk if I like it
             if (selectedProp != null)
             {
-                Vector3 selectedPropVector = selectedProp.transform.position;
-                Vector3 holdLocationVector = holdLocation.position;
-                Vector3 wandLocationVector = wandLoc.transform.position;
-                Vector3 rayHitPoint = hitPointobjInstance.transform.position;
+                if (drawLine)
+                {
+                    Vector3 selectedPropVector = selectedProp.transform.position;
+                    Vector3 holdLocationVector = holdLocation.position;
+                    Vector3 wandLocationVector = wandLoc.transform.position;
+                    Vector3 rayHitPoint = hitPointobjInstance.transform.position;
 
-                //vector * weight of the vector on the point to be created.
-                Vector3 point1 = ((holdLocationVector * 0.6f) + (wandLocationVector * 0.4f));
-                Vector3 point2 = ((holdLocationVector * 0.7f) + (rayHitPoint * 0.15f) + (wandLocationVector * 0.15f));
-                Vector3 point3 = ((point2 * 0.5f) + (rayHitPoint * 0.5f));
+                    //vector * weight of the vector on the point to be created.
+                    Vector3 point1 = ((holdLocationVector * 0.6f) + (wandLocationVector * 0.4f));
+                    Vector3 point2 = ((holdLocationVector * 0.7f) + (rayHitPoint * 0.15f) + (wandLocationVector * 0.15f));
+                    Vector3 point3 = ((point2 * 0.5f) + (rayHitPoint * 0.5f));
 
-                lineRenderer.SetPosition(0, wandLocationVector);
-                lineRenderer.SetPosition(1, point1);
-                lineRenderer.SetPosition(2, point2);
-                lineRenderer.SetPosition(3, point3);
-                lineRenderer.SetPosition(4, rayHitPoint);
+                    lineRenderer.SetPosition(0, wandLocationVector);
+                    lineRenderer.SetPosition(1, point1);
+                    lineRenderer.SetPosition(2, point2);
+                    lineRenderer.SetPosition(3, point3);
+                    lineRenderer.SetPosition(4, rayHitPoint);
+                }
             }
         }
   
