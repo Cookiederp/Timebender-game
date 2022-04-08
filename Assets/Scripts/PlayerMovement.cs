@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     AudioSource step1;
     public AudioClip[] clips;
     public AudioSource jumpSound;
+    public AudioClip jumpClip;
 
     private GameManager gameManager;
 
@@ -30,7 +31,8 @@ public class PlayerMovement : MonoBehaviour
     {
         gameManager = GameManager.instance;
         step1 = GetComponent<AudioSource>();
-        jumpSound = GetComponent<AudioSource>();
+        //jumpSound = GetComponent<AudioSource>();
+        jumpSound.clip = jumpClip;
 
     }
 
@@ -84,8 +86,11 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown("space") && isOnGround)
         {
-            jumpSound.Play();
             velocity.y = Mathf.Sqrt(jump * -2f * gravity);
+            if (!jumpSound.isPlaying)
+            {
+                jumpSound.Play();
+            }
         }
 
         velocity.y += gravity * Time.deltaTime;
