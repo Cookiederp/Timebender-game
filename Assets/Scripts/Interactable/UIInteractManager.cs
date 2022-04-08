@@ -34,7 +34,7 @@ public class UIInteractManager : MonoBehaviour
         controlInfoText = gameObject.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
         UpdateTimeSelectionText(-1);
         UpdateHighlightInfoText(-1);
-        UpdateHighlightInfoText(-1);
+        UpdateControlInfoText("");
     }
 
     void Start()

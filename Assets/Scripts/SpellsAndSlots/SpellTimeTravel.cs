@@ -11,9 +11,14 @@ public class SpellTimeTravel : MonoBehaviour
     public TimeTravelManager timeTravelManager;
     private GameManager gameManager;
 
-    private void Start()
+    private void Awake()
     {
         gameManager = GameManager.instance;
+    }
+
+    private void OnEnable()
+    {
+        gameManager.uiInteractManager.UpdateControlInfoText("RMB - TIME TRAVEL");
     }
 
     void Update()
@@ -43,5 +48,10 @@ public class SpellTimeTravel : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void OnDisable()
+    {
+        gameManager.uiInteractManager.UpdateControlInfoText("");
     }
 }

@@ -38,6 +38,7 @@ public class SpellTimeTravelProps : MonoBehaviour
         gameManager.isSpellTimeTravelActive = true;
         playerInteractManager.UpdateTimeText();
         StartCoroutine(CheckIfRayReach());
+        gameManager.uiInteractManager.UpdateControlInfoText("LMB - PRESENT | RMB - FUTURE");
     }
 
     private void OnDisable()
@@ -45,6 +46,7 @@ public class SpellTimeTravelProps : MonoBehaviour
         gameManager.isSpellTimeTravelActive = false;
         gameManager.uiInteractManager.UpdateTimeSelectionText(-1);
         StopAllCoroutines();
+        gameManager.uiInteractManager.UpdateControlInfoText("");
 
         foreach (RawImage image in crosshairImages)
         {
