@@ -18,13 +18,16 @@ public class PlayerMovement : MonoBehaviour
     bool isOnGround;
 
     private bool IsMoving;
-    public AudioSource step1;
+    AudioSource step1;
+    public AudioClip[] clips;
+    public AudioSource jumpSound;
 
 
     // Start is called before the first frame update
     void Start()
     {
         step1 = GetComponent<AudioSource>();
+        jumpSound = GetComponent<AudioSource>();
 
     }
 
@@ -45,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
 
         character.Move(move * speed * Time.deltaTime);
 
-
+        
         if (Input.GetAxis("Vertical") > 0)
         {
             IsMoving = true;
@@ -57,6 +60,9 @@ public class PlayerMovement : MonoBehaviour
 
         if (IsMoving && !step1.isPlaying)
         {
+            int randomIndex = Random.Range(0, clips.Length);
+            AudioClip randomClip = clips[randomIndex];
+            step1.clip = randomClip;
             step1.Play();
         }
         if (!IsMoving)
@@ -71,6 +77,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown("space") && isOnGround)
         {
+            jumpSound.Play();
             velocity.y = Mathf.Sqrt(jump * -2f * gravity);
         }
 
