@@ -55,6 +55,7 @@ public class SettingsMenu : MonoBehaviour
 
         PlayerPrefs.SetFloat("sound", soundsValue);
         PlayerPrefs.Save();
+        AudioListener.volume = PlayerPrefs.GetFloat("sound");
     }
 
 

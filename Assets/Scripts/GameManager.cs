@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
         playerHealthManager = FindObjectOfType<PlayerHealthManager>();
         inventoryManager = FindObjectOfType<InventoryManager>();
         camController = FindObjectOfType<CamController>();
+        AudioListener.volume = PlayerPrefs.GetFloat("sound", 0.5f);
     }
 
     void Update()

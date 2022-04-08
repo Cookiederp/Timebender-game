@@ -20,7 +20,7 @@ public class CamController : MonoBehaviour
     void Start()
     {
         gameManager = GameManager.instance;
-        pSens = PlayerPrefs.GetFloat("mouseSensitivity");
+        pSens = PlayerPrefs.GetFloat("mouseSensitivity", 0.5f);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
