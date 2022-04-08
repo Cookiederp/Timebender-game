@@ -2463,6 +2463,9 @@ MonoBehaviour:
   ignorePressWhenPowerOff: 0
   needPowerToStayOpen: 0
   needPowerToStayClose: 0
+  doorSound: {fileID: 0}
+  doorOpenClip: {fileID: 0}
+  doorCloseClip: {fileID: 0}
 --- !u!4 &370700125 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7283805578827395345, guid: b6df53a6c0d1b7b468e267a97c8a7a28,
@@ -2690,6 +2693,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4763853432680097844, guid: 4cc08fe4129de0d498af32fdeff7e9e9,
+        type: 3}
+      propertyPath: jumpClip
+      value: 
+      objectReference: {fileID: 8300000, guid: c90824e4d1e9a8c45b4af2e60caa77a2, type: 3}
     - target: {fileID: 5511338268683549865, guid: 4cc08fe4129de0d498af32fdeff7e9e9,
         type: 3}
       propertyPath: m_Name
@@ -17590,41 +17598,6 @@ PrefabInstance:
       propertyPath: keys.Array.data[2]
       value: 
       objectReference: {fileID: 1581830145}
-    - target: {fileID: 1900098390244656736, guid: 09f6e9aade2bccf4fa978a9d4b1f117d,
-        type: 3}
-      propertyPath: isLocked
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1900098390244656736, guid: 09f6e9aade2bccf4fa978a9d4b1f117d,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1900098390244656736, guid: 09f6e9aade2bccf4fa978a9d4b1f117d,
-        type: 3}
-      propertyPath: unlockOnKeyFromCaller
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1900098390244656736, guid: 09f6e9aade2bccf4fa978a9d4b1f117d,
-        type: 3}
-      propertyPath: PressOnPressFromCaller
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1900098390244656736, guid: 09f6e9aade2bccf4fa978a9d4b1f117d,
-        type: 3}
-      propertyPath: ignorePressWhenPowerOff
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1900098390244656736, guid: 09f6e9aade2bccf4fa978a9d4b1f117d,
-        type: 3}
-      propertyPath: readOnlyPressFromSwitch
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1900098390244656736, guid: 09f6e9aade2bccf4fa978a9d4b1f117d,
-        type: 3}
-      propertyPath: onWhenOnSignalFromNumIsOn
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 3382939579785472409, guid: 09f6e9aade2bccf4fa978a9d4b1f117d,
         type: 3}
       propertyPath: isObjInFuture
@@ -18131,41 +18104,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5384143993928714073, guid: a82bb6c0946960a4394332c3b583c72f,
-        type: 3}
-      propertyPath: isOpen
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5384143993928714073, guid: a82bb6c0946960a4394332c3b583c72f,
-        type: 3}
-      propertyPath: isLocked
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5384143993928714073, guid: a82bb6c0946960a4394332c3b583c72f,
-        type: 3}
-      propertyPath: unlockOnKeyFromCaller
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5384143993928714073, guid: a82bb6c0946960a4394332c3b583c72f,
-        type: 3}
-      propertyPath: PressOnPressFromCaller
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5384143993928714073, guid: a82bb6c0946960a4394332c3b583c72f,
-        type: 3}
-      propertyPath: ignorePressWhenPowerOff
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5384143993928714073, guid: a82bb6c0946960a4394332c3b583c72f,
-        type: 3}
-      propertyPath: readOnlyPressFromSwitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5384143993928714073, guid: a82bb6c0946960a4394332c3b583c72f,
-        type: 3}
-      propertyPath: onWhenOnSignalFromNumIsOn
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5384143994176659715, guid: a82bb6c0946960a4394332c3b583c72f,
         type: 3}
