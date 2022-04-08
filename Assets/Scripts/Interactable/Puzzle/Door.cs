@@ -20,6 +20,11 @@ public class Door : InteractablePuzzleReceiver
     public bool needPowerToStayOpen;
     public bool needPowerToStayClose;
 
+    public AudioSource doorSound;
+    public AudioClip doorOpenClip;
+    public AudioClip doorCloseClip;
+
+
     private void Start()
     {
         closeEuler = gameObject.transform.eulerAngles;
@@ -187,6 +192,8 @@ public class Door : InteractablePuzzleReceiver
         if (gameObject.activeSelf)
         {
             lastCoroutine = StartCoroutine(OpenAnim());
+            doorSound.clip = doorOpenClip;
+            doorSound.Play();
         }
         else
         {
@@ -205,6 +212,8 @@ public class Door : InteractablePuzzleReceiver
         if (gameObject.activeSelf)
         {
             lastCoroutine = StartCoroutine(CloseAnim());
+            doorSound.clip = doorCloseClip;
+            doorSound.Play();
         }
         else
         {
