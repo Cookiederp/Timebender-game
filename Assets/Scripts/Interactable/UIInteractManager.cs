@@ -12,6 +12,8 @@ public class UIInteractManager : MonoBehaviour
     private int hsize = 3;
     private string[] hstring;
 
+    private TextMeshProUGUI controlInfoText;
+
     private Coroutine[] LastCoroutine;
 
     private void Awake()
@@ -29,7 +31,9 @@ public class UIInteractManager : MonoBehaviour
 
         timeSelectionText = gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         highlightInfoText = gameObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+        controlInfoText = gameObject.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
         UpdateTimeSelectionText(-1);
+        UpdateHighlightInfoText(-1);
         UpdateHighlightInfoText(-1);
     }
 
@@ -116,8 +120,11 @@ public class UIInteractManager : MonoBehaviour
         UpdateHighlightInfoText(index, string.Empty);
     }
 
+    public void UpdateControlInfoText(string str)
+    {
+        controlInfoText.text = str;
+    }
 
-    
     IEnumerator AnimUIOvershoot(TextMeshProUGUI textToAnim, float overAmount, float speed)
     {
         Vector3 velocity = Vector3.zero;

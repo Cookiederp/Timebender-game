@@ -57,6 +57,7 @@ public class SpellMoveProps : MonoBehaviour
     private void OnEnable()
     {
         StartCoroutine(CheckIfRayReach());
+        gameManager.uiInteractManager.UpdateControlInfoText("RMB - THROW | LMB - GRAB");
     }
 
     private void Update()
@@ -284,6 +285,7 @@ public class SpellMoveProps : MonoBehaviour
     private void OnDisable()
     {
         StopAllCoroutines();
+        gameManager.uiInteractManager.UpdateControlInfoText("");
         foreach (RawImage image in crosshairImages)
         {
             image.color = defColor;
