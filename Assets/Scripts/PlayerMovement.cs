@@ -22,10 +22,13 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip[] clips;
     public AudioSource jumpSound;
 
+    private GameManager gameManager;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameManager.instance;
         step1 = GetComponent<AudioSource>();
         jumpSound = GetComponent<AudioSource>();
 
@@ -70,6 +73,10 @@ public class PlayerMovement : MonoBehaviour
             step1.Stop();
         }
         if (!isOnGround)
+        {
+            step1.Stop();
+        }
+        if (gameManager.isGamePaused)
         {
             step1.Stop();
         }
