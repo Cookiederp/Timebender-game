@@ -4046,7 +4046,13 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 2048
-  step1: {fileID: 1388798198}
+  clips:
+  - {fileID: 8300000, guid: 96ecccaf27849d642a09dba0fb8208b9, type: 3}
+  - {fileID: 8300000, guid: bbd90f04097bddd4dada12e066835ec3, type: 3}
+  - {fileID: 8300000, guid: 28600919e1b2d4440a6d559ec4407fb0, type: 3}
+  - {fileID: 8300000, guid: 822c37dc539609d488afc2c215380c72, type: 3}
+  - {fileID: 8300000, guid: 015e65a4899de6f4783ae421dc75b667, type: 3}
+  jumpSound: {fileID: 1388798198}
 --- !u!114 &9015927033546912308
 MonoBehaviour:
   m_ObjectHideFlags: 0
