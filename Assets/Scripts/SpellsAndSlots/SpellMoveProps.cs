@@ -57,7 +57,7 @@ public class SpellMoveProps : MonoBehaviour
     private void OnEnable()
     {
         StartCoroutine(CheckIfRayReach());
-        gameManager.uiInteractManager.UpdateControlInfoText("LMB - THROW | RMB - GRAB");
+        gameManager.uiInteractManager.UpdateControlInfoText("LMB - THROW / RMB - GRAB / SCROLL");
     }
 
     private void Update()
@@ -110,6 +110,7 @@ public class SpellMoveProps : MonoBehaviour
                             else
                             {
                                 //case where player press input, select hit prop, cache
+                                wandSway.PullForward();
                                 selectedProp = hit.transform.gameObject;
                                 selectedPropRb = hit.rigidbody;
                                 defAngDrag = selectedPropRb.angularDrag;
@@ -179,6 +180,7 @@ public class SpellMoveProps : MonoBehaviour
 
                         if (thr)
                         {
+                            wandSway.MoveForward();
                             float hitMass = hit.rigidbody.mass;
                             if (thrRag)
                             {
@@ -277,7 +279,7 @@ public class SpellMoveProps : MonoBehaviour
         lineRenderer.enabled = false;
 
         wandSway.intensityRotation *= -1;
-
+        wandSway.PullOrig();
         Destroy(hitPointobjInstance);
     }
 

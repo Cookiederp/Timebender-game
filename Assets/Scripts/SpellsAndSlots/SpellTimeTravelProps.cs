@@ -38,7 +38,7 @@ public class SpellTimeTravelProps : MonoBehaviour
         gameManager.isSpellTimeTravelActive = true;
         playerInteractManager.UpdateTimeText();
         StartCoroutine(CheckIfRayReach());
-        gameManager.uiInteractManager.UpdateControlInfoText("LMB - PRESENT | RMB - FUTURE");
+        gameManager.uiInteractManager.UpdateControlInfoText("LMB - PRESENT / RMB - FUTURE");
     }
 
     private void OnDisable()

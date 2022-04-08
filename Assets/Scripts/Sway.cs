@@ -7,6 +7,8 @@ public class Sway : MonoBehaviour
 
     Quaternion defRot;
     Vector3 defPos;
+    Quaternion defRot_;
+    Vector3 defPos_;
     public float intensityRotation;
     public float smoothRotation;
 
@@ -15,11 +17,25 @@ public class Sway : MonoBehaviour
 
     private CharacterController playerController;
 
-    void Start()
+    private bool ini = false;
+
+
+    private void OnEnable()
     {
-        playerController = FindObjectOfType<PlayerMovement>().gameObject.GetComponent<CharacterController>();
-        defRot = gameObject.transform.localRotation;
-        defPos = gameObject.transform.localPosition;
+        if (!ini)
+        {
+            playerController = FindObjectOfType<PlayerMovement>().gameObject.GetComponent<CharacterController>();
+            defRot = gameObject.transform.localRotation;
+            defPos = gameObject.transform.localPosition;
+            defRot_ = defRot;
+            defPos_ = defPos;
+            Debug.Log("efse");
+            ini = true;
+        }
+        StopAllCoroutines();
+        defRot = defRot_;
+        defPos = defPos_;
+
     }
 
     // Update is called once per frame
@@ -49,5 +65,35 @@ public class Sway : MonoBehaviour
 
         transform.localRotation = Quaternion.Lerp(transform.localRotation, target_rotation, Time.deltaTime * smoothRotation);
         //
+    }
+
+
+
+    public void PullForward()
+    {
+        defRot = new Quaternion(defRot.x+0.3f, defRot.y, defRot.z, defRot.w);
+    }
+
+    public void PullOrig()
+    {
+        defRot = defRot_;
+    }
+
+    public void MoveForward()
+    {
+        defPos = new Vector3(defPos.x, defPos.y, defPos.z + 0.25f);
+        StartCoroutine(s());
+    }
+
+    private void MoveOrig()
+    {
+        defPos = defPos_;
+    }
+
+    IEnumerator s()
+    {
+        yield return new WaitForSeconds(0.05f);
+        MoveOrig();
+        yield return null;
     }
 }
