@@ -31,7 +31,6 @@ public class PlayerMovement : MonoBehaviour
     {
         gameManager = GameManager.instance;
         step1 = GetComponent<AudioSource>();
-        //jumpSound = GetComponent<AudioSource>();
         jumpSound.clip = jumpClip;
 
     }
