@@ -57,7 +57,7 @@ public class SpellMoveProps : MonoBehaviour
     private void OnEnable()
     {
         StartCoroutine(CheckIfRayReach());
-        gameManager.uiInteractManager.UpdateControlInfoText("LMB - GRAB | RMB - THROW");
+        gameManager.uiInteractManager.UpdateControlInfoText("LMB - THROW | RMB - GRAB");
     }
 
     private void Update()
