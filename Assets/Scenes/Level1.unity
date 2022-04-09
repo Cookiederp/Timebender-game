@@ -13520,6 +13520,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4704551308638100141, guid: 1f9135f833261fc4890863bba3d9ced4,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 7745105376502602142, guid: d8ea8ef128d35bd40a077315c62b54d5,
+        type: 3}
     - target: {fileID: 8567596810908341512, guid: 1f9135f833261fc4890863bba3d9ced4,
         type: 3}
       propertyPath: m_RootOrder
