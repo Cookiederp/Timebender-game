@@ -77,6 +77,12 @@ public class PlayerHealthManager : MonoBehaviour
         return hp;
     }
 
+    public void RemoveHP(float hp_)
+    {
+        hp -= hp_;
+        UpdateUI();
+    }
+
     //call GameManager, say player is dead, play anim, respawn
     private void PlayerDead()
     {
