@@ -172,7 +172,8 @@ public class PlayerInteractManager : MonoBehaviour
                         {
                             //puzzle objects
                             Interactable obj = objectHit.gameObject.GetComponent<InteractablePuzzle>();
-                            obj.OnPress(1);
+                            if(obj != null)
+                                obj.OnPress(1);
                         }
                     }
                 }
