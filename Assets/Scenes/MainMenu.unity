@@ -503,7 +503,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: kcmwjencdsjvndsm,vnsd,mvnsdm,vnsd,mvnsdm,nvs,mnvsm,dnv,smdvns,dnvsd,mvndsm,vnsd,mvns,dmnvs,mnvs,mnvsd,mnvs,mvns,mvnsm,vnsvns,vns,dmnvs,mnvs,nvdm,snv,smdnv,sdnvs,mdvns,dmvns,vnms,vnd,snv,dsnvm,sdnv,msnv,sdnvmm,sdnvd,smnvsd,mvnds,mvnsdm,vnds,mvnsm,dnvd,msnvm,sdnvm,sdnv,sdnv,dsnvs,mdnvds,mnvs,dmvns,dmnvs,mnvs,vnsd,vns,vn,snvsdm,vnsd,vnsd,mvnsm,vnsv,ns,vnsm,vsn,msn,s
+  m_text: 'All Sounds from https://freesound.org/
+
+    Edited by Josh Myers-LeBlanc'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1297,7 +1299,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: edfewfwef
+  m_text: Josh Myers-LeBlanc
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1499,7 +1501,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: fewfwe
+  m_text: Maxime Theriault
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1831,7 +1833,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: fewfwe
+  m_text: Maxime Theriault
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2515,7 +2517,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: wdokawodkawodkawo
+  m_text: Alec Belliveau
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2648,7 +2650,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: wdokawodkawodkawo
+  m_text: Alec Belliveau
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2867,7 +2869,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: kcmwjencdsjvndsm,vnsd,mvnsdm,vnsd,mvnsdm,nvs,mnvsm,dnv,smdvns,dnvsd,mvndsm,vnsd,mvns,dmnvs,mnvs,mnvsd,mnvs,mvns,mvnsm,vnsvns,vns,dmnvs,mnvs,nvdm,snv,smdnv,sdnvs,mdvns,dmvns,vnms,vnd,snv,dsnvm,sdnv,msnv,sdnvmm,sdnvd,smnvsd,mvnds,mvnsdm,vnds,mvnsm,dnvd,msnvm,sdnvm,sdnv,sdnv,dsnvs,mdnvds,mnvs,dmvns,dmnvs,mnvs,vnsd,vns,vn,snvsdm,vnsd,vnsd,mvnsm,vnsv,ns,vnsm,vsn,msn,s
+  m_text: 'Wand - Josh Myers-LeBlanc
+
+    Edited - Made by "", Edited by JoshMyers-LeBlanc
+
+    All
+    Others - ""'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4246,7 +4253,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: edfewfwef
+  m_text: Maxime Theriault
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4525,7 +4532,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: wdokawodkawodkawo
+  m_text: Maxime Belliveau
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6098,7 +6105,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: rgjriegjerigjeirgkrogkeorgkeorgkeorgkeorgkeogkeorkgoerkgoerkgoerkgoekrgoerkgoekgoekrgoegkkgeorgkeogkeogkeoeogkeorgergeg
+  m_text: Josh Myers-LeBlanc
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
