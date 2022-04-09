@@ -10,11 +10,14 @@ public class PlayerHealthManager : MonoBehaviour
     public TextMeshProUGUI hpValueText;
     public Image hpValueImage;
 
+    private Coroutine lcoroutine;
+
     public Image playerHurtMaskImage;
     private float maxAlpha = 0.25f;
     private float alphaIntensity = 0.1f;
+    private float regenTime = 10f;
 
-
+    bool canRegen = true;
 
     private float hp = 100;
 
@@ -32,6 +35,11 @@ public class PlayerHealthManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha9))
         {
             hp -= 25;
+            if(lcoroutine != null)
+            {
+                StopCoroutine(lcoroutine);
+            }
+            lcoroutine = StartCoroutine(HitInPast());
             UpdateUI();
         }
     }
@@ -74,5 +82,38 @@ public class PlayerHealthManager : MonoBehaviour
     {
         //temp
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    IEnumerator RegenHp()
+    {
+        while (true)
+        {
+            if (canRegen)
+            {
+                yield return new WaitForSeconds(0.2f);
+                if (hp < 100)
+                {
+                    hp++;
+                    UpdateUI();
+                }
+                else
+                {
+                    yield return null;
+                }
+            }
+            else
+            {
+                yield return null;
+            }
+        }
+    }
+
+    IEnumerator HitInPast()
+    {
+        canRegen = false;
+        yield return new WaitForSeconds(regenTime);
+        canRegen = true;
+        StartCoroutine(RegenHp());
+        yield return null;
     }
 }
