@@ -14,6 +14,12 @@ public class UIInteractManager : MonoBehaviour
 
     private TextMeshProUGUI controlInfoText;
 
+    public GameObject noteHolder;
+    public GameObject[] noteObj;
+    private int currentNId;
+    
+    bool reading = false;
+
     private Coroutine[] LastCoroutine;
 
     private void Awake()
@@ -32,14 +38,43 @@ public class UIInteractManager : MonoBehaviour
         timeSelectionText = gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         highlightInfoText = gameObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
         controlInfoText = gameObject.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+
         UpdateTimeSelectionText(-1);
         UpdateHighlightInfoText(-1);
         UpdateControlInfoText("");
+
+        noteHolder.SetActive(false);
     }
 
-    void Start()
+    void Update()
     {
+        if (reading)
+        {
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                OnLeaveReadNote();
+            }
 
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                OnLeaveReadNote();
+            }
+
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                OnLeaveReadNote();
+            }
+
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                OnLeaveReadNote();
+            }
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                OnLeaveReadNote();
+            }
+        }
     }
 
     //
@@ -124,6 +159,23 @@ public class UIInteractManager : MonoBehaviour
     {
         controlInfoText.text = str;
     }
+
+
+    public void OnReadNote(int noteId)
+    {
+        noteHolder.SetActive(true);
+        noteObj[noteId].SetActive(true);
+        currentNId = noteId;
+        reading = true;
+    }
+
+    public void OnLeaveReadNote()
+    {
+       noteObj[currentNId].SetActive(false);
+       noteHolder.SetActive(false);
+       reading = false;
+    }
+
 
     IEnumerator AnimUIOvershoot(TextMeshProUGUI textToAnim, float overAmount, float speed)
     {

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e26b6830f6c85a4681f710c5286c570, type: 3}
+  m_Name: NoteIntro
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 0}
+  id: 3
+  itemName: Note
+  message: "Welcome young Time Bender, to the /n  \\\\n dungeon of time! You must
+    complete each room\u2019s challenge to  move on to the next. But beware as you
+    may encounter some foes along the way. Once you complete all rooms you will receive
+    Merlin\u2019s Spell Book, a spell book that contains the most powerful spells
+    known to man. Good luck and have fun! \\nClue #1: Pay attention to the lights,
+    as they will always be there for you. You may also need to take a leap of faith,
+    or two."
+  isToTake: 0

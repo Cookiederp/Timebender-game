@@ -21,7 +21,7 @@ public class SpellTimeTravel : MonoBehaviour
 
     private void OnEnable()
     {
-        gameManager.uiInteractManager.UpdateControlInfoText("RMB - TIME TRAVEL");
+        gameManager.uiInteractManager.UpdateControlInfoText("LMB - TIME TRAVEL");
     }
 
     void Update()
