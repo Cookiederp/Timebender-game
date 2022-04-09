@@ -103,10 +103,17 @@ public class TimeTravelReceiver : Interactable
                 //p+f, leaving present entering future, save transform in present, because present time is frozen while in future.. '
                 if (!isStatic)
                 {
-                    Debug.Log(gameObject.name);
-                    presentVelocity = rb.velocity;
-                    presentAngularVelocity = rb.angularVelocity;
-                    presentTransform = new TransformNew(gameObject.transform);
+                    if(rb == null)
+                    {
+                        Debug.Log("warning something might be wrong");
+                    }
+                    else
+                    {
+                        presentVelocity = rb.velocity;
+                        presentAngularVelocity = rb.angularVelocity;
+                        presentTransform = new TransformNew(gameObject.transform);
+                    }
+
                 }
 
                 /*
