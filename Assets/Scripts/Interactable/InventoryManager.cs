@@ -26,18 +26,22 @@ public class InventoryManager : MonoBehaviour
             //add item to inventory list
             Item item = ScriptableObject.CreateInstance<Item>();
             item.Initialize(itemObj);
-            items.Add(item);
-
             itemObj.OnPress(1);
-
-
-            //potion
-            if(item.id == 2)
+            if (item.id <= 2)
             {
-                potionAmount++;
-                UpdateUI();
-                if(potionHand.isActiveAndEnabled)
-                    potionHand.HavePotionInHand();
+                items.Add(item);
+
+
+
+
+                //potion
+                if (item.id == 2)
+                {
+                    potionAmount++;
+                    UpdateUI();
+                    if (potionHand.isActiveAndEnabled)
+                        potionHand.HavePotionInHand();
+                }
             }
         }
     }

@@ -62,7 +62,7 @@ public class ItemObject : Interactable
     {
         if (!isTaken)
         {
-            gameManager.uiInteractManager.UpdateHighlightInfoText(0, "Take "+itemData.itemName);
+            gameManager.uiInteractManager.UpdateHighlightInfoText(0, "Read "+itemData.itemName);
             if (containsTimeReceiver)
             {
                 timeTravelReceiver.OnRay();
@@ -90,8 +90,20 @@ public class ItemObject : Interactable
     public override void OnPress(int n)
     {
         OnRayExit();
-        isTaken = true;
-        StartCoroutine(AnimTake());
+
+        if (itemData.isToTake)
+        {
+            //not a note, (potion...)
+            isTaken = true;
+            StartCoroutine(AnimTake());
+        }
+        else
+        {
+            //note
+            //bring up UI to read the itemData.message
+            gameManager.uiInteractManager.OnReadNote(itemData.noteId);
+            Debug.Log("yesss");
+        }
     }
 
     public bool IsItemTaken()

@@ -6,14 +6,18 @@ using UnityEngine;
 public class Item : ScriptableObject
 {
     public GameObject prefab;
-    public string itemName;
     public int id;
+    public int noteId;
+    public string itemName;
+    public bool isToTake;
 
     public void Initialize(ItemObject item)
     {
         prefab = item.itemData.prefab;
         itemName = item.itemData.itemName;
         id = item.itemData.id;
+        isToTake = item.itemData.isToTake;
+        noteId = item.itemData.noteId;
     }
 
     public Item(ItemObject item)
