@@ -340,12 +340,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Welcome young Time Bender, to the dungeon of time! You must complete each
-    room\u2019s challenge to  move on to the next. But beware as you may encounter
-    some foes along the way. Once you complete all rooms you will receive Merlin\u2019s
-    Spell Book, a spell book that contains the most powerful spells known to man.
-    Good luck and have fun!\r\n\nClue #1: Pay attention to the lights, as they will
-    always be there for you. You may also need to take a leap of faith, or two."
+  m_text: "Room6: Congratulations! You\u2019ve done it! You have proven yourself
+    worthy to become the new owner of Merlin\u2019s Spell Book. Many died trying
+    to get here but you were the chosen one, and Merlin\u2019s great power will flow
+    through you. Now you must remember, use this power responsibly and use it for
+    good!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6315,12 +6314,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Welcome young Time Bender, to the dungeon of time! You must complete each
-    room\u2019s challenge to  move on to the next. But beware as you may encounter
-    some foes along the way. Once you complete all rooms you will receive Merlin\u2019s
-    Spell Book, a spell book that contains the most powerful spells known to man.
-    Good luck and have fun!\r\n\nClue #1: Pay attention to the lights, as they will
-    always be there for you. You may also need to take a leap of faith, or two."
+  m_text: "Room3: Impressive! I\u2019m surprised you\u2019ve made it this far! However,
+    there is still more danger ahead. All who have tried to make this journey before
+    you have failed. In fact, you may have seen some of them already. Merlin wanted
+    there to be more than just environmental protection. These skeletons have been
+    reanimated to serve one purpose, protect the book. Even long after Merlin\u2019s
+    death his power still lingers in this dungeon. \r\n\nClue #3:\r\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6639,12 +6638,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Welcome young Time Bender, to the dungeon of time! You must complete each
-    room\u2019s challenge to  move on to the next. But beware as you may encounter
-    some foes along the way. Once you complete all rooms you will receive Merlin\u2019s
-    Spell Book, a spell book that contains the most powerful spells known to man.
-    Good luck and have fun!\r\n\nClue #1: Pay attention to the lights, as they will
-    always be there for you. You may also need to take a leap of faith, or two."
+  m_text: "Room5: You\u2019re almost there! Only a select few have ever made it this
+    far, but this is where they\u2019ve all perished. Do you have what it takes to
+    make it to the end, and claim Merlin\u2019s Spell Book.\r\n\nClue #5:\r\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -7230,12 +7226,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Welcome young Time Bender, to the dungeon of time! You must complete each
-    room\u2019s challenge to  move on to the next. But beware as you may encounter
-    some foes along the way. Once you complete all rooms you will receive Merlin\u2019s
-    Spell Book, a spell book that contains the most powerful spells known to man.
-    Good luck and have fun!\r\n\nClue #1: Pay attention to the lights, as they will
-    always be there for you. You may also need to take a leap of faith, or two."
+  m_text: "Room4: Wow, you made it! I thought you were done for sure after that room.
+    You\u2019ve done well so far but there is still more work ahead. These challenges
+    should give you a good idea of how powerful the spells in Merlin\u2019s Spell
+    Book truly are. Very few people have experienced the true potential of Merlin\u2019s
+    power and with each challenge you get closer and closer to it.\r\n\nClue #4:\r\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
