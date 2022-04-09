@@ -11,8 +11,11 @@ public class SpellTimeTravel : MonoBehaviour
     public TimeTravelManager timeTravelManager;
     private GameManager gameManager;
 
+    private Sway wandSway;
+
     private void Awake()
     {
+        wandSway = gameObject.transform.GetChild(0).GetComponent<Sway>();
         gameManager = GameManager.instance;
     }
 
@@ -30,6 +33,7 @@ public class SpellTimeTravel : MonoBehaviour
                 if (presentPostProcessObj.activeSelf)
                 {
                     //to future
+                    wandSway.MoveUp(0.15f, true);
                     presentPostProcessObj.SetActive(false);
                     futurePostProcessObj.SetActive(true);
                     timeTravelManager.OnFuture();
@@ -40,6 +44,7 @@ public class SpellTimeTravel : MonoBehaviour
                 else
                 {
                     //to present
+                    wandSway.MoveUp(-0.15f, true);
                     presentPostProcessObj.SetActive(true);
                     futurePostProcessObj.SetActive(false);
                     timeTravelManager.OnPresent();

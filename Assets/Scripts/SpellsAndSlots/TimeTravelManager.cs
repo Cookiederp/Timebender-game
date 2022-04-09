@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TimeTravelManager : MonoBehaviour
 {
-    public List<TimeTravelReceiver> receivers;
+    private List<TimeTravelReceiver> receivers;
 
     private static TimeTravelManager _instance;
     [HideInInspector]

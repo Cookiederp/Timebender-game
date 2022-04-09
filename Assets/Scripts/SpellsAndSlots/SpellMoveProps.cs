@@ -20,6 +20,7 @@ public class SpellMoveProps : MonoBehaviour
     private float breakDist = 6.5f;
     private float rayRange = 5.5f;
     private float throwForce = 25f;
+    private float wandRotIntensityOnSel = 0.3f;
 
     public Transform holdLocation;
     private GameObject selectedProp;
@@ -75,6 +76,7 @@ public class SpellMoveProps : MonoBehaviour
                     if (!(holdLocation.localPosition.z >= maxRange))
                     {
                         holdLocation.localPosition = new Vector3(holdLocation.localPosition.x, holdLocation.localPosition.y, holdLocation.localPosition.z + (Input.mouseScrollDelta.y * 0.1f));
+                        wandSway.PullForward(wandRotIntensityOnSel + ((holdLocation.localPosition.z-defaultRange) / 15), false);
                     }
                 }
                 else
@@ -82,6 +84,7 @@ public class SpellMoveProps : MonoBehaviour
                     if (!(holdLocation.localPosition.z <= minRange))
                     {
                         holdLocation.localPosition = new Vector3(holdLocation.localPosition.x, holdLocation.localPosition.y, holdLocation.localPosition.z + (Input.mouseScrollDelta.y * 0.1f));
+                        wandSway.PullForward(wandRotIntensityOnSel + ((holdLocation.localPosition.z-defaultRange) / 15), false);
                     }
                 }
 
@@ -110,7 +113,7 @@ public class SpellMoveProps : MonoBehaviour
                             else
                             {
                                 //case where player press input, select hit prop, cache
-                                wandSway.PullForward();
+                                wandSway.PullForward(wandRotIntensityOnSel, false);
                                 selectedProp = hit.transform.gameObject;
                                 selectedPropRb = hit.rigidbody;
                                 defAngDrag = selectedPropRb.angularDrag;
@@ -179,13 +182,13 @@ public class SpellMoveProps : MonoBehaviour
                         }
 
                         if (thr)
-                        {
-                            wandSway.MoveForward();
+                        {                           
                             float hitMass = hit.rigidbody.mass;
                             if (thrRag)
                             {
                                 hitMass *= 4f;
                             }
+                            wandSway.MoveForward(hitMass * 0.5f);
                             float tf;
 
                             tf = throwForce * hitMass;
