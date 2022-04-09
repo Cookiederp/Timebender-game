@@ -10,6 +10,8 @@ public class Lever : InteractablePuzzleCaller
     private Vector3 openEuler;
     private Vector3 closeEuler;
 
+    public AudioSource leverSound;
+    public AudioClip leverClip;
 
     private void Start()
     {
@@ -70,6 +72,8 @@ public class Lever : InteractablePuzzleCaller
             StopCoroutine(lastCoroutine);
         }
         lastCoroutine = StartCoroutine(OpenAnim());
+        leverSound.clip = leverClip;
+        leverSound.Play();
         base.OnPress(1);
     }
     
@@ -83,6 +87,8 @@ public class Lever : InteractablePuzzleCaller
             StopCoroutine(lastCoroutine);
         }
         lastCoroutine = StartCoroutine(CloseAnim());
+        leverSound.clip = leverClip;
+        leverSound.Play();
         base.OnPress(0);
     }
 
