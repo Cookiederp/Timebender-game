@@ -21,9 +21,12 @@ public class SpellTimeTravelProps : MonoBehaviour
 
     Color defColor;
 
+    private Sway wandSway;
+
     // Start is called before the first frame update
     void Awake()
     {
+        wandSway = gameObject.transform.GetChild(0).GetComponent<Sway>();
         layerMaskMoveable = LayerMask.NameToLayer("InteractableMoveable");
         layerMaskRag = LayerMask.NameToLayer("InteractableRagdollTime");
         camera = Camera.main;
@@ -102,10 +105,12 @@ public class SpellTimeTravelProps : MonoBehaviour
                 Interactable obj = objectHit.gameObject.GetComponent<MoveRagdollTime>();
                 if (isRight)
                 {
+                    wandSway.PullForward(0.3f, true);
                     obj.OnPress(1);
                 }
                 else
                 {
+                    wandSway.PullForward(-0.3f, true);
                     obj.OnPress(-1);
                 }
             }
@@ -118,10 +123,12 @@ public class SpellTimeTravelProps : MonoBehaviour
                     Interactable obj = objectHit.gameObject.GetComponent<TimeTravelReceiver>();
                     if (isRight)
                     {
+                        wandSway.PullForward(0.3f, true);
                         obj.OnPress(1);
                     }
                     else
                     {
+                        wandSway.PullForward(-0.3f, true);
                         obj.OnPress(-1);
                     }
                 }

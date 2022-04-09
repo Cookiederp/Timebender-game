@@ -69,9 +69,24 @@ public class Sway : MonoBehaviour
 
 
 
-    public void PullForward()
+    public void PullForward(float intensity, bool onTimer)
     {
-        defRot = new Quaternion(defRot.x+0.3f, defRot.y, defRot.z, defRot.w);
+        PullOrig();
+        defRot = new Quaternion(defRot.x+intensity, defRot.y, defRot.z, defRot.w);
+        if (onTimer)
+        {
+            StartCoroutine(rPull(0.1f));
+        }
+    }
+
+    public void MoveUp(float intensity, bool onTimer)
+    {
+        PullOrig();
+        defPos = new Vector3(defPos.x, defPos.y + intensity, defPos.z + (intensity * 0.5f));
+        if (onTimer)
+        {
+            StartCoroutine(rMove(0.2f));
+        }
     }
 
     public void PullOrig()
@@ -79,10 +94,11 @@ public class Sway : MonoBehaviour
         defRot = defRot_;
     }
 
-    public void MoveForward()
+    public void MoveForward(float intensity)
     {
-        defPos = new Vector3(defPos.x, defPos.y, defPos.z + 0.25f);
-        StartCoroutine(s());
+        MoveOrig();
+        defPos = new Vector3(defPos.x, defPos.y, defPos.z + intensity);
+        StartCoroutine(rMove(0.05f));
     }
 
     private void MoveOrig()
@@ -90,10 +106,17 @@ public class Sway : MonoBehaviour
         defPos = defPos_;
     }
 
-    IEnumerator s()
+    IEnumerator rMove(float time)
     {
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(time);
         MoveOrig();
+        yield return null;
+    }
+
+    IEnumerator rPull(float time)
+    {
+        yield return new WaitForSeconds(time);
+        PullOrig();
         yield return null;
     }
 }
