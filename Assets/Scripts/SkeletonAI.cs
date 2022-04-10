@@ -178,6 +178,8 @@ public class SkeletonAI : MonoBehaviour
 
     private void EnableRagdoll()
     {
+        boneAudioSource.loop = false;
+        boneAudioSource.playOnAwake = false;
         boneAudioSource.Stop();
         boneHitAudioSource.Play();
 

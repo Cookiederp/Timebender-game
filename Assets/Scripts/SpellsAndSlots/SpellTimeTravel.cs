@@ -11,6 +11,8 @@ public class SpellTimeTravel : MonoBehaviour
     public TimeTravelManager timeTravelManager;
     private GameManager gameManager;
 
+    public AudioSource audioSource;
+
     private Sway wandSway;
 
     private void Awake()
@@ -33,6 +35,7 @@ public class SpellTimeTravel : MonoBehaviour
                 if (presentPostProcessObj.activeSelf)
                 {
                     //to future
+                    audioSource.Play();
                     wandSway.MoveUp(0.15f, true);
                     presentPostProcessObj.SetActive(false);
                     futurePostProcessObj.SetActive(true);
@@ -44,6 +47,7 @@ public class SpellTimeTravel : MonoBehaviour
                 else
                 {
                     //to present
+                    audioSource.Play();
                     wandSway.MoveUp(-0.15f, true);
                     presentPostProcessObj.SetActive(true);
                     futurePostProcessObj.SetActive(false);
