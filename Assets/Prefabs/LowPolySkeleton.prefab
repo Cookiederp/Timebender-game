@@ -2003,6 +2003,7 @@ MonoBehaviour:
   timeBeforeSwitch: 0
   boneAudioSource: {fileID: 5984903727343503392}
   boneHitAudioSource: {fileID: 3127634157053394482}
+  dieOnVel: 4
 --- !u!114 &7991412661548906272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2064,7 +2065,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 71171254bbcf7c5478b9d10dbaaea17a, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.281
+  m_Volume: 0.319
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2075,7 +2076,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 12
   Pan2D: 0
-  rolloffMode: 1
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -2083,49 +2084,22 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0.071428575
+      time: 0.083333336
       value: 1
-      inSlope: -14.005618
-      outSlope: -14.005618
+      inSlope: -2.7824516
+      outSlope: -2.7824516
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.14794596
-      value: 0.5972748
-      inSlope: -2.1537616
-      outSlope: -2.1537616
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.6884013
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.30861774
-      value: 0.42959595
-      inSlope: -0.87535113
-      outSlope: -0.87535113
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.57396156
-      value: 0.29336548
-      inSlope: -0.21883778
-      outSlope: -0.21883778
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
+      outWeight: 0.10895212
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: -0.07145703
-      outSlope: -0.07145703
+      inSlope: -0.28496283
+      outSlope: -0.28496283
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.35808465
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -2187,7 +2161,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: ed3be6d2b73820446be3c4bc131ac36a, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.535
+  m_Volume: 0.492
   m_Pitch: 1.18
   Loop: 0
   Mute: 0

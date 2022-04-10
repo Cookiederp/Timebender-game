@@ -44,6 +44,8 @@ public class SkeletonAI : MonoBehaviour
     public AudioSource boneAudioSource;
     public AudioSource boneHitAudioSource;
 
+    public float dieOnVel = 4f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -247,7 +249,7 @@ public class SkeletonAI : MonoBehaviour
         if (!other.CompareTag("Player"))
         {
             float velSum = otherRb.velocity.magnitude;
-            if (velSum > 4f)
+            if (velSum > dieOnVel)
             {
                 if(otherMass > 0.2f)
                 {
@@ -262,7 +264,7 @@ public class SkeletonAI : MonoBehaviour
                     }
                 }
             }
-            else if(velSum > 4f)
+            else if(velSum > dieOnVel)
             {
                 if (other.CompareTag("Sword"))
                 {
