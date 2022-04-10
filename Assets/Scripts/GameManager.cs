@@ -8,6 +8,10 @@ public class GameManager : MonoBehaviour
     private GameObject gameMenuObj;
     private GameMenu gameMenu;
     private CamController camController;
+
+    [HideInInspector]
+    public GameObject player;
+
     [HideInInspector]
     public bool isGamePaused
     {
@@ -54,6 +58,7 @@ public class GameManager : MonoBehaviour
         playerHealthManager = FindObjectOfType<PlayerHealthManager>();
         inventoryManager = FindObjectOfType<InventoryManager>();
         camController = FindObjectOfType<CamController>();
+        player = FindObjectOfType<PlayerHealthManager>().gameObject;
         AudioListener.volume = PlayerPrefs.GetFloat("sound", 0.5f);
     }
 
