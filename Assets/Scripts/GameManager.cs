@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         //TEMP KEY L BECAUSE ESCAPE LEAVES EDITOR
-        if (Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (!isNextSceneLoading)
             {

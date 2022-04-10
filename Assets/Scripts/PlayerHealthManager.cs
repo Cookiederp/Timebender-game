@@ -40,6 +40,7 @@ public class PlayerHealthManager : MonoBehaviour
     void Update()
     {
         //TEMP, NEED TO ADD DAMAGE TAKEN FROM SKELETON HERE INSTEAD
+        /*
         if (Input.GetKeyDown(KeyCode.Alpha9))
         {
             hp -= 25;
@@ -50,6 +51,7 @@ public class PlayerHealthManager : MonoBehaviour
             lcoroutine = StartCoroutine(HitInPast());
             UpdateUI();
         }
+        */
     }
 
     public void PotionConsumed()
@@ -87,6 +89,7 @@ public class PlayerHealthManager : MonoBehaviour
 
     public void RemoveHP(float hp_)
     {
+        lcoroutine = StartCoroutine(HitInPast());
         hurtAudioSource.Play();
         fleshAudioSource.Play();
         hp -= hp_;
