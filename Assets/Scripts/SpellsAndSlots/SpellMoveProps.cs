@@ -39,6 +39,8 @@ public class SpellMoveProps : MonoBehaviour
 
     public RawImage[] crosshairImages;
 
+    public AudioSource audioSource;
+
     Color defColor;
 
     private void Awake()
@@ -195,7 +197,7 @@ public class SpellMoveProps : MonoBehaviour
                             }
                             wandSway.MoveForward(hitMass * 0.5f);
                             float tf;
-
+                            audioSource.Play();
                             tf = throwForce * hitMass;
                             hit.rigidbody.AddForce(ray.direction * tf, ForceMode.Impulse);
                             GameObject temp = Instantiate(throwParticleEffect, hit.point, Quaternion.LookRotation(hit.point));
