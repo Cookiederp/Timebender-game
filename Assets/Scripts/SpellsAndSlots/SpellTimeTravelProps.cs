@@ -21,6 +21,8 @@ public class SpellTimeTravelProps : MonoBehaviour
 
     Color defColor;
 
+    public AudioSource audioSource;
+
     private Sway wandSway;
 
     // Start is called before the first frame update
@@ -106,11 +108,15 @@ public class SpellTimeTravelProps : MonoBehaviour
                 if (isRight)
                 {
                     wandSway.PullForward(0.3f, true);
+                    audioSource.pitch = 0.75f;
+                    audioSource.Play();
                     obj.OnPress(1);
                 }
                 else
                 {
                     wandSway.PullForward(-0.3f, true);
+                    audioSource.pitch = 0.65f;
+                    audioSource.Play();
                     obj.OnPress(-1);
                 }
             }
@@ -124,11 +130,15 @@ public class SpellTimeTravelProps : MonoBehaviour
                     if (isRight)
                     {
                         wandSway.PullForward(0.3f, true);
+                        audioSource.pitch = 0.75f;
+                        audioSource.Play();
                         obj.OnPress(1);
                     }
                     else
                     {
                         wandSway.PullForward(-0.3f, true);
+                        audioSource.pitch = 0.65f;
+                        audioSource.Play();
                         obj.OnPress(-1);
                     }
                 }

@@ -12,6 +12,12 @@ public class PlayerHealthManager : MonoBehaviour
 
     private Coroutine lcoroutine;
 
+    public AudioClip hurtSound;
+    public AudioSource hurtAudioSource;
+
+    public AudioClip fleshSound;
+    public AudioSource fleshAudioSource;
+
     public Image playerHurtMaskImage;
     private float maxAlpha = 0.25f;
     private float alphaIntensity = 0.1f;
@@ -25,6 +31,8 @@ public class PlayerHealthManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        hurtAudioSource.clip = hurtSound;
+        fleshAudioSource.clip = fleshSound;
         UpdateUI();
     }
 
@@ -79,6 +87,8 @@ public class PlayerHealthManager : MonoBehaviour
 
     public void RemoveHP(float hp_)
     {
+        hurtAudioSource.Play();
+        fleshAudioSource.Play();
         hp -= hp_;
         UpdateUI();
     }

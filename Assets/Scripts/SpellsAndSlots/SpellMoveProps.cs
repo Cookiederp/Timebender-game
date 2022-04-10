@@ -69,28 +69,33 @@ public class SpellMoveProps : MonoBehaviour
             Ray ray = camera.ScreenPointToRay(Input.mousePosition);
 
             //control selected prop, move it away or closer to player
-            if (Input.mouseScrollDelta.y != 0)
+            if (selectedProp != null)
             {
-                if (Input.mouseScrollDelta.y > 0)
+                if (Input.mouseScrollDelta.y != 0)
                 {
-                    if (!(holdLocation.localPosition.z >= maxRange))
+                    if (Input.mouseScrollDelta.y > 0)
                     {
-                        holdLocation.localPosition = new Vector3(holdLocation.localPosition.x, holdLocation.localPosition.y, holdLocation.localPosition.z + (Input.mouseScrollDelta.y * 0.1f));
-                        wandSway.PullForward(wandRotIntensityOnSel + ((holdLocation.localPosition.z-defaultRange) / 15), false);
+                        if (!(holdLocation.localPosition.z >= maxRange))
+                        {
+                            holdLocation.localPosition = new Vector3(holdLocation.localPosition.x, holdLocation.localPosition.y, holdLocation.localPosition.z + (Input.mouseScrollDelta.y * 0.1f));
+                            wandSway.PullForward(wandRotIntensityOnSel + ((holdLocation.localPosition.z - defaultRange) / 15), false);
+                        }
                     }
-                }
-                else
-                {
-                    if (!(holdLocation.localPosition.z <= minRange))
+                    else
                     {
-                        holdLocation.localPosition = new Vector3(holdLocation.localPosition.x, holdLocation.localPosition.y, holdLocation.localPosition.z + (Input.mouseScrollDelta.y * 0.1f));
-                        wandSway.PullForward(wandRotIntensityOnSel + ((holdLocation.localPosition.z-defaultRange) / 15), false);
+                        if (!(holdLocation.localPosition.z <= minRange))
+                        {
+                            holdLocation.localPosition = new Vector3(holdLocation.localPosition.x, holdLocation.localPosition.y, holdLocation.localPosition.z + (Input.mouseScrollDelta.y * 0.1f));
+                            wandSway.PullForward(wandRotIntensityOnSel + ((holdLocation.localPosition.z - defaultRange) / 15), false);
+                        }
                     }
+
+
+
                 }
-
-
-
             }
+
+
 
             //move prop
             if (Input.GetMouseButtonDown(1))

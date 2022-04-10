@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class SkeletonAI : MonoBehaviour
 {
@@ -23,9 +24,33 @@ public class SkeletonAI : MonoBehaviour
 
 
     public GameObject swordObj;
+
+    private GameObject player;
+    private GameManager gameManager;
+    private NavMeshAgent navMesh;
+    private float distanceFromPlayer;
+    private bool isAttacking = false;
+    private bool wasGoingToPlayer = false;
+
+    private float attackRange = 2.65f;
+    public float seePlayerRadius = 10f;
+    public bool doesPatrol;
+    private bool isPatroling = false;
+    private bool hasSeenPlayer = false;
+    public Transform patrolPointA;
+    public Transform patrolPointB;
+    public float timeBeforeSwitch;
+
+    public AudioSource boneAudioSource;
+    public AudioSource boneHitAudioSource;
+
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameManager.instance;
+        player = gameManager.player;
+        navMesh = gameObject.GetComponent<NavMeshAgent>();
+
         gameObjectR = gameObject.GetComponent<TimeTravelReceiver>();
         animator = gameObject.GetComponent<Animator>();
         animRb = gameObject.GetComponent<Rigidbody>();
@@ -36,8 +61,129 @@ public class SkeletonAI : MonoBehaviour
         DisableRagdoll();
     }
 
+    void Update()
+    {
+        if (navMesh.enabled)
+        {
+            distanceFromPlayer = Vector3.Distance(transform.position, player.transform.position);
+            if (distanceFromPlayer < attackRange)
+            {
+                AttackPlayer();
+            }
+            else if (distanceFromPlayer < seePlayerRadius || hasSeenPlayer)
+            {
+                if (!isAttacking)
+                {
+                    GoToPlayer();
+                }
+            }
+            else
+            {
+                if (!isPatroling)
+                {
+                    Patrol();               
+                }
+                else
+                {
+                    if(navMesh.velocity.sqrMagnitude == 0f)
+                    {
+                        animator.Play("idle");
+                    }
+                    else
+                    {
+                        animator.Play("walk");
+                    }
+
+                }
+            }
+        }
+    }
+
+    private void GoToPlayer()
+    {
+        if (navMesh.enabled)
+        {
+            hasSeenPlayer = true;
+            isPatroling = false;
+            StopAllCoroutines();
+            isAttacking = false;
+            animator.Play("walk", 0);
+            navMesh.SetDestination(player.transform.position);
+        }
+    }
+
+    private void AttackPlayer()
+    {
+        if (navMesh.enabled)
+        {
+            isPatroling = false;
+            //not mine
+            //https://www.youtube.com/watch?v=xppompv1DBg&t=2s
+            Vector3 dir = (player.transform.position - gameObject.transform.position).normalized;
+            Quaternion lookRot = Quaternion.LookRotation(new Vector3(dir.x, 0, dir.z));
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRot, Time.deltaTime * 5f);
+            //
+
+            if (isAttacking == false)
+            {
+                StopCoroutine(Attacking());
+                isAttacking = true;
+                StartCoroutine(Attacking());
+            }
+        }
+    }
+
+    private void Patrol()
+    {
+        if (doesPatrol)
+        {
+            if (navMesh.enabled)
+            {
+                isPatroling = true;
+                StopAllCoroutines();
+                StartCoroutine(Patrol(timeBeforeSwitch));
+            }
+        }
+    }
+
+    IEnumerator Attacking()
+    {
+        while (!animator.GetCurrentAnimatorStateInfo(0).IsName("Strike_1"))
+        {
+            yield return new WaitForSeconds(0.03f);
+        }
+        yield return new WaitForSeconds(0.15f);
+        Debug.Log("Attacking");
+        if(distanceFromPlayer < attackRange)
+        {
+            //hurt player
+            gameManager.playerHealthManager.RemoveHP(40f);
+        }
+        yield return new WaitForSeconds(1.75f);
+        isAttacking = false;
+        yield return null;
+    }
+
+    IEnumerator Patrol(float time)
+    {
+        while (true)
+        {
+            navMesh.SetDestination(patrolPointA.position);
+            yield return new WaitForSeconds(time);
+            navMesh.SetDestination(patrolPointB.position);
+            yield return new WaitForSeconds(time);
+        }
+    }
+
+
     private void EnableRagdoll()
     {
+        boneAudioSource.loop = false;
+        boneAudioSource.playOnAwake = false;
+        boneAudioSource.Stop();
+        boneHitAudioSource.Play();
+
+        StopAllCoroutines();
         GameObject particleDead = Instantiate(deadParticlePrefab, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y+1f, gameObject.transform.position.z), Quaternion.identity);
         foreach (Collider col in ragdollColliders)
         {
@@ -63,6 +209,7 @@ public class SkeletonAI : MonoBehaviour
         animCollider.enabled = false;
         triggerCollider.enabled = false;
         swordObj.transform.parent = null;
+        navMesh.enabled = false;
         Destroy(particleDead, 10f);
     }
 
@@ -80,6 +227,7 @@ public class SkeletonAI : MonoBehaviour
             rb.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
         }
 
+        navMesh.enabled = true;
         animator.enabled = true;
         animCollider.enabled = true;
         triggerCollider.enabled = true;
@@ -99,7 +247,7 @@ public class SkeletonAI : MonoBehaviour
         if (!other.CompareTag("Player"))
         {
             float velSum = otherRb.velocity.magnitude;
-            if (velSum > 5.6f)
+            if (velSum > 4f)
             {
                 if(otherMass > 0.2f)
                 {
