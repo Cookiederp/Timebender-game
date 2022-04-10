@@ -41,6 +41,9 @@ public class SkeletonAI : MonoBehaviour
     public Transform patrolPointB;
     public float timeBeforeSwitch;
 
+    public AudioSource boneAudioSource;
+    public AudioSource boneHitAudioSource;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -175,6 +178,9 @@ public class SkeletonAI : MonoBehaviour
 
     private void EnableRagdoll()
     {
+        boneAudioSource.Stop();
+        boneHitAudioSource.Play();
+
         StopAllCoroutines();
         GameObject particleDead = Instantiate(deadParticlePrefab, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y+1f, gameObject.transform.position.z), Quaternion.identity);
         foreach (Collider col in ragdollColliders)
