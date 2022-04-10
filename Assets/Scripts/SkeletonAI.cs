@@ -32,6 +32,7 @@ public class SkeletonAI : MonoBehaviour
     private bool isAttacking = false;
     private bool wasGoingToPlayer = false;
 
+    private float attackRange = 2.65f;
     public float seePlayerRadius = 10f;
     public bool doesPatrol;
     private bool isPatroling = false;
@@ -62,13 +63,16 @@ public class SkeletonAI : MonoBehaviour
         if (navMesh.enabled)
         {
             distanceFromPlayer = Vector3.Distance(transform.position, player.transform.position);
-            if (distanceFromPlayer < 3f)
+            if (distanceFromPlayer < attackRange)
             {
                 AttackPlayer();
             }
             else if (distanceFromPlayer < seePlayerRadius || hasSeenPlayer)
             {
-                GoToPlayer();
+                if (!isAttacking)
+                {
+                    GoToPlayer();
+                }
             }
             else
             {
@@ -143,16 +147,16 @@ public class SkeletonAI : MonoBehaviour
     {
         while (!animator.GetCurrentAnimatorStateInfo(0).IsName("Strike_1"))
         {
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.03f);
         }
-        yield return new WaitForSeconds(0.08f);
+        yield return new WaitForSeconds(0.15f);
         Debug.Log("Attacking");
-        if(distanceFromPlayer < 2.5f)
+        if(distanceFromPlayer < attackRange)
         {
             //hurt player
             gameManager.playerHealthManager.RemoveHP(40f);
         }
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.75f);
         isAttacking = false;
         yield return null;
     }
