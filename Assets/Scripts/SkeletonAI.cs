@@ -53,6 +53,9 @@ public class SkeletonAI : MonoBehaviour
         player = gameManager.player;
         navMesh = gameObject.GetComponent<NavMeshAgent>();
 
+        swordObj.GetComponent<SwordGetParentTime>().enabled = false;
+        swordObj.GetComponent<TimeTravelReceiver>().enabled = false;
+
         gameObjectR = gameObject.GetComponent<TimeTravelReceiver>();
         animator = gameObject.GetComponent<Animator>();
         animRb = gameObject.GetComponent<Rigidbody>();
@@ -180,6 +183,9 @@ public class SkeletonAI : MonoBehaviour
 
     private void EnableRagdoll()
     {
+        swordObj.GetComponent<SwordGetParentTime>().enabled = true;
+        swordObj.GetComponent<TimeTravelReceiver>().enabled = true;
+
         boneAudioSource.loop = false;
         boneAudioSource.playOnAwake = false;
         boneAudioSource.Stop();
