@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ItemObject : Interactable
 {
@@ -65,7 +66,15 @@ public class ItemObject : Interactable
     {
         if (!isTaken)
         {
-            gameManager.uiInteractManager.UpdateHighlightInfoText(0, "Read "+itemData.itemName);
+            if(itemData.id == 3)
+            {
+                gameManager.uiInteractManager.UpdateHighlightInfoText(0, "Read " + itemData.itemName);
+            }
+            else
+            {
+                gameManager.uiInteractManager.UpdateHighlightInfoText(0, "Take " + itemData.itemName);
+            }
+
             if (containsTimeReceiver)
             {
                 timeTravelReceiver.OnRay();
@@ -98,14 +107,23 @@ public class ItemObject : Interactable
         {
             //not a note, (potion...)
             isTaken = true;
+
+            //merlin's book
+            if(itemData.id == 10)
+            {
+                StartCoroutine(Ending());
+            }
+
             StartCoroutine(AnimTake());
+            paperSound.clip = paperClip;
+            paperSound.Play();
+
         }
         else
         {
             //note
             //bring up UI to read the itemData.message
             gameManager.uiInteractManager.OnReadNote(itemData.noteId);
-            Debug.Log("yesss");
             paperSound.clip = paperClip;
             paperSound.Play();
         }
@@ -205,7 +223,18 @@ public class ItemObject : Interactable
             }
             yield return new WaitForSecondsRealtime(0.017f);
         }
-        gameObject.SetActive(false);
+        if(itemData.id != 10)
+        {
+            gameObject.SetActive(false);
+        }
+        yield return null;
+    }
+
+
+    IEnumerator Ending()
+    {
+        yield return new WaitForSeconds(1f);
+        gameObject.GetComponent<LoadScene>().Load();
         yield return null;
     }
 }
