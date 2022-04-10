@@ -56,4 +56,9 @@ public class OnTriggerRagdoll : InteractablePuzzleCaller
             TurnOff();
         }
     }
+
+    private void OnEnable()
+    {
+        TurnOff();
+    }
 }

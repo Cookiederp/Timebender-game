@@ -33,12 +33,19 @@ public class SelectablePlateController : MonoBehaviour
             else
             {
                 SpotLight.color = Color.red;
-                //Dead time :(
+                StartCoroutine(WrongPlate());
             }
         }
         else if(!completed)
         {
             SpotLight.color = Color.clear;
         }
+    }
+
+    IEnumerator WrongPlate()
+    {
+        yield return new WaitForSeconds(1f);
+        controller.KillPlayer();
+        yield return null;
     }
 }

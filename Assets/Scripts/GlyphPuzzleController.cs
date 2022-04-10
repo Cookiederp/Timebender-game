@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class GlyphPuzzleController : MonoBehaviour
 {
+
+    private GameManager gameManager;
     // Start is called before the first frame update
     public GameObject SkeletonPrefab;
 
@@ -27,6 +29,9 @@ public class GlyphPuzzleController : MonoBehaviour
     public GameObject SkeletonWave3;
     public GameObject SkeletonWave4;
 
+    public GameObject LadderCover;
+    public GameObject NextLevelTrigger;
+
     private SpriteRenderer[] StaticGlyphs = new SpriteRenderer[4];
     private SpriteRenderer[] PlateGlyphs = new SpriteRenderer[4];
     public SelectablePlateController[] Plates = new SelectablePlateController[4];
@@ -40,6 +45,8 @@ public class GlyphPuzzleController : MonoBehaviour
 
     void Start()
     {
+
+        gameManager = GameManager.instance;
         //Clockwise from top down
         StaticGlyphs[0] = (SpriteRenderer) PositiveXGlyph.GetComponent(typeof(SpriteRenderer));
         StaticGlyphs[1] = (SpriteRenderer) NegativeZGlyph.GetComponent(typeof(SpriteRenderer));
@@ -96,11 +103,24 @@ public class GlyphPuzzleController : MonoBehaviour
         
     }
 
+    public void KillPlayer()
+    {
+        gameManager.playerHealthManager.RemoveHP(100);
+    }
+
     public void CompletedPlate(int index)
     {
         IncompletePlates.Remove(index);
-        SelectNewPlate();
-        SpawnSkeletons();
+        if (IncompletePlates.Count > 0)
+        {
+            SelectNewPlate();
+            SpawnSkeletons();
+        }
+        else
+        {
+            LadderCover.SetActive(false);
+            NextLevelTrigger.transform.position = new Vector3(0, 0, 0);
+        }
     }
 
     public void SpawnSkeletons()
@@ -111,43 +131,32 @@ public class GlyphPuzzleController : MonoBehaviour
 
     public void SelectNewPlate()
     {
-        if (IncompletePlates.Count == 0)
-        {
-            //Win
-        }
-        else
-        {
-            //Just incase
-            foreach (int i in IncompletePlates)
-            {
-                Plates[i].isCorrectPlate = false;
-            }
 
-            selectedPlate = IncompletePlates[(int)Mathf.Floor(Random.value * (IncompletePlates.Count - Mathf.Epsilon))];
-            PlateGlyphs[selectedPlate].sprite = StaticGlyphs[selectedPlate].sprite;
-            Plates[selectedPlate].isCorrectPlate = true;
-            int Glyph;
-            for (int i = 0; i < 4; i++)
+        selectedPlate = IncompletePlates[(int)Mathf.Floor(Random.value * (IncompletePlates.Count - Mathf.Epsilon))];
+        PlateGlyphs[selectedPlate].sprite = StaticGlyphs[selectedPlate].sprite;
+        Plates[selectedPlate].isCorrectPlate = true;
+        int Glyph;
+        for (int i = 0; i < 4; i++)
+        {
+            if (i != selectedPlate)
             {
-                if (i != selectedPlate)
+                //I think this makes sense
+                Glyph = i + 1;
+                if (Glyph >= 4)
                 {
-                    //I think this makes sense
-                    Glyph = i + 1;
-                    if (Glyph >= 4)
-                    {
-                        Glyph = 0;
-                    }
-                    if (Glyph == selectedPlate)
-                    {
-                        Glyph++;
-                    }
-                    if (Glyph >= 4)
-                    {
-                        Glyph = 0;
-                    }
-                    PlateGlyphs[i].sprite = Glyphs[spriteIndices[Glyph]];
+                    Glyph = 0;
                 }
+                if (Glyph == selectedPlate)
+                {
+                    Glyph++;
+                }
+                if (Glyph >= 4)
+                {
+                    Glyph = 0;
+                }
+                PlateGlyphs[i].sprite = Glyphs[spriteIndices[Glyph]];
             }
         }
+        
     }
 }
