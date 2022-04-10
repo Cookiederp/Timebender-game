@@ -4755,35 +4755,10 @@ PrefabInstance:
       propertyPath: m_Intensity
       value: 0.018302819
       objectReference: {fileID: 0}
-    - target: {fileID: 5511338266961113618, guid: 4cc08fe4129de0d498af32fdeff7e9e9,
-        type: 3}
-      propertyPath: m_Intensity
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5511338266961113619, guid: 4cc08fe4129de0d498af32fdeff7e9e9,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0.003921569
-      objectReference: {fileID: 0}
-    - target: {fileID: 5511338266961113619, guid: 4cc08fe4129de0d498af32fdeff7e9e9,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0.003921569
-      objectReference: {fileID: 0}
-    - target: {fileID: 5511338266961113619, guid: 4cc08fe4129de0d498af32fdeff7e9e9,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 0.003921569
-      objectReference: {fileID: 0}
     - target: {fileID: 5511338266961113619, guid: 4cc08fe4129de0d498af32fdeff7e9e9,
         type: 3}
       propertyPath: m_Intensity
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5511338266961113619, guid: 4cc08fe4129de0d498af32fdeff7e9e9,
-        type: 3}
-      propertyPath: m_BounceIntensity
-      value: 1
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 5511338268683549865, guid: 4cc08fe4129de0d498af32fdeff7e9e9,
         type: 3}
