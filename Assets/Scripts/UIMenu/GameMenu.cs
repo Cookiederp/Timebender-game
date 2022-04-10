@@ -53,4 +53,9 @@ public class GameMenu : MonoBehaviour
         Time.timeScale = 1;
         SceneManager.LoadScene(0);
     }
+
+    public void OnReset()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 }
