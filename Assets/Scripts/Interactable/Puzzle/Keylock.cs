@@ -7,6 +7,9 @@ public class Keylock : InteractablePuzzleCaller
     public bool isLocked = true;
     public GameObject[] keys;
 
+    public AudioSource unlockSound;
+    public AudioClip unlockClip;
+
     //cache
     private InteractablePuzzleReceiver[] receivers_;
 
@@ -69,6 +72,8 @@ public class Keylock : InteractablePuzzleCaller
             other.gameObject.SetActive(false);
             gameObject.GetComponent<Collider>().enabled = false;
             isLocked = false;
+            unlockSound.clip = unlockClip;
+            unlockSound.Play();
         }
     }
 }
