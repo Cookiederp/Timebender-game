@@ -125,7 +125,8 @@ public class GlyphPuzzleController : MonoBehaviour
 
     public void SpawnSkeletons()
     {
-        SkeletonWaves[waveIndex].transform.position = new Vector3(0,0,0);
+        //SkeletonWaves[waveIndex].transform.position = new Vector3(0,0,0);
+        SkeletonWaves[waveIndex].SetActive(true);
         waveIndex++;
     }
 
