@@ -22886,6 +22886,11 @@ PrefabInstance:
       propertyPath: loadingScreen
       value: 
       objectReference: {fileID: 1373440665}
+    - target: {fileID: 1623704046903276359, guid: b7b43ee0c39a5b342a6a986bbf246a71,
+        type: 3}
+      propertyPath: sceneIndexToLoad
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1623704046903276360, guid: b7b43ee0c39a5b342a6a986bbf246a71,
         type: 3}
       propertyPath: m_Name
