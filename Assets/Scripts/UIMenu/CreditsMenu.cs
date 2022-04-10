@@ -16,14 +16,14 @@ public class CreditsMenu : MonoBehaviour
 
     public void OnBack()
     {
-        if(index == 0)
+        pages[index].SetActive(false);
+        index--;
+        if (index < 0)
         {
             OpenMMenu();
         }
-        else if(index == 1)
+        else
         {
-            pages[index].SetActive(false);
-            index--;
             pages[index].SetActive(true);
         }
 
@@ -31,15 +31,15 @@ public class CreditsMenu : MonoBehaviour
 
     public void OnNext()
     {
-        if (index == 0)
-        {
-            pages[index].SetActive(false);
-            index++;
-            pages[index].SetActive(true);
-        }
-        else if (index == 1)
+        pages[index].SetActive(false);
+        index++;
+        if (index == pages.Length)
         {
             OpenMMenu();
+        }
+        else
+        {
+            pages[index].SetActive(true);
         }
     }
 
