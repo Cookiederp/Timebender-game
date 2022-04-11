@@ -12,6 +12,8 @@ public class MainMenu : MonoBehaviour
     public GameObject SettingsMenuObj;
     public GameObject CreditsMenuObj;
 
+    public AudioSource audioSource;
+
     private void Start()
     {
         Time.timeScale = 1;
@@ -27,6 +29,7 @@ public class MainMenu : MonoBehaviour
     public void OnStart()
     {
         loadScene.Load();
+        audioSource.Play();
     }
 
     public void OnQuit()

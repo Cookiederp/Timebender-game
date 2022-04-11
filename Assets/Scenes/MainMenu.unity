@@ -2615,6 +2615,7 @@ MonoBehaviour:
   MainObj: {fileID: 1036207577819181137}
   SettingsMenuObj: {fileID: 1703842463}
   CreditsMenuObj: {fileID: 20804277606220096}
+  audioSource: {fileID: 841504327}
 --- !u!114 &841504325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2661,7 +2662,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: d902bafdf017dfb4c80bd871cf86778c, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.54
   m_Pitch: 1
