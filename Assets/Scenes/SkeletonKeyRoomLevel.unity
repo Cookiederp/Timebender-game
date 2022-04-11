@@ -429,6 +429,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate (18)
       objectReference: {fileID: 0}
+    - target: {fileID: 517480172326990372, guid: 0ca7e5f20badb274b8a65827d57cd125,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 517480172327022084, guid: 0ca7e5f20badb274b8a65827d57cd125,
         type: 3}
       propertyPath: m_RootOrder
@@ -641,6 +646,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate
       objectReference: {fileID: 0}
+    - target: {fileID: 517480172326990372, guid: 0ca7e5f20badb274b8a65827d57cd125,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 517480172327022084, guid: 0ca7e5f20badb274b8a65827d57cd125,
         type: 3}
       propertyPath: m_RootOrder
@@ -709,6 +719,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Plate (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 517480172326990372, guid: 0ca7e5f20badb274b8a65827d57cd125,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 517480172327022084, guid: 0ca7e5f20badb274b8a65827d57cd125,
         type: 3}
@@ -1564,6 +1579,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 517480172326990372, guid: 0ca7e5f20badb274b8a65827d57cd125,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 517480172327022084, guid: 0ca7e5f20badb274b8a65827d57cd125,
         type: 3}
       propertyPath: m_RootOrder
@@ -1855,6 +1875,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 517480172326990372, guid: 0ca7e5f20badb274b8a65827d57cd125,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 517480172327022084, guid: 0ca7e5f20badb274b8a65827d57cd125,
         type: 3}
       propertyPath: m_RootOrder
@@ -1928,6 +1953,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2368247198443000070, guid: 726e9fa3982dff844b027bc7234ef2cf,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3140808750906084284, guid: 726e9fa3982dff844b027bc7234ef2cf,
         type: 3}
@@ -2780,6 +2810,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 517480172326990372, guid: 0ca7e5f20badb274b8a65827d57cd125,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 517480172327022084, guid: 0ca7e5f20badb274b8a65827d57cd125,
         type: 3}
       propertyPath: m_RootOrder
@@ -2848,6 +2883,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Plate (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 517480172326990372, guid: 0ca7e5f20badb274b8a65827d57cd125,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 517480172327022084, guid: 0ca7e5f20badb274b8a65827d57cd125,
         type: 3}
@@ -3204,6 +3244,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 517480172326990372, guid: 0ca7e5f20badb274b8a65827d57cd125,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 517480172327022084, guid: 0ca7e5f20badb274b8a65827d57cd125,
         type: 3}
       propertyPath: m_RootOrder
@@ -3505,6 +3550,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2368247198443000070, guid: 726e9fa3982dff844b027bc7234ef2cf,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3140808750906084284, guid: 726e9fa3982dff844b027bc7234ef2cf,
         type: 3}
@@ -4198,6 +4248,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Plate (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 517480172326990372, guid: 0ca7e5f20badb274b8a65827d57cd125,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 517480172327022084, guid: 0ca7e5f20badb274b8a65827d57cd125,
         type: 3}
@@ -5422,6 +5477,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 517480172326990372, guid: 0ca7e5f20badb274b8a65827d57cd125,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 517480172327022084, guid: 0ca7e5f20badb274b8a65827d57cd125,
         type: 3}
       propertyPath: m_RootOrder
@@ -6349,6 +6409,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 517480172326990372, guid: 0ca7e5f20badb274b8a65827d57cd125,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 517480172327022084, guid: 0ca7e5f20badb274b8a65827d57cd125,
         type: 3}
       propertyPath: m_RootOrder
@@ -6792,6 +6857,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Plate (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 517480172326990372, guid: 0ca7e5f20badb274b8a65827d57cd125,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 517480172327022084, guid: 0ca7e5f20badb274b8a65827d57cd125,
         type: 3}
@@ -8279,6 +8349,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2368247198443000070, guid: 726e9fa3982dff844b027bc7234ef2cf,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3140808750906084284, guid: 726e9fa3982dff844b027bc7234ef2cf,
         type: 3}
@@ -10517,6 +10592,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 517480172326990372, guid: 0ca7e5f20badb274b8a65827d57cd125,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 517480172327022084, guid: 0ca7e5f20badb274b8a65827d57cd125,
         type: 3}
       propertyPath: m_RootOrder
@@ -10733,6 +10813,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2368247198443000070, guid: 726e9fa3982dff844b027bc7234ef2cf,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3140808750906084284, guid: 726e9fa3982dff844b027bc7234ef2cf,
         type: 3}
@@ -11877,6 +11962,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 517480172326990372, guid: 0ca7e5f20badb274b8a65827d57cd125,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 517480172327022084, guid: 0ca7e5f20badb274b8a65827d57cd125,
         type: 3}
       propertyPath: m_RootOrder
@@ -11945,6 +12035,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Plate (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 517480172326990372, guid: 0ca7e5f20badb274b8a65827d57cd125,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 517480172327022084, guid: 0ca7e5f20badb274b8a65827d57cd125,
         type: 3}
@@ -13524,6 +13619,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 517480172326990372, guid: 0ca7e5f20badb274b8a65827d57cd125,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 517480172327022084, guid: 0ca7e5f20badb274b8a65827d57cd125,
         type: 3}
       propertyPath: m_RootOrder
@@ -13592,6 +13692,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Plate (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 517480172326990372, guid: 0ca7e5f20badb274b8a65827d57cd125,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 517480172327022084, guid: 0ca7e5f20badb274b8a65827d57cd125,
         type: 3}
@@ -18570,6 +18675,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 517480172326990372, guid: 0ca7e5f20badb274b8a65827d57cd125,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 517480172327022084, guid: 0ca7e5f20badb274b8a65827d57cd125,
         type: 3}
       propertyPath: m_RootOrder
@@ -18934,6 +19044,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Plate (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 517480172326990372, guid: 0ca7e5f20badb274b8a65827d57cd125,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 517480172327022084, guid: 0ca7e5f20badb274b8a65827d57cd125,
         type: 3}
@@ -20070,6 +20185,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2368247198443000070, guid: 726e9fa3982dff844b027bc7234ef2cf,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3140808750906084284, guid: 726e9fa3982dff844b027bc7234ef2cf,
         type: 3}
@@ -21244,6 +21364,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2368247198443000070, guid: 726e9fa3982dff844b027bc7234ef2cf,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3140808750906084284, guid: 726e9fa3982dff844b027bc7234ef2cf,
         type: 3}
@@ -23062,6 +23187,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2368247198443000070, guid: 726e9fa3982dff844b027bc7234ef2cf,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3140808750906084284, guid: 726e9fa3982dff844b027bc7234ef2cf,
         type: 3}
